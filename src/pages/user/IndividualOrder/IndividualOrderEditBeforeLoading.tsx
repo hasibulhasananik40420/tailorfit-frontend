@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useParams } from "react-router-dom";
 import {
   TIndividualOrder,
@@ -6,12 +7,24 @@ import {
 // import CompanyNewOrderEditModel from "./CompanyNewOrderEditModel";
 import Loader from "../../../components/Loader/Loader";
 import IndividualOrderEdit from "./IndividualOrderEdit";
+import { useAppSelector } from "../../../redux/features/hooks";
+import { selectCurrentUser } from "../../../redux/features/auth/authSlice";
+import { useGetSettingDataQuery } from "../../../redux/api/settingApi";
 
 const IndividualOrderEditBeforeLoading = () => {
   const { id } = useParams();
   const { data, isLoading } = useGetIndividualOrderQuery(id);
 
-  if (isLoading) {
+  const currentData = useAppSelector(selectCurrentUser);
+
+  const { data: settingData, isLoading: SIsLoading } = useGetSettingDataQuery(
+    currentData?.id,
+    {
+      skip: !currentData?.id,
+    }
+  );
+
+  if (isLoading || SIsLoading) {
     return <Loader />;
   }
 
@@ -19,7 +32,10 @@ const IndividualOrderEditBeforeLoading = () => {
 
   return (
     <>
-      <IndividualOrderEdit singleOrder={singleOrder as TIndividualOrder} />
+      <IndividualOrderEdit
+        singleOrder={singleOrder as TIndividualOrder}
+        settingData={settingData?.data as any}
+      />
     </>
   );
 };

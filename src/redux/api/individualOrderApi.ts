@@ -57,6 +57,7 @@ export type TIndividualOrder = {
   orderBGColor?: string;
   createdAt?: string;
   tryerDate?: Date | null;
+  workerDeliveryDate?: Date | null;
   orderDate?: Date | null;
   deliveryDate?: Date | null;
   formattedTryerDate?: string | null;
