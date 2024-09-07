@@ -1,0 +1,43 @@
+/* .your-component .react-colorful {
+    height: 66px;
+    width: 66px;
+  }
+  .your-component .react-colorful__saturation {
+    border-radius: 4px 4px 0 0;
+  }
+  .your-component .react-colorful__hue {
+    height: 10px;
+    border-radius: 0 0 4px 4px;
+  }
+  .your-component .react-colorful__hue-pointer {
+    width: 12px;
+    height: inherit;
+    border-radius: 0;
+  }
+   */
+
+
+
+  
+  .your-component .react-colorful {
+    height: 230px; 
+    width: 240px; 
+    margin: auto;
+  }
+  
+  .your-component .react-colorful__saturation {
+    border-radius: 4px;
+  }
+  
+  .your-component .react-colorful__hue {
+    height: 12px;
+    border-radius: 60px;
+    margin-top: 16px;
+  }
+  
+  .your-component .react-colorful__hue-pointer {
+    width: 8px;
+    height: 8px;
+    border-radius: 100%;
+  }
+  
