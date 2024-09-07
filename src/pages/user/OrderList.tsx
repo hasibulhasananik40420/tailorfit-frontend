@@ -6,6 +6,7 @@ import AllPersonOderList from "../../components/AllPersonOderList/AllPersonOderL
 import AllCompanyOrderList from "../../components/AllCompanyOrderList/AllCompanyOrderList";
 import FilterItem from "../../components/FilterItem/FilterItem";
 import FilterItemForMobile from "../../components/FilterItem/FilterItemForMobile";
+import OrderListSearchAndFilter from "./OrderListSearchAndFilter";
 
 const OrderList = () => {
   const [activeTab, setActiveTab] = useState('person');
@@ -81,8 +82,11 @@ const OrderList = () => {
       
 
        <div className="flex items-center gap-5">
-         
-      
+       {activeTab !== "company" && (
+         <div className="md:mt-[-10px] 2xl:mt-[-20px]">
+            <OrderListSearchAndFilter/>
+         </div>
+         )}
 
        {activeTab !== "company" && (
          <div className="lg:block hidden">
