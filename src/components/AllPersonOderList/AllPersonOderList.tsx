@@ -513,7 +513,7 @@ const AllPersonOderList = () => {
                                     </div>
                                     <button
                                       type="submit"
-                                      className="bg-[#F00C89] rounded-[8px] h-[50px] w-full flex justify-center items-center gap-2 lg:mt-[30px] mt-4 text-[18px] font-Noto-Sans-Bengali text-white font-medium "
+                                      className="bg-[#F00C89] rounded-[8px] h-[50px] w-full flex justify-center items-center gap-2 lg:mt-[30px] mt-4 text-[18px] font-Noto-Sans-Bengali text-white font-medium lastpush"
                                     >
                                       <FaPrint className="text-white" />
                                       <>
