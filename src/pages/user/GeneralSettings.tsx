@@ -1,7 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 
-import { useEffect, useState } from "react";
-import { HexColorPicker } from "react-colorful";
+import { useEffect } from "react";
+
 import "../../custom-css/CustomColorPicker.css";
 import { FiSave } from "react-icons/fi";
 import { FieldValues, useForm } from "react-hook-form";
@@ -14,148 +14,154 @@ import { selectCurrentUser } from "../../redux/features/auth/authSlice";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Swal from "sweetalert2";
-import { IoMdClose } from "react-icons/io";
+// import { IoMdClose } from "react-icons/io";
 import Loader from "../../components/Loader/Loader";
 
-interface ColorItem {
-  _id: number;
-  colorCode: string;
-}
+/**
+ *
+ * coment kora kono code soraben na
+ *
+ **/
 
-const colorData: ColorItem[] = [
-  {
-    _id: 1,
-    colorCode: "#FF0FAD",
-  },
+// interface ColorItem {
+//   _id: number;
+//   colorCode: string;
+// }
 
-  {
-    _id: 2,
-    colorCode: "#800020",
-  },
+// const colorData: ColorItem[] = [
+//   {
+//     _id: 1,
+//     colorCode: "#FF0FAD",
+//   },
 
-  {
-    _id: 3,
-    colorCode: "#36454F",
-  },
+//   {
+//     _id: 2,
+//     colorCode: "#800020",
+//   },
 
-  {
-    _id: 4,
-    colorCode: "#FFD700",
-  },
+//   {
+//     _id: 3,
+//     colorCode: "#36454F",
+//   },
 
-  {
-    _id: 5,
-    colorCode: "#B76E79",
-  },
+//   {
+//     _id: 4,
+//     colorCode: "#FFD700",
+//   },
 
-  {
-    _id: 6,
-    colorCode: "#708090",
-  },
+//   {
+//     _id: 5,
+//     colorCode: "#B76E79",
+//   },
 
-  {
-    _id: 7,
-    colorCode: "#008080",
-  },
+//   {
+//     _id: 6,
+//     colorCode: "#708090",
+//   },
 
-  {
-    _id: 8,
-    colorCode: "#808000",
-  },
+//   {
+//     _id: 7,
+//     colorCode: "#008080",
+//   },
 
-  {
-    _id: 9,
-    colorCode: "#654321",
-  },
+//   {
+//     _id: 8,
+//     colorCode: "#808000",
+//   },
 
-  {
-    _id: 10,
-    colorCode: "#4682B4",
-  },
+//   {
+//     _id: 9,
+//     colorCode: "#654321",
+//   },
 
-  {
-    _id: 11,
-    colorCode: "#D4A190",
-  },
+//   {
+//     _id: 10,
+//     colorCode: "#4682B4",
+//   },
 
-  {
-    _id: 12,
-    colorCode: "#8A9A5B",
-  },
-  {
-    _id: 13,
-    colorCode: "#7E587E",
-  },
-  {
-    _id: 14,
-    colorCode: "#B39C86",
-  },
+//   {
+//     _id: 11,
+//     colorCode: "#D4A190",
+//   },
 
-  {
-    _id: 15,
-    colorCode: "#6B8E23",
-  },
-  {
-    _id: 16,
-    colorCode: "#6A0DAD",
-  },
-  {
-    _id: 17,
-    colorCode: "#C50",
-  },
+//   {
+//     _id: 12,
+//     colorCode: "#8A9A5B",
+//   },
+//   {
+//     _id: 13,
+//     colorCode: "#7E587E",
+//   },
+//   {
+//     _id: 14,
+//     colorCode: "#B39C86",
+//   },
 
-  {
-    _id: 18,
-    colorCode: "#005F5F",
-  },
-  {
-    _id: 19,
-    colorCode: "#F00C89",
-  },
+//   {
+//     _id: 15,
+//     colorCode: "#6B8E23",
+//   },
+//   {
+//     _id: 16,
+//     colorCode: "#6A0DAD",
+//   },
+//   {
+//     _id: 17,
+//     colorCode: "#C50",
+//   },
 
-  {
-    _id: 20,
-    colorCode: "#69C",
-  },
+//   {
+//     _id: 18,
+//     colorCode: "#005F5F",
+//   },
+//   {
+//     _id: 19,
+//     colorCode: "#F00C89",
+//   },
 
-  {
-    _id: 21,
-    colorCode: "#40E0D0",
-  },
+//   {
+//     _id: 20,
+//     colorCode: "#69C",
+//   },
 
-  {
-    _id: 22,
-    colorCode: "#E2725B",
-  },
+//   {
+//     _id: 21,
+//     colorCode: "#40E0D0",
+//   },
 
-  {
-    _id: 23,
-    colorCode: "#87CEEB",
-  },
+//   {
+//     _id: 22,
+//     colorCode: "#E2725B",
+//   },
 
-  {
-    _id: 24,
-    colorCode: "#B7410E",
-  },
-  {
-    _id: 25,
-    colorCode: "#C8A2C8",
-  },
+//   {
+//     _id: 23,
+//     colorCode: "#87CEEB",
+//   },
 
-  {
-    _id: 26,
-    colorCode: "#9DC183",
-  },
-  {
-    _id: 27,
-    colorCode: "#FF91A4",
-  },
+//   {
+//     _id: 24,
+//     colorCode: "#B7410E",
+//   },
+//   {
+//     _id: 25,
+//     colorCode: "#C8A2C8",
+//   },
 
-  {
-    _id: 28,
-    colorCode: "#367588",
-  },
-];
+//   {
+//     _id: 26,
+//     colorCode: "#9DC183",
+//   },
+//   {
+//     _id: 27,
+//     colorCode: "#FF91A4",
+//   },
+
+//   {
+//     _id: 28,
+//     colorCode: "#367588",
+//   },
+// ];
 
 export const validationSchema = z.object({
   trialPeriod: z
@@ -176,33 +182,47 @@ export const validationSchema = z.object({
     .refine((value) => /^\d+$/.test(value), {
       message: "সংখ্যায় প্রবেশ করান",
     }),
+  worksDeleveryPeriod: z
+    .string()
+    .min(1, "ডেট অভার সময়কাল লিখুন")
+    .refine((value) => /^\d+$/.test(value), {
+      message: "সংখ্যায় প্রবেশ করান",
+    }),
+  deleveryPeriod: z
+    .string()
+    .min(1, "ডেট অভার সময়কাল লিখুন")
+    .refine((value) => /^\d+$/.test(value), {
+      message: "সংখ্যায় প্রবেশ করান",
+    }),
 });
 
 export const defaultValues = {
   trialPeriod: "",
   deliveryPeriod: "",
   dateOver: "",
+  worksDeleveryPeriod: "",
+  deleveryPeriod: "",
 };
 
 const GeneralSettings = () => {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  // const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
-  const handleBoxClick = (index: number) => {
-    setActiveIndex(index === activeIndex ? null : index);
-  };
+  // const handleBoxClick = (index: number) => {
+  //   setActiveIndex(index === activeIndex ? null : index);
+  // };
 
-  const initialColor = "#F00C89";
-  const [color, setColor] = useState(initialColor);
-  const [isPickerVisible, setIsPickerVisible] = useState(false);
+  // const initialColor = "#F00C89";
+  // const [color, setColor] = useState(initialColor);
+  // const [isPickerVisible, setIsPickerVisible] = useState(false);
 
-  const togglePicker = () => {
-    setIsPickerVisible(!isPickerVisible);
-  };
+  // const togglePicker = () => {
+  //   setIsPickerVisible(!isPickerVisible);
+  // };
 
-  const resetColor = () => {
-    setColor(initialColor);
-    setIsPickerVisible(false);
-  };
+  // const resetColor = () => {
+  //   setColor(initialColor);
+  //   setIsPickerVisible(false);
+  // };
 
   //  handle all logic here
   const userData = useAppSelector(selectCurrentUser);
@@ -216,25 +236,28 @@ const GeneralSettings = () => {
     handleSubmit,
     register,
     formState: { errors },
-    setValue
+    setValue,
   } = useForm({
     resolver: zodResolver(validationSchema),
     // defaultValues: defaultValues,
-    defaultValues
+    defaultValues,
   });
-
 
   useEffect(() => {
     if (data?.data) {
       setValue("trialPeriod", data?.data?.trialPeriod || "");
       setValue("deliveryPeriod", data?.data?.deliveryPeriod || "");
       setValue("dateOver", data?.data?.dateOver || "");
+      setValue("worksDeleveryPeriod", data?.data?.worksDeleveryPeriod || "");
+      setValue("deleveryPeriod", data?.data?.deleveryPeriod || "");
     }
   }, [data, setValue]);
 
   const handleSetting = async (data: FieldValues) => {
-    data.themeColor = color;
+    data.themeColor = "#3333";
     data.admin = userData?.id;
+
+    console.log(data?.worksDeleveryPeriod);
 
     try {
       const res = await createSetting(data).unwrap();
@@ -263,7 +286,7 @@ const GeneralSettings = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit(handleSetting)} >
+    <form onSubmit={handleSubmit(handleSetting)}>
       <div
         className="bg-white rounded-[10px]"
         style={{ boxShadow: "0px 0px 25px 0px rgba(22, 22, 22, 0.03)" }}
@@ -309,9 +332,9 @@ const GeneralSettings = () => {
                   </h1>
 
                   <input
-                    {...register("deliveryPeriod")}
+                    {...register("deleveryPeriod")}
                     className={`2xl:max-w-[130px] lg:max-w-[130px] w-full h-[50px] rounded-[8px] border-[1px] ${
-                      errors.deliveryPeriod
+                      errors.deleveryPeriod
                         ? "border-[#F00C89]"
                         : "border-[#BCBEC6]"
                     } bg-white outline-0 px-3 md:text-[18px] text-[14px] font-Poppins font-normal text-secondaryColor placeholder-secondaryColor`}
@@ -321,9 +344,9 @@ const GeneralSettings = () => {
                     দিন
                   </p>
                 </div>
-                {errors.deliveryPeriod && (
+                {errors.deleveryPeriod && (
                   <p className="text-[#F00C89] md:text-[18px] text-[14px] font-Noto-Sans-Bengali font-normal text-right">
-                    {errors.deliveryPeriod.message}
+                    {errors.deleveryPeriod.message}
                   </p>
                 )}
               </div>
@@ -354,15 +377,45 @@ const GeneralSettings = () => {
               )}
             </div>
           </div>
+          <div className="lg:flex items-center gap-10 lg:mt-5 mt-4">
+            <div className="flex gap-[10px] lg:gap-10">
+              <div className="relative">
+                <div className="lg:flex items-center justify-between gap-5  w-full ">
+                  <h1 className="text-switchColor lg:text-[18px] text-[14px] font-Noto-Sans-Bengali font-semibold mb-[10px] lg:mb-0 ">
+                    ওয়ার্কার ডেলিভারি সময়কাল
+                  </h1>
+
+                  <input
+                    {...register("worksDeleveryPeriod")}
+                    className={` 2xl:max-w-[130px] lg:max-w-[130px] w-full h-[50px] rounded-[8px] border-[1px] ${
+                      errors.worksDeleveryPeriod
+                        ? "border-[#F00C89]"
+                        : "border-[#BCBEC6]"
+                    } bg-white text-secondaryColor outline-0 px-3 md:text-[18px] text-[14px] font-Poppins font-normal placeholder-secondaryColor`}
+                    type="text"
+                  />
+                  <p className="absolute lg:top-[14px] md:top-[45px] top-[50px]  right-3 md:text-[18px] text-[14px] font-Noto-Sans-Bengali font-normal placeholder-[#999] text-secondaryColor">
+                    দিন
+                  </p>
+                </div>
+
+                {errors.worksDeleveryPeriod && (
+                  <p className="text-[#F00C89] md:text-[18px] text-[14px] font-Noto-Sans-Bengali font-normal text-right">
+                    {errors.worksDeleveryPeriod.message}
+                  </p>
+                )}
+              </div>
+            </div>
+          </div>
 
           {/* theme setting */}
-          <div className="md:mt-[60px] mt-5 relative">
+          {/* <div className="md:mt-[60px] mt-5 relative">
             <h2 className="text-[#222943] text-[24px] font-bold font-Noto-Sans-Bengali">
               থিম সেটিংস
             </h2>
 
             <div className=" flex flex-wrap items-center  gap-4 md:mt-[30px] mt-5">
-              {/* custom color */}
+              
 
               <div className=" lg:w-[272px] w-full border border-[#BCBEC6] rounded-md your-component">
                 <div className="bg-[#F9FAFE] rounded-t-[6px] border-b w-full h-[54px] flex justify-center items-center">
@@ -456,7 +509,7 @@ const GeneralSettings = () => {
                 </div>
               ))}
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
 
