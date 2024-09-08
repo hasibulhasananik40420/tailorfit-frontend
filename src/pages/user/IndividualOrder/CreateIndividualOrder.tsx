@@ -317,7 +317,7 @@ const CreateIndividualOrder = ({
       // Add 5 days to tryerDate for deliveryDate
       const newDeliveryDate = addDays(
         workerDeliveryDate,
-        Number(settingData?.deleveryPeriod) as number
+        settingData?.deleveryPeriod ? Number(settingData?.deleveryPeriod) as number : 0
       );
       setDeliveryDate(newDeliveryDate);
     }
@@ -329,7 +329,7 @@ const CreateIndividualOrder = ({
       // Add 3 days to tryerDate for workerDeliveryDate
       const newWorkerDeliveryDate = addDays(
         tryerDate,
-        Number(settingData?.worksDeleveryPeriod) as number
+        settingData?.worksDeleveryPeriod ? Number(settingData?.worksDeleveryPeriod) as number : 0
       );
       setWorkerDeliveryDate(newWorkerDeliveryDate);
 
