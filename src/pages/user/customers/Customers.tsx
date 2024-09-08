@@ -48,7 +48,7 @@ const Customers = () => {
         {allCustomers?.length > 0 ? (
           <div className="bg-white relative w-full rounded-[10px] border-[1px] border-borderColor  lg:overflow-y-auto overflow-x-auto min-h-[590px]">
             <table className="w-[100%] text-left">
-              <thead className=" bg-[#F6F6F6] 2xl:text-[18px] 2mid75:text-[16px] 2large:text-[16px] lg:text-[14px]  2makbook:text-[10px] text-[14px] text-[#555]  font-normal">
+              <thead className=" bg-[#F6F6F6] 2xl:text-[18px] 2mid75:text-[16px] 2large:text-[16px] lg:text-[14px]  2makbook:text-[10px] text-[14px] text-[#555]  font-normal font-Noto-Sans-Bengali">
                 <tr>
                   <th scope="col" className="2xl:px-6 2xl:py-3 px-3 py-2">
                     ব্যক্তির নাম
@@ -78,7 +78,7 @@ const Customers = () => {
                       >
                         <Link
                           to={`/${currentData?.role}/order-history/${customer?.phoneNumber}`}
-                          className="block overflow-hidden text-ellipsis"
+                          className="block overflow-hidden text-ellipsis font-Noto-Sans-Bengali"
                         >
                           <div className="hover:text-primaryColor duration-100">
                             {customer?.customerName}
@@ -107,7 +107,7 @@ const Customers = () => {
 
                       <th
                         scope="row"
-                        className="capitalize 2xl:px-6 2xl:py-3 px-3 py-2  font-medium text-[#353535]  2xl:text-[18px] 2mid75:text-[16px] 2large:text-[16px] lg:text-[14px] 2makbook:text-[10px] text-[14px]"
+                        className="capitalize 2xl:px-6 2xl:py-3 px-3 py-2  font-medium text-[#353535]  2xl:text-[18px] 2mid75:text-[16px] 2large:text-[16px] lg:text-[14px] 2makbook:text-[10px] text-[14px] font-Poppins"
                       >
                         <Link
                           to={`/${currentData?.role}/order-history/${customer?.phoneNumber}`}
@@ -121,7 +121,7 @@ const Customers = () => {
                         scope="row"
                         className="2xl:px-6 2xl:py-3 px-3 py-2  font-medium text-secondaryColor 2xl:text-[18px] 2mid75:text-[16px] 2large:text-[16px] lg:text-[14px]  2makbook:text-[10px] text-[14px]  "
                       >
-                        <div className="block overflow-hidden text-ellipsis capitalize">
+                        <div className="block overflow-hidden text-ellipsis capitalize font-Noto-Sans-Bengali">
                           {customer?.address
                             ? customer?.address
                             : customer?.industry}
@@ -143,7 +143,7 @@ const Customers = () => {
                       </th>
                       <th
                         scope="row"
-                        className="2xl:px-6 2xl:py-3 px-3 py-2  font-normal text-secondaryColor whitespace-nowrap 2xl:text-[18px] 2large:text-[16px] lg:text-[14px] 2mid75:text-[16px] 2makbook:text-[10px] text-[14px]"
+                        className="2xl:px-6 2xl:py-3 px-3 py-2  font-normal text-secondaryColor whitespace-nowrap 2xl:text-[18px] 2large:text-[16px] lg:text-[14px] 2mid75:text-[16px] 2makbook:text-[10px] text-[14px] font-Poppins"
                       >
                         {/* {customer?.createdAt} */}
                         {customer?.createdAt
@@ -155,7 +155,7 @@ const Customers = () => {
                         scope="row"
                         className="2xl:px-6 2xl:py-3 px-3 py-2  font-normal text-primaryColor whitespace-nowrap 2xl:text-[18px] 2large:text-[16px] lg:text-[14px] 2mid75:text-[16px] 2makbook:text-[10px] text-[14px]"
                       >
-                        <div className="flex justify-between items-center">
+                        <div className="flex justify-between items-center font-Poppins">
                           {customer?.industry ? (
                             <Link
                               to={`/admin/company-new-order/${customer._id}`}
@@ -178,7 +178,7 @@ const Customers = () => {
 
                           <Link
                             to={`/${currentData?.role}/order-history/${customer?.phoneNumber}`}
-                            className="bg-[#F6F6F6] px-4 h-[38px] rounded-[6px] 2xl:text-[18px] 2mid75:text-[16px] 2large:text-[16px] lg:text-[14px] 2makbook:text-[10px] text-[14px] text-secondaryColor  font-medium flex justify-center items-center gap-[6px] cursor-pointer"
+                            className="bg-[#F6F6F6] px-4 h-[38px] rounded-[6px] 2xl:text-[18px] 2mid75:text-[16px] 2large:text-[16px] lg:text-[14px] 2makbook:text-[10px] text-[14px] text-secondaryColor  font-medium flex justify-center items-center gap-[6px] cursor-pointer font-Poppins"
                           >
                             <RiHistoryFill className="2xl:size-6 lg:size-6" />
                             Order History
@@ -225,10 +225,10 @@ const Customers = () => {
             </table>
           </div>
         ) : (
-          <div className="flex items-center justify-center gap-4 text-[24px] text-center text-switchColor  font-medium  min-h-[600px]">
+          <div className="flex items-center justify-center gap-4 text-[24px] text-center text-switchColor  font-medium  min-h-[600px] font-Noto-Sans-Bengali">
             <HiOutlineInformationCircle className="size-8" />
 
-            <p>এখন পর্যন্ত কোন অর্ডার তৈরি করা হয়নি</p>
+            <p>এখন পর্যন্ত কোন কাস্টমার তৈরি করা হয়নি</p>
           </div>
         )}
       </div>
