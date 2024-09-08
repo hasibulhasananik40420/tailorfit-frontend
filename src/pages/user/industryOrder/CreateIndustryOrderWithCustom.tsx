@@ -311,7 +311,6 @@ const CreateIndustryOrderWithCustom = ({
   );
   const [deliveryDate, setDeliveryDate] = useState<Date | null>(new Date());
 
-  // const { handleSubmit } = useForm();
 
   const addDays = (date: Date | null, days: number): Date | null => {
     if (date) {
@@ -323,17 +322,35 @@ const CreateIndustryOrderWithCustom = ({
   };
 
   useEffect(() => {
+    if (workerDeliveryDate) {
+      
+      // Add 5 days to tryerDate for deliveryDate
+      const newDeliveryDate = addDays(
+        workerDeliveryDate,
+        Number(settingData?.deleveryPeriod) as number
+      );
+      setDeliveryDate(newDeliveryDate);
+    }
+  }, [workerDeliveryDate]);
+
+  
+  useEffect(() => {
     if (tryerDate) {
       // Add 3 days to tryerDate for workerDeliveryDate
-      const newWorkerDeliveryDate = addDays(tryerDate, 3);
+      const newWorkerDeliveryDate = addDays(
+        tryerDate,
+        Number(settingData?.worksDeleveryPeriod) as number
+      );
       setWorkerDeliveryDate(newWorkerDeliveryDate);
 
       // Add 5 days to tryerDate for deliveryDate
-      const newDeliveryDate = addDays(tryerDate, 5);
+      const newDeliveryDate = addDays(
+        workerDeliveryDate,
+        Number(settingData?.deleveryPeriod) as number
+      );
       setDeliveryDate(newDeliveryDate);
     }
   }, [tryerDate]);
-
   // const { handleSubmit } = useForm();
 
   const {
@@ -684,8 +701,8 @@ const CreateIndustryOrderWithCustom = ({
 
             <div className="w-full h-[1px] bg-[#BCBEC6] 2xl:mt-[30px] mt-5 lg:hidden block"></div>
 
-            <div className="lg:flex lg:flex-col lg:gap-5  gap-[10px] mt-5 lg:mt-0 ">
-              <div className="flex gap-2">
+            <div className="lg:flex lg:flex-col lg:gap-4  gap-[10px] lg:mt-0 ">
+              <div className="flex flex-col 2xl:flex-row gap-4  justify-end">
                 <div className="lg:flex items-center justify-end gap-2  mt-4 lg:mt-0">
                   <h1 className="text-[#00000099] lg:text-[18px] text-[14px] font-Noto-Sans-Bengali font-[600] mb-[10px] lg:mb-0">
                     অর্ডার ডেট:
@@ -693,9 +710,10 @@ const CreateIndustryOrderWithCustom = ({
                   <div className="relative">
                     <DatePicker
                       selected={orderDate}
+                      readOnly
                       onChange={(date) => setOrderDate(date)}
                       placeholderText="Select a date"
-                      className=" cursor-pointer border-[#BCBEC6]  text-[#651A71] 2xl:text-[18px] lg:text-[16px] text-[14px] rounded-[8px] bg-white outline-0 border-0 font-Poppins placeholder:text-secondaryColor w-32"
+                      className=" cursor- border-[#BCBEC6]  text-[#651A71] 2xl:text-[18px] lg:text-[16px] text-[14px] rounded-[8px] bg-white outline-0 border-0 font-Poppins placeholder:text-secondaryColor w-32"
                       dateFormat="dd-MM-yyyy"
                       calendarClassName="custom-calendar-class"
                     />
@@ -723,7 +741,7 @@ const CreateIndustryOrderWithCustom = ({
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col 2xl:flex-row gap-4">
+              <div className="flex flex-col 2xl:flex-row gap-4 justify-end">
                 <div className="lg:flex items-center justify-end gap-2  mt-4 lg:mt-0">
                   <h1 className="text-[#00000099] lg:text-[18px] text-[14px] font-Noto-Sans-Bengali font-[600] mb-[10px] lg:mb-0">
                     ওয়ার্কার ডেলিভারি ডেট:
