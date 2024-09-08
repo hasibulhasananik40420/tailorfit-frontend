@@ -31,6 +31,8 @@ const Modal: React.FC<ModalProps> = ({ btn, children }) => {
         {btn}
       </button>
 
+      
+
       <dialog id="my_modal_3" className="modal" ref={modalRef}>
         <div className="modal-box">
           <form method="dialog">

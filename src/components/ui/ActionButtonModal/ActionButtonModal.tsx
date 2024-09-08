@@ -274,7 +274,7 @@ const ActionButtonModal = ({
 
 
 
-
+{/* 
             {order?.industry ? (
               <button
                 
@@ -302,7 +302,7 @@ const ActionButtonModal = ({
             <PDFGenerator
               singleOrder={singleOrder as TIndividualOrder}
               componentRef={componentRef}
-            ></PDFGenerator>
+            ></PDFGenerator> */}
 
 
 
