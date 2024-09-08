@@ -590,7 +590,7 @@ const CreateIndividualOrder = ({
                                                    ${
                                                      urgentOrder === true
                                                        ? "bg-[#F00C89] border-0"
-                                                       : "border-[1px] border-[#E5E5E5]"
+                                                       : "border-[1px] border-secondaryColor"
                                                    }
                                                    `}
                     >
@@ -613,7 +613,7 @@ const CreateIndividualOrder = ({
               </div>
             </div>
           </div>
-          <div className="w-full h-[1px] bg-[#BCBEC6] 2xl:mt-[30px] mt-5"></div>
+          <div className="w-full h-[1px] bg-secondaryColor 2xl:mt-[30px] mt-5"></div>
 
           <div className="lg:flex lg:gap-5 justify-between mt-5">
             <div className="lg:flex lg:flex-col lg:gap-5  gap-[10px]">
@@ -631,7 +631,7 @@ const CreateIndividualOrder = ({
                       className={`2xl:w-[400px] lg:w-[370px] w-full h-[51px] rounded-[8px] border-[1px] ${
                         errors?.customerName
                           ? "border-primaryColor"
-                          : "border-[#BCBEC6]"
+                          : "border-secondaryColor"
                       }  bg-white dark:bg-white text-secondaryColor dark:text-secondaryColor outline-0 px-5 md:text-[18px] text-[14px] font-Poppins font-normal `}
                       type="text"
                       {...register("customerName", {
@@ -664,7 +664,7 @@ const CreateIndividualOrder = ({
                       className={`2xl:w-[400px] lg:w-[370px] w-full h-[51px] rounded-[8px] border-[1px] ${
                         errors?.phoneNumber
                           ? "border-primaryColor"
-                          : "border-[#BCBEC6]"
+                          : "border-secondaryColor"
                       }  bg-white dark:bg-white text-secondaryColor dark:text-secondaryColor outline-0 px-5 md:text-[18px] text-[14px] font-Poppins font-normal `}
                       type="text"
                       {...register("phoneNumber", {
@@ -699,7 +699,7 @@ const CreateIndividualOrder = ({
 
                 <div className="">
                   <input
-                    className={`2xl:w-[400px] lg:w-[370px] w-full h-[51px] rounded-[8px] border-[1px] border-[#BCBEC6] bg-white dark:bg-white text-secondaryColor dark:text-secondaryColor outline-0 px-5 md:text-[18px] text-[14px] font-Poppins font-normal `}
+                    className={`2xl:w-[400px] lg:w-[370px] w-full h-[51px] rounded-[8px] border-[1px] border-secondaryColor bg-white dark:bg-white text-secondaryColor dark:text-secondaryColor outline-0 px-5 md:text-[18px] text-[14px] font-Poppins font-normal `}
                     type="text"
                     {...register("address", {
                       onChange: (e) => {
@@ -711,7 +711,7 @@ const CreateIndividualOrder = ({
               </div>
             </div>
 
-            <div className="w-full h-[1px] bg-[#BCBEC6] 2xl:mt-[30px] mt-5 lg:hidden block"></div>
+            <div className="w-full h-[1px] bg-secondaryColor 2xl:mt-[30px] mt-5 lg:hidden block"></div>
 
             <div className="lg:flex lg:flex-col lg:gap-4  gap-[10px] lg:mt-0 ">
               <div className="flex flex-col 2xl:flex-row gap-4  justify-end">
@@ -781,7 +781,7 @@ const CreateIndividualOrder = ({
                       selected={deliveryDate}
                       onChange={(date) => setDeliveryDate(date)}
                       placeholderText="Select a date"
-                      className=" cursor-pointer border-[#BCBEC6]  text-[#651A71] 2xl:text-[18px] lg:text-[16px] text-[14px] rounded-[8px] bg-white outline-0 border-0 font-Poppins placeholder:text-secondaryColor w-32"
+                      className=" cursor-pointer border-secondaryColor  text-[#651A71] 2xl:text-[18px] lg:text-[16px] text-[14px] rounded-[8px] bg-white outline-0 border-0 font-Poppins placeholder:text-secondaryColor w-32"
                       dateFormat="dd-MM-yyyy"
                       calendarClassName="custom-calendar-class"
                     />
@@ -794,8 +794,8 @@ const CreateIndividualOrder = ({
             </div>
           </div>
 
-          <div className="w-full h-[1px] bg-[#BCBEC6] 2xl:mt-[30px] mt-5 lg:block hidden"></div>
-          <div className="w-full h-[1px] bg-[#BCBEC6] 2xl:mt-[30px] mt-5 lg:hidden block"></div>
+          <div className="w-full h-[1px] bg-secondaryColor 2xl:mt-[30px] mt-5 lg:block hidden"></div>
+          <div className="w-full h-[1px] bg-secondaryColor 2xl:mt-[30px] mt-5 lg:hidden block"></div>
         </div>
 
         <div className="2xl:pt-[30px] lg:pt-[15px] pt-3 relative">
@@ -807,7 +807,7 @@ const CreateIndividualOrder = ({
             <>
               <div
                 key={fromIndex}
-                className="2xl:mt-[30px]  lg:mt-[15px] mt-3 border border-[#BCBEC6] !rounded-[10px] "
+                className="2xl:mt-[30px]  lg:mt-[15px] mt-3 border border-secondaryColor !rounded-[10px] "
               >
                 <div className="flex justify-between items-center lg:p-5 p-3 w-full">
                   <div className="lg:flex items-center lg:gap-[50px] gap-3">
@@ -818,7 +818,7 @@ const CreateIndividualOrder = ({
 
                       <div className="relative w-full">
                         <div
-                          className={`2xl:w-[250px] lg:w-[250px] w-full  rounded-[8px] border-[1px]  outline-0 md:text-[18px] text-[14px] font-Poppins font-normal flex items-center justify-between cursor-pointer border-[#BCBEC6]`}
+                          className={`2xl:w-[250px] lg:w-[250px] w-full  rounded-[8px] border-[1px]  outline-0 md:text-[18px] text-[14px] font-Poppins font-normal flex items-center justify-between cursor-pointer border-secondaryColor`}
                           onClick={() =>
                             setForms((prevForms) => ({
                               ...prevForms,
@@ -978,7 +978,7 @@ const CreateIndividualOrder = ({
                         index === fromIndex && item.category !== ""
                     ) ? (
                       <>
-                        <div className=" lg:flex bg-[#F9FAFE] rounded-r-[10px] rounded-l-[10px] border-[#BCBEC6] border-t rounded-t-none ">
+                        <div className=" lg:flex bg-[#F9FAFE] rounded-r-[10px] rounded-l-[10px] border-secondaryColor border-t rounded-t-none">
                           {/* part 1 */}
                           <div className="bg-white 2xl:w-[740px] 2mid75:w-full lg:w-full w-full rounded-l-[10px]">
                             <h1 className="text-[#222943] lg:text-[20px] text-[16px] font-Noto-Sans-Bengali font-bold 2xl:pl-5 pl-3 2xl:pt-5 pt-3">
@@ -1004,7 +1004,7 @@ const CreateIndividualOrder = ({
                                           {measurementItem.label}
                                         </label>
                                         <input
-                                          className="bg-white 2xl:w-[100px] lg:w-[70px] w-[60px] h-[40px] rounded-[8px] border-[1px] border-[#BCBEC6] outline-0 pl-3 text-secondaryColor font-bold"
+                                          className="bg-white 2xl:w-[100px] lg:w-[70px] w-[60px] h-[40px] rounded-[8px] border-[1px] border-secondaryColor outline-0 pl-3 text-secondaryColor font-bold"
                                           type="text"
                                           name=""
                                           defaultValue={measurementItem.text}
@@ -1031,7 +1031,7 @@ const CreateIndividualOrder = ({
 
                             {form?.lugeSize.length >= 1 && (
                               <>
-                                <div className="w-full h-[0.4px] bg-[#BCBEC6] lg:my-5 my-3"></div>
+                                <div className="w-full h-[0.4px] bg-secondaryColor lg:my-5 my-3"></div>
 
                                 <h1 className="text-[#222943] lg:text-[16px] text-[14px] font-Noto-Sans-Bengali font-bold 2xl:pl-5 pl-3 ">
                                   লুজের মাপ (ঐচ্ছিক)
@@ -1055,7 +1055,7 @@ const CreateIndividualOrder = ({
                                               {lugeItem.label}
                                             </label>
                                             <input
-                                              className="bg-white text-secondaryColor 2xl:w-[100px] lg:w-[70px] w-[60px] h-[40px] rounded-[8px] border-[1px] border-[#BCBEC6] outline-0 pl-3 font-bold"
+                                              className="bg-white text-secondaryColor 2xl:w-[100px] lg:w-[70px] w-[60px] h-[40px] rounded-[8px] border-[1px] border-secondaryColor outline-0 pl-3 font-bold"
                                               type="text"
                                               name=""
                                               defaultValue={lugeItem.text}
@@ -1092,7 +1092,7 @@ const CreateIndividualOrder = ({
                           </div>
                           {/* part 2 */}
 
-                          <div className="bg-[#F9FAFE] 2xl:w-[745px] 2mid75:w-full lg:w-full w-full border-[#BCBEC6] lg:border-l rounded-r-[10px] rounded-l-[10px] lg:rounded-l-none">
+                          <div className="bg-[#F9FAFE] 2xl:w-[745px] 2mid75:w-full lg:w-full w-full border-secondaryColor lg:border-l rounded-r-[10px] rounded-l-[10px] lg:rounded-l-none">
                             <div className="2xl:p-5 p-3">
                               <h1 className="text-[#222943] lg:text-[20px] text-[16px] font-Noto-Sans-Bengali font-bold">
                                 ডিজাইন স্টাইল
@@ -1138,7 +1138,7 @@ const CreateIndividualOrder = ({
                                                    ${
                                                      styleItem.isActive === true
                                                        ? "bg-[#F00C89] border-0"
-                                                       : "border-[1px] border-[#E5E5E5]"
+                                                       : "border-[1px] border-secondaryColor"
                                                    }
                                                    `}
                                                         >
@@ -1183,7 +1183,7 @@ const CreateIndividualOrder = ({
                                                 className="flex flex-col"
                                               >
                                                 <div
-                                                  className="relative 2xl:w-[340px] 2large:w-[270px] lg:w-[230px] 2makbook:w-[200px] w-full h-[46px] rounded-[8px] border-[1px] border-[#BCBEC6] bg-white text-black outline-0 px-5 md:text-[18px] text-[14px] font-Noto-Sans-Bengali flex items-center justify-between cursor-pointer"
+                                                  className="relative 2xl:w-[340px] 2large:w-[270px] lg:w-[230px] 2makbook:w-[200px] w-full h-[46px] rounded-[8px] border-[1px] border-secondaryColor bg-white text-black outline-0 px-5 md:text-[18px] text-[14px] font-Noto-Sans-Bengali flex items-center justify-between cursor-pointer"
                                                   onClick={() =>
                                                     handleToggleDropDown(
                                                       fromIndex,
@@ -1257,7 +1257,7 @@ const CreateIndividualOrder = ({
                                 <div className="w-full mt-[30px]">
                                   <input
                                     type="text"
-                                    className="w-full h-[50px] border-[1px] border-[#BCBEC6] rounded-[8px] bg-white pl-4 placeholder:text-[18px] font-Noto-Sans-Bengali font-normal placeholder:text-switchColor text-secondaryColor outline-0"
+                                    className="w-full h-[50px] border-[1px] border-secondaryColor rounded-[8px] bg-white pl-4 placeholder:text-[18px] font-Noto-Sans-Bengali font-normal placeholder:text-switchColor text-secondaryColor outline-0"
                                     placeholder="এখানে নোট লিখুন"
                                     onChange={(e) =>
                                       handleNoteChange(e, fromIndex)
@@ -1271,7 +1271,7 @@ const CreateIndividualOrder = ({
                         </div>
                       </>
                     ) : (
-                      <div className="w-full bg-[#F9FAFE] lg:h-[150px] h-[96px] border-t border-[#BCBEC6]  rounded-b-[10px] text-btnColor font-Noto-Sans-Bengali text-16px] font-normal flex justify-center items-center">
+                      <div className="w-full bg-[#F9FAFE] lg:h-[150px] h-[96px] border-t border-secondaryColor  rounded-b-[10px] text-btnColor font-Noto-Sans-Bengali text-16px] font-normal flex justify-center items-center">
                         এখন পর্যন্ত কোন ক্যাটাগরি সিলেক্ট করা হয়নি
                       </div>
                     )}
