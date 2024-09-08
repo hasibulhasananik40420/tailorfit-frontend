@@ -139,7 +139,7 @@ const Selector = ({
         <div className="2xl:w-[400px] lg:w-[370px] w-full relative">
           <div
             onClick={handleModel}
-            className={`${className} cursor-pointer h-[51px] rounded-[8px] border-[1px] border-[#BCBEC6] flex items-center justify-between px-3 text-secondaryColor md:text-[18px] text-[14px] font-Noto-Sans-Bengali font-normal placeholder:font-Noto-Sans-Bengali ${
+            className={`${className} cursor-pointer h-[51px] rounded-[8px] border-[1px] border-secondaryColor flex items-center justify-between px-3 text-secondaryColor md:text-[18px] text-[14px] font-Noto-Sans-Bengali font-normal placeholder:font-Noto-Sans-Bengali ${
               !industrySelected && "text-gray-700"
             }`}
           >

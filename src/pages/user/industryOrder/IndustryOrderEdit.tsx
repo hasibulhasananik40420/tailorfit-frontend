@@ -439,7 +439,7 @@ const IndustryOrderEdit = ({
                                                    ${
                                                      urgentOrder === true
                                                        ? "bg-[#F00C89] border-0"
-                                                       : "border-[1px] border-[#E5E5E5]"
+                                                       : "border-[1px] border-secondaryColor"
                                                    }
                                                    `}
                     >
@@ -462,7 +462,7 @@ const IndustryOrderEdit = ({
               </div>
             </div>
           </div>
-          <div className="w-full h-[1px] bg-[#BCBEC6] 2xl:mt-[30px] mt-5"></div>
+          <div className="w-full h-[1px] bg-secondaryColor 2xl:mt-[30px] mt-5"></div>
 
           <div className="lg:flex lg:gap-5 justify-between mt-5">
             <div className="lg:flex lg:flex-col lg:gap-5  gap-[10px]">
@@ -477,7 +477,7 @@ const IndustryOrderEdit = ({
 
                   <div className="">
                     <input
-                      className=" 2xl:w-[400px] lg:w-[370px] w-full h-[51px] rounded-[8px] border-[1px] border-[#BCBEC6] bg-white dark:bg-white text-secondaryColor dark:text-secondaryColor outline-0 px-5 md:text-[18px] text-[14px] font-Poppins font-normal "
+                      className=" 2xl:w-[400px] lg:w-[370px] w-full h-[51px] rounded-[8px] border-[1px] border-secondaryColor bg-white dark:bg-white text-secondaryColor dark:text-secondaryColor outline-0 px-5 md:text-[18px] text-[14px] font-Poppins font-normal "
                       defaultValue={singleOrder?.customerName}
                       onChange={(e) => setCustomerName(e.target.value)}
                       type="text"
@@ -494,7 +494,7 @@ const IndustryOrderEdit = ({
                   </h1>
 
                   <input
-                    className="2xl:w-[400px] lg:w-[370px] w-full h-[51px] rounded-[8px] border-[1px] border-[#BCBEC6] bg-white dark:bg-white text-secondaryColor dark:text-secondaryColor outline-0 px-5 md:text-[18px] text-[14px] font-Poppins font-normal "
+                    className="2xl:w-[400px] lg:w-[370px] w-full h-[51px] rounded-[8px] border-[1px] border-secondaryColor bg-white dark:bg-white text-secondaryColor dark:text-secondaryColor outline-0 px-5 md:text-[18px] text-[14px] font-Poppins font-normal "
                     type="text"
                     onChange={(e) => setPhoneNumber(e.target.value)}
                     defaultValue={singleOrder?.phoneNumber}
@@ -518,7 +518,7 @@ const IndustryOrderEdit = ({
               </div>
             </div>
 
-            <div className="w-full h-[1px] bg-[#BCBEC6] 2xl:mt-[30px] mt-5 lg:hidden block"></div>
+            <div className="w-full h-[1px] bg-secondaryColor 2xl:mt-[30px] mt-5 lg:hidden block"></div>
 
             <div className="lg:flex lg:flex-col lg:gap-4  gap-[10px] lg:mt-0 ">
               <div className="flex flex-col 2xl:flex-row gap-4  justify-end">
@@ -532,7 +532,7 @@ const IndustryOrderEdit = ({
                       readOnly
                       onChange={(date) => setOrderDate(date)}
                       placeholderText="Select a date"
-                      className=" cursor- border-[#BCBEC6]  text-[#651A71] 2xl:text-[18px] lg:text-[16px] text-[14px] rounded-[8px] bg-white outline-0 border-0 font-Poppins placeholder:text-secondaryColor w-32"
+                      className=" cursor- border-secondaryColor  text-[#651A71] 2xl:text-[18px] lg:text-[16px] text-[14px] rounded-[8px] bg-white outline-0 border-0 font-Poppins placeholder:text-secondaryColor w-32"
                       dateFormat="dd-MM-yyyy"
                       calendarClassName="custom-calendar-class"
                     />
@@ -550,7 +550,7 @@ const IndustryOrderEdit = ({
                       selected={tryerDate}
                       onChange={(date) => setTryerDate(date)}
                       placeholderText="Select a date"
-                      className=" cursor-pointer border-[#BCBEC6]  text-[#651A71] 2xl:text-[18px] lg:text-[16px] text-[14px] rounded-[8px] bg-white outline-0 border-0 font-Poppins placeholder:text-secondaryColor w-32"
+                      className=" cursor-pointer border-secondaryColor  text-[#651A71] 2xl:text-[18px] lg:text-[16px] text-[14px] rounded-[8px] bg-white outline-0 border-0 font-Poppins placeholder:text-secondaryColor w-32"
                       dateFormat="dd-MM-yyyy"
                       calendarClassName="custom-calendar-class"
                     />
@@ -570,7 +570,7 @@ const IndustryOrderEdit = ({
                       selected={workerDeliveryDate}
                       onChange={(date) => setWorkerDeliveryDate(date)}
                       placeholderText="Select a date"
-                      className=" cursor-pointer border-[#BCBEC6]  text-[#651A71] 2xl:text-[18px] lg:text-[16px] text-[14px] rounded-[8px] bg-white outline-0 border-0 font-Poppins placeholder:text-secondaryColor w-32"
+                      className=" cursor-pointer border-secondaryColor  text-[#651A71] 2xl:text-[18px] lg:text-[16px] text-[14px] rounded-[8px] bg-white outline-0 border-0 font-Poppins placeholder:text-secondaryColor w-32"
                       dateFormat="dd-MM-yyyy"
                       calendarClassName="custom-calendar-class"
                     />
@@ -588,7 +588,7 @@ const IndustryOrderEdit = ({
                       selected={deliveryDate}
                       onChange={(date) => setDeliveryDate(date)}
                       placeholderText="Select a date"
-                      className=" cursor-pointer border-[#BCBEC6]  text-[#651A71] 2xl:text-[18px] lg:text-[16px] text-[14px] rounded-[8px] bg-white outline-0 border-0 font-Poppins placeholder:text-secondaryColor w-32"
+                      className=" cursor-pointer border-secondaryColor  text-[#651A71] 2xl:text-[18px] lg:text-[16px] text-[14px] rounded-[8px] bg-white outline-0 border-0 font-Poppins placeholder:text-secondaryColor w-32"
                       dateFormat="dd-MM-yyyy"
                       calendarClassName="custom-calendar-class"
                     />
@@ -601,8 +601,8 @@ const IndustryOrderEdit = ({
             </div>
           </div>
 
-          <div className="w-full h-[1px] bg-[#BCBEC6] 2xl:mt-[30px] mt-5 lg:block hidden"></div>
-          <div className="w-full h-[1px] bg-[#BCBEC6] 2xl:mt-[30px] mt-5 lg:hidden block"></div>
+          <div className="w-full h-[1px] bg-secondaryColor 2xl:mt-[30px] mt-5 lg:block hidden"></div>
+          <div className="w-full h-[1px] bg-secondaryColor 2xl:mt-[30px] mt-5 lg:hidden block"></div>
         </div>
 
         <div className="2xl:pt-[30px] lg:pt-[15px] pt-3 relative">
@@ -614,7 +614,7 @@ const IndustryOrderEdit = ({
             <>
               <div
                 key={fromIndex}
-                className="2xl:mt-[30px]  lg:mt-[15px] mt-3 border border-[#BCBEC6] !rounded-[10px] "
+                className="2xl:mt-[30px]  lg:mt-[15px] mt-3 border border-secondaryColor !rounded-[10px] "
               >
                 <div className="flex justify-between items-center lg:p-5 p-3">
                   <div className="lg:flex items-center md:gap-[50px] gap-3">
@@ -625,7 +625,7 @@ const IndustryOrderEdit = ({
 
                       <div className="relative w-full">
                         <input
-                          className="2xl:w-[250px] lg:w-[250px] w-full bg-white dark:bg-white  h-[51px] pl-5 lg:text-[18px] md:text-[16px] text-[16px] font-Poppins font-normal outline-none rounded-[8px] text-secondaryColor placeholder:text-switchColor border "
+                          className="2xl:w-[250px] lg:w-[250px] w-full bg-white border-secondaryColor dark:bg-white  h-[51px] pl-5 lg:text-[18px] md:text-[16px] text-[16px] font-Poppins font-normal outline-none rounded-[8px] text-secondaryColor placeholder:text-switchColor border "
                           type="text"
                           readOnly
                           value={form?.category}
@@ -719,7 +719,7 @@ const IndustryOrderEdit = ({
                 {!visibility[fromIndex] && (
                   <>
                     <>
-                      <div className=" lg:flex bg-[#F9FAFE] rounded-r-[10px] rounded-l-[10px] border-[#BCBEC6] border-t rounded-t-none ">
+                      <div className=" lg:flex bg-[#F9FAFE] rounded-r-[10px] rounded-l-[10px] border-secondaryColor border-t rounded-t-none ">
                         {/* part 1 */}
                         <div className="bg-white 2xl:w-[740px] 2mid75:w-full lg:w-full w-full rounded-l-[10px]">
                           <h1 className="text-[#222943] lg:text-[20px] text-[16px] font-Noto-Sans-Bengali font-bold 2xl:pl-5 pl-3 2xl:pt-5 pt-3">
@@ -745,7 +745,7 @@ const IndustryOrderEdit = ({
                                         {measurementItem.label}
                                       </label>
                                       <input
-                                        className="bg-white text-secondaryColor 2xl:w-[100px] lg:w-[70px] w-[60px] h-[40px] rounded-[8px] border-[1px] border-[#BCBEC6] outline-0 pl-3 font-bold"
+                                        className="bg-white text-secondaryColor 2xl:w-[100px] lg:w-[70px] w-[60px] h-[40px] rounded-[8px] border-[1px] border-secondaryColor outline-0 pl-3 font-bold"
                                         type="text"
                                         name=""
                                         defaultValue={measurementItem.text}
@@ -771,7 +771,7 @@ const IndustryOrderEdit = ({
 
                           {form?.lugeSize.length >= 1 && (
                             <>
-                              <div className="w-full h-[0.4px] bg-[#BCBEC6] lg:my-5 my-3"></div>
+                              <div className="w-full h-[0.4px] bg-secondaryColor lg:my-5 my-3"></div>
                               <h1 className="text-[#222943] lg:text-[16px] text-[14px] font-Noto-Sans-Bengali font-bold 2xl:pl-5 pl-3">
                                 লুজের মাপ (ঐচ্ছিক)
                               </h1>
@@ -794,7 +794,7 @@ const IndustryOrderEdit = ({
                                             {lugeItem.label}
                                           </label>
                                           <input
-                                            className="bg-white text-secondaryColor 2xl:w-[100px] lg:w-[70px] w-[60px] h-[40px] rounded-[8px] border-[1px] border-[#BCBEC6] outline-0 pl-3 font-bold"
+                                            className="bg-white text-secondaryColor 2xl:w-[100px] lg:w-[70px] w-[60px] h-[40px] rounded-[8px] border-[1px] border-secondaryColor outline-0 pl-3 font-bold"
                                             type="text"
                                             name=""
                                             defaultValue={lugeItem.text}
@@ -831,7 +831,7 @@ const IndustryOrderEdit = ({
                         </div>
                         {/* part 2 */}
 
-                        <div className="bg-[#F9FAFE] 2xl:w-[745px] 2mid75:w-full lg:w-full w-full border-[#BCBEC6] lg:border-l rounded-r-[10px] rounded-l-[10px] lg:rounded-l-none">
+                        <div className="bg-[#F9FAFE] 2xl:w-[745px] 2mid75:w-full lg:w-full w-full border-secondaryColor lg:border-l rounded-r-[10px] rounded-l-[10px] lg:rounded-l-none">
                           <div className="2xl:p-5 p-3">
                             <h1 className="text-[#222943] lg:text-[20px] text-[16px] font-Noto-Sans-Bengali font-bold">
                               ডিজাইন স্টাইল
@@ -878,7 +878,7 @@ const IndustryOrderEdit = ({
                                                          styleItem.isActive ===
                                                          true
                                                            ? "bg-[#F00C89] border-0"
-                                                           : "border-[1px] border-[#E5E5E5]"
+                                                           : "border-[1px] border-secondaryColor"
                                                        }
                                                        `}
                                                       >
@@ -928,7 +928,7 @@ const IndustryOrderEdit = ({
                                               className="flex flex-col"
                                             >
                                               <div
-                                                className="text-black relative 2xl:w-[340px] 2large:w-[270px] lg:w-[230px] 2makbook:w-[200px] w-full h-[46px] rounded-[8px] border-[1px] border-[#BCBEC6] bg-white outline-0 px-5 md:text-[18px] text-[14px] font-Noto-Sans-Bengali flex items-center justify-between cursor-pointer"
+                                                className="text-black relative 2xl:w-[340px] 2large:w-[270px] lg:w-[230px] 2makbook:w-[200px] w-full h-[46px] rounded-[8px] border-[1px] border-secondaryColor bg-white outline-0 px-5 md:text-[18px] text-[14px] font-Noto-Sans-Bengali flex items-center justify-between cursor-pointer"
                                                 onClick={() =>
                                                   handleToggleDropDown(
                                                     fromIndex,
@@ -1003,7 +1003,7 @@ const IndustryOrderEdit = ({
 
                                 <input
                                   type="text"
-                                  className="w-full h-[50px] border-[1px] border-[#BCBEC6] rounded-[8px] bg-white text-secondaryColor pl-4 placeholder:text-[18px] font-Noto-Sans-Bengali font-normal placeholder:text-switchColor outline-0"
+                                  className="w-full h-[50px] border-[1px] border-secondaryColor rounded-[8px] bg-white text-secondaryColor pl-4 placeholder:text-[18px] font-Noto-Sans-Bengali font-normal placeholder:text-switchColor outline-0"
                                   placeholder="এখানে নোট লিখুন"
                                   onChange={(e) =>
                                     handleNoteChange(e, fromIndex)

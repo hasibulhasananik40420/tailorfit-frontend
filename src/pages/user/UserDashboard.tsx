@@ -72,7 +72,7 @@ const UserDashboard = () => {
       _id: 1,
       image: icon1,
       color: "#CFFFCA",
-      orderName: "নতুন অর্ডার",
+      orderName: "আজকের অর্ডার",
       totalOrder: orderCounts["নতুন অর্ডার"]
         ? orderCounts["নতুন অর্ডার"].toString()
         : "0",
