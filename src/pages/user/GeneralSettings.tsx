@@ -188,6 +188,12 @@ export const validationSchema = z.object({
     .refine((value) => /^\d+$/.test(value), {
       message: "সংখ্যায় প্রবেশ করান",
     }),
+    orderIdStart: z
+    .string()
+    .min(1, "ডেট অভার সময়কাল লিখুন")
+    .refine((value) => /^\d+$/.test(value), {
+      message: "সংখ্যায় প্রবেশ করান",
+    }),
   deleveryPeriod: z
     .string()
     .min(1, "ডেট অভার সময়কাল লিখুন")
@@ -202,6 +208,7 @@ export const defaultValues = {
   dateOver: "",
   worksDeleveryPeriod: "",
   deleveryPeriod: "",
+  orderIdStart: "",
 };
 
 const GeneralSettings = () => {
@@ -248,6 +255,7 @@ const GeneralSettings = () => {
       setValue("trialPeriod", data?.data?.trialPeriod || "");
       setValue("deliveryPeriod", data?.data?.deliveryPeriod || "");
       setValue("dateOver", data?.data?.dateOver || "");
+      setValue("orderIdStart", data?.data?.orderIdStart || "");
       setValue("worksDeleveryPeriod", data?.data?.worksDeleveryPeriod || "");
       setValue("deleveryPeriod", data?.data?.deleveryPeriod || "");
     }
@@ -257,7 +265,6 @@ const GeneralSettings = () => {
     data.themeColor = "#3333";
     data.admin = userData?.id;
 
-    console.log(data?.worksDeleveryPeriod);
 
     try {
       const res = await createSetting(data).unwrap();
@@ -298,142 +305,152 @@ const GeneralSettings = () => {
 
           <div className=" w-full lg:mt-5 mt-4">
             <div className="flex items-center justify-between w-full">
-             
-             
-            <div className="flex gap-[10px] lg:gap-20">
-              <div className="relative">
-                <div className="lg:flex items-center justify-between gap-5  w-full">
-                  <h1 className="text-switchColor lg:text-[18px] text-[14px] font-Noto-Sans-Bengali font-semibold mb-[10px] lg:mb-0 ">
-                    ট্রায়াল সময়কাল
-                  </h1>
+              <div className="flex gap-[10px] lg:gap-20">
+                <div className="relative">
+                  <div className="lg:flex items-center justify-between gap-5  w-full">
+                    <h1 className="text-switchColor lg:text-[18px] text-[14px] font-Noto-Sans-Bengali font-semibold mb-[10px] lg:mb-0 ">
+                      ট্রায়াল সময়কাল
+                    </h1>
 
-                  <input
-                    {...register("trialPeriod")}
-                    className={` 2xl:max-w-[90px] lg:max-w-[90px] w-full h-[50px] border-b border-secondaryColor bg-white text-secondaryColor outline-0 px-3 md:text-[18px] text-[14px] font-Poppins font-normal placeholder-secondaryColor`}
-                    type="text"
-                  />
-                  <p className="absolute lg:top-[14px] md:top-[45px] top-[50px]  right-3 md:text-[18px] text-[14px] font-Noto-Sans-Bengali font-normal placeholder-[#999] text-secondaryColor">
-                    দিন
-                  </p>
+                    <input
+                      {...register("trialPeriod")}
+                      className={` 2xl:max-w-[90px] lg:max-w-[90px] w-full h-[50px] border-b border-secondaryColor bg-white text-secondaryColor outline-0 px-3 md:text-[18px] text-[14px] font-Poppins font-normal placeholder-secondaryColor`}
+                      type="text"
+                    />
+                    <p className="absolute lg:top-[14px] md:top-[45px] top-[50px]  right-3 md:text-[18px] text-[14px] font-Noto-Sans-Bengali font-normal placeholder-[#999] text-secondaryColor">
+                      দিন
+                    </p>
+                  </div>
+
+                  {errors.trialPeriod && (
+                    <p className="text-[#F00C89] md:text-[18px] text-[14px] font-Noto-Sans-Bengali font-normal text-right">
+                      {errors.trialPeriod.message}
+                    </p>
+                  )}
                 </div>
-
-                {errors.trialPeriod && (
-                  <p className="text-[#F00C89] md:text-[18px] text-[14px] font-Noto-Sans-Bengali font-normal text-right">
-                    {errors.trialPeriod.message}
-                  </p>
-                )}
-              </div>
-              </div>
-
-
-               <div className="w-[1px] h-[50px] bg-[#999]"></div>
-
-
-              
-
-              <div className="flex gap-[10px] lg:gap-10">
-              <div className="relative">
-                <div className="lg:flex items-center justify-between gap-5  w-full ">
-                  <h1 className="text-switchColor lg:text-[18px] text-[14px] font-Noto-Sans-Bengali font-semibold mb-[10px] lg:mb-0 ">
-                    ডেলিভারি সময়কাল
-                  </h1>
-
-                  <input
-                    {...register("deleveryPeriod")}
-                    className={`2xl:max-w-[90px] lg:max-w-[90px] w-full h-[50px] border-b border-secondaryColor bg-white outline-0 px-3 md:text-[18px] text-[14px] font-Poppins font-normal text-secondaryColor placeholder-secondaryColor`}
-                    type="text"
-                  />
-                  <p className="absolute lg:top-[14px] md:top-[45px] top-[50px] right-3 md:text-[18px] text-[14px] font-Noto-Sans-Bengali font-normal placeholder-[#999] text-secondaryColor">
-                    দিন
-                  </p>
-                </div>
-                {errors.deleveryPeriod && (
-                  <p className="text-[#F00C89] md:text-[18px] text-[14px] font-Noto-Sans-Bengali font-normal text-right">
-                    {errors.deleveryPeriod.message}
-                  </p>
-                )}
-              </div>
               </div>
 
               <div className="w-[1px] h-[50px] bg-[#999]"></div>
 
+              <div className="flex gap-[10px] lg:gap-10">
+                <div className="relative">
+                  <div className="lg:flex items-center justify-between gap-5  w-full ">
+                    <h1 className="text-switchColor lg:text-[18px] text-[14px] font-Noto-Sans-Bengali font-semibold mb-[10px] lg:mb-0 ">
+                      ডেলিভারি সময়কাল
+                    </h1>
+
+                    <input
+                      {...register("deleveryPeriod")}
+                      className={`2xl:max-w-[90px] lg:max-w-[90px] w-full h-[50px] border-b border-secondaryColor bg-white outline-0 px-3 md:text-[18px] text-[14px] font-Poppins font-normal text-secondaryColor placeholder-secondaryColor`}
+                      type="text"
+                    />
+                    <p className="absolute lg:top-[14px] md:top-[45px] top-[50px] right-3 md:text-[18px] text-[14px] font-Noto-Sans-Bengali font-normal placeholder-[#999] text-secondaryColor">
+                      দিন
+                    </p>
+                  </div>
+                  {errors.deleveryPeriod && (
+                    <p className="text-[#F00C89] md:text-[18px] text-[14px] font-Noto-Sans-Bengali font-normal text-right">
+                      {errors.deleveryPeriod.message}
+                    </p>
+                  )}
+                </div>
+              </div>
+
+              <div className="w-[1px] h-[50px] bg-[#999]"></div>
 
               <div className="flex gap-[10px] lg:gap-10">
-             <div className="relative">
-               <div className="lg:flex items-center justify-between gap-5  w-full ">
-                 <h1 className="text-switchColor lg:text-[18px] text-[14px] font-Noto-Sans-Bengali font-semibold mb-[10px] lg:mb-0 ">
-                   ওয়ার্কার ডেলিভারি সময়কাল
-                 </h1>
+                <div className="relative">
+                  <div className="lg:flex items-center justify-between gap-5  w-full ">
+                    <h1 className="text-switchColor lg:text-[18px] text-[14px] font-Noto-Sans-Bengali font-semibold mb-[10px] lg:mb-0 ">
+                      ওয়ার্কার ডেলিভারি সময়কাল
+                    </h1>
 
-                 <input
-                   {...register("worksDeleveryPeriod")}
-                   className={` 2xl:max-w-[90px] lg:max-w-[90px] w-full h-[50px] border-b border-secondaryColor bg-white text-secondaryColor outline-0 px-3 md:text-[18px] text-[14px] font-Poppins font-normal placeholder-secondaryColor`}
-                   type="text"
-                 />
-                 <p className="absolute lg:top-[14px] md:top-[45px] top-[50px]  right-3 md:text-[18px] text-[14px] font-Noto-Sans-Bengali font-normal placeholder-[#999] text-secondaryColor">
-                   দিন
-                 </p>
-               </div>
+                    <input
+                      {...register("worksDeleveryPeriod")}
+                      className={` 2xl:max-w-[90px] lg:max-w-[90px] w-full h-[50px] border-b border-secondaryColor bg-white text-secondaryColor outline-0 px-3 md:text-[18px] text-[14px] font-Poppins font-normal placeholder-secondaryColor`}
+                      type="text"
+                    />
+                    <p className="absolute lg:top-[14px] md:top-[45px] top-[50px]  right-3 md:text-[18px] text-[14px] font-Noto-Sans-Bengali font-normal placeholder-[#999] text-secondaryColor">
+                      দিন
+                    </p>
+                  </div>
 
-               {errors.worksDeleveryPeriod && (
-                 <p className="text-[#F00C89] md:text-[18px] text-[14px] font-Noto-Sans-Bengali font-normal text-right">
-                   {errors.worksDeleveryPeriod.message}
-                 </p>
-               )}
-             </div>
+                  {errors.worksDeleveryPeriod && (
+                    <p className="text-[#F00C89] md:text-[18px] text-[14px] font-Noto-Sans-Bengali font-normal text-right">
+                      {errors.worksDeleveryPeriod.message}
+                    </p>
+                  )}
+                </div>
               </div>
-
-
-
             </div>
 
+            <div className="w-full h-[1px] border-b border-secondaryColor my-10"></div>
 
+            <div className="flex justify-between">
+              <div className="flex gap-[10px] lg:gap-10">
+                <div className="relative">
+                  <div className="lg:flex items-center justify-between gap-5  w-full mt-4 lg:mt-0">
+                    <h1 className="text-switchColor lg:text-[18px] text-[14px] font-Noto-Sans-Bengali font-semibold mb-[10px] lg:mb-0 ">
+                      ডেট অভার সময়কাল
+                    </h1>
 
-             
-           <div className="w-full h-[1px] border-b border-secondaryColor my-10">
+                    <input
+                      {...register("dateOver")}
+                      className={`2xl:max-w-[90px] lg:max-w-[90px] w-full h-[50px] border-b border-secondaryColor bg-white text-secondaryColor outline-0 px-3 md:text-[18px] text-[14px] font-Poppins font-normal placeholder-secondaryColor`}
+                      type="text"
+                    />
+                    <p className="absolute lg:top-[14px] md:top-[45px] top-[50px] right-3 md:text-[18px] text-[14px] font-Noto-Sans-Bengali font-normal placeholder-[#999] text-secondaryColor">
+                      দিন
+                    </p>
+                  </div>
 
-           </div>
-
-           <div className="flex gap-[10px] lg:gap-10">
-           <div className="relative">
-              <div className="lg:flex items-center justify-between gap-5  w-full mt-4 lg:mt-0">
-                <h1 className="text-switchColor lg:text-[18px] text-[14px] font-Noto-Sans-Bengali font-semibold mb-[10px] lg:mb-0 ">
-                  ডেট অভার সময়কাল
-                </h1>
-
-                <input
-                  {...register("dateOver")}
-                  className={`2xl:max-w-[90px] lg:max-w-[90px] w-full h-[50px] border-b border-secondaryColor bg-white text-secondaryColor outline-0 px-3 md:text-[18px] text-[14px] font-Poppins font-normal placeholder-secondaryColor`}
-                  type="text"
-                />
-                <p className="absolute lg:top-[14px] md:top-[45px] top-[50px] right-3 md:text-[18px] text-[14px] font-Noto-Sans-Bengali font-normal placeholder-[#999] text-secondaryColor">
-                  দিন
-                </p>
+                  {errors.dateOver && (
+                    <p className="text-[#F00C89] md:text-[18px] text-[14px] font-Noto-Sans-Bengali font-normal text-right">
+                      {errors.dateOver.message}
+                    </p>
+                  )}
+                </div>
               </div>
+              <div className="flex gap-[10px] lg:gap-10">
+                <div className="relative">
+                  <div className="lg:flex items-center justify-between gap-5  w-full mt-4 lg:mt-0">
+                    <h1 className="text-switchColor lg:text-[18px] text-[14px] font-Noto-Sans-Bengali font-semibold mb-[10px] lg:mb-0 ">
+                      অর্ডার শুরুর নাম্বার
+                    </h1>
 
-              {errors.dateOver && (
-                <p className="text-[#F00C89] md:text-[18px] text-[14px] font-Noto-Sans-Bengali font-normal text-right">
-                  {errors.dateOver.message}
-                </p>
-              )}
+                    {/* <input
+                      {...register("orderIdStart")}
+                      className={`2xl:max-w-[90px] lg:max-w-[90px] w-full h-[50px] border-b border-secondaryColor bg-white text-secondaryColor outline-0 px-3 md:text-[18px] text-[14px] font-Poppins font-normal placeholder-secondaryColor`}
+                      type="text"
+                    /> */}
+
+                    <input
+                      {...register("orderIdStart", {
+                        required: true,
+                        
+                      })}
+                      className={`2xl:max-w-[90px] lg:max-w-[90px] w-full h-[50px] border-b border-secondaryColor bg-white text-secondaryColor outline-0 px-3 md:text-[18px] text-[14px] font-Poppins font-normal placeholder-secondaryColor`}
+                      type="text"
+                      maxLength={4} // Limits to 4 digits
+                      placeholder="0000" // Example placeholder for 4 digits
+                    />
+
+                    {/* <p className="absolute lg:top-[14px] md:top-[45px] top-[50px] right-3 md:text-[18px] text-[14px] font-Noto-Sans-Bengali font-normal placeholder-[#999] text-secondaryColor">
+                      দিন
+                    </p> */}
+                  </div>
+
+                  {/* {errors.orderIdStart && (
+                    <p className="text-[#F00C89] md:text-[18px] text-[14px] font-Noto-Sans-Bengali font-normal text-right">
+                      {errors.orderIdStart.message}
+                    </p>
+                  )} */}
+                </div>
+              </div>
             </div>
-           </div>
 
-            <div className="lg:flex items-center gap-10 lg:mt-5 mt-4">
-           
-          
-         </div>
-            </div>
-
-
-
-     
-          
-
-
-
-
-
+            <div className="lg:flex items-center gap-10 lg:mt-5 mt-4"></div>
+          </div>
 
           {/* theme setting */}
           {/* <div className="md:mt-[60px] mt-5 relative">
