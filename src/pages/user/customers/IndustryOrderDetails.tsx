@@ -417,13 +417,13 @@ const IndustryOrderDetails = ({
                             </h1>
 
                             <div className="flex items-center gap-3">
-                              <span className="size-6 rounded-full bg-secondaryColor flex justify-center items-center cursor-pointer hover:bg-primaryColor duration-300">
+                              <span className="size-6 rounded-full bg-[#BCBEC6] flex justify-center items-center cursor-pointer hover:bg-primaryColor duration-300">
                                 <LuMinus className="text-white" />
                               </span>
                               <span className=" text-[24px] w-4 outline-none text-switchColor font-Poppins font-semibold">
                                 {form.quantity}
                               </span>
-                              <span className="size-6 rounded-full bg-secondaryColor flex justify-center items-center cursor-pointer hover:bg-primaryColor duration-300">
+                              <span className="size-6 rounded-full bg-[#BCBEC6] flex justify-center items-center cursor-pointer hover:bg-primaryColor duration-300">
                                 <FiPlus className="text-white size-4" />
                                 <input
                                   className="hidden text-[24px] w-4 outline-none text-switchColor font-Poppins font-semibold"
@@ -504,7 +504,7 @@ const IndustryOrderDetails = ({
                                 {form?.lugeSize.length >= 1 && (
                                   <>
                                     <div className="w-full h-[0.4px] bg-secondaryColor lg:my-5 my-3"></div>
-                                    <h1 className="text-[#222943] lg:text-[16px] text-[14px]font-Noto-Sans-Bengali font-bold 2xl:pl-5 pl-3 ">
+                                    <h1 className="text-[#222943] lg:text-[16px] text-[14px] font-Noto-Sans-Bengali font-bold 2xl:pl-5 pl-3 ">
                                       লুজের মাপ (ঐচ্ছিক)
                                     </h1>
                                     <div className="lg:mt-5 mt-3 flex flex-wrap 2xl:gap-5 lg:gap-3 gap-3 2xl:pl-5 pl-3">

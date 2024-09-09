@@ -26,6 +26,21 @@ body{
 }
 
 
+
+.custom-calendar-class .react-datepicker__day--selected {
+  background-color: #F00C89;
+  border-radius: 100%;
+  color: #fff; 
+}
+
+.custom-calendar-class .react-datepicker__day--selected:hover {
+  background-color: blueviolet;
+  border-radius: 100%;
+  color: #fff;
+}
+
+
+
 .no-select {
   user-select: none;
   -webkit-user-select: none;

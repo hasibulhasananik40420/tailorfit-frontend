@@ -611,51 +611,7 @@ const CreateIndustryOrder = ({
                 </label>
               </div>
             </div>
-            {/* <div className="flex items-center gap-2">
-              <div>
-                <label
-                  className={`flex items-center border rounded-lg p-[10px] cursor-pointer ${
-                    urgentOrder === true
-                      ? "border-primaryColor text-primaryColor bg-primaryRgbaColor"
-                      : "border-[#BCBEC6]"
-                  }`}
-                >
-                  <input
-                    type="checkbox"
-                    onChange={() => setUrgentOrder(!urgentOrder)}
-                    className="hidden form-checkbox h-5 w-5 text-blue-100"
-                  />
-
-                  <div className="flex items-center gap-2">
-                    <div
-                      className={`lg:w-6 lg:h-6 md:w-6 md:h-6 w-[20px] h-[20px] rounded-[4px] flex items-center justify-center cursor-pointer relative
-                                                   ${
-                                                     urgentOrder === true
-                                                       ? "bg-[#F00C89] border-0"
-                                                       : "border-[1px] border-[#E5E5E5]"
-                                                   }
-                                                   `}
-                    >
-                      {urgentOrder === true && (
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <GrFormCheckmark
-                            className={`md:size-6 size-5 text-white`}
-                          />
-                        </div>
-                      )}
-                    </div>
-                  </div>
-
-                  <span className={`ml-4 `}>Urgent Order</span>
-                </label>
-              </div>
-              <h1 className="text-secondaryColor font-Poppins md:text-[20px] text-[18px] font-semibold">
-                <span className="text-switchColor font-Noto-Sans-Bengali font-semibold">
-                  অর্ডার নাম্বার:
-                </span>{" "}
-                #0001
-              </h1>
-            </div> */}
+           
           </div>
           <div className="w-full h-[1px] bg-secondaryColor 2xl:mt-[30px] mt-5"></div>
 
@@ -768,8 +724,9 @@ const CreateIndustryOrder = ({
                       readOnly
                       onChange={(date) => setOrderDate(date)}
                       placeholderText="Select a date"
-                      className=" cursor- border-[#BCBEC6]  text-[#651A71] 2xl:text-[18px] lg:text-[16px] text-[14px] rounded-[8px] bg-white outline-0 border-0 font-Poppins placeholder:text-secondaryColor w-32"
+                      className=" text-[#651A71] 2xl:text-[18px] lg:text-[16px] text-[14px] rounded-[8px] bg-white outline-0 font-Poppins placeholder:text-secondaryColor cursor-pointer lg:w-[150px] w-full"
                       dateFormat="dd-MM-yyyy"
+                      popperPlacement="bottom-end"
                       calendarClassName="custom-calendar-class"
                     />
                     <span className="absolute inset-y-0 right-1 flex items-center  pointer-events-none">
@@ -786,8 +743,9 @@ const CreateIndustryOrder = ({
                       selected={tryerDate}
                       onChange={(date) => setTryerDate(date)}
                       placeholderText="Select a date"
-                      className=" cursor-pointer border-[#BCBEC6]  text-[#651A71] 2xl:text-[18px] lg:text-[16px] text-[14px] rounded-[8px] bg-white outline-0 border-0 font-Poppins placeholder:text-secondaryColor w-32"
+                      className=" text-[#651A71] 2xl:text-[18px] lg:text-[16px] text-[14px] rounded-[8px] bg-white outline-0 font-Poppins placeholder:text-secondaryColor cursor-pointer lg:w-[150px] w-full"
                       dateFormat="dd-MM-yyyy"
+                      popperPlacement="bottom-end"
                       calendarClassName="custom-calendar-class"
                     />
                     <span className="absolute inset-y-0 right-1 flex items-center  pointer-events-none">
@@ -806,8 +764,9 @@ const CreateIndustryOrder = ({
                       selected={workerDeliveryDate}
                       onChange={(date) => setWorkerDeliveryDate(date)}
                       placeholderText="Select a date"
-                      className=" cursor-pointer border-[#BCBEC6]  text-[#651A71] 2xl:text-[18px] lg:text-[16px] text-[14px] rounded-[8px] bg-white outline-0 border-0 font-Poppins placeholder:text-secondaryColor w-32"
+                      className=" text-[#651A71] 2xl:text-[18px] lg:text-[16px] text-[14px] rounded-[8px] bg-white outline-0 font-Poppins placeholder:text-secondaryColor cursor-pointer lg:w-[150px] w-full"
                       dateFormat="dd-MM-yyyy"
+                      popperPlacement="bottom-end"
                       calendarClassName="custom-calendar-class"
                     />
                     <span className="absolute inset-y-0 right-1 flex items-center  pointer-events-none">
@@ -824,8 +783,9 @@ const CreateIndustryOrder = ({
                       selected={deliveryDate}
                       onChange={(date) => setDeliveryDate(date)}
                       placeholderText="Select a date"
-                      className=" cursor-pointer border-[#BCBEC6]  text-[#651A71] 2xl:text-[18px] lg:text-[16px] text-[14px] rounded-[8px] bg-white outline-0 border-0 font-Poppins placeholder:text-secondaryColor w-32"
+                      className=" text-[#651A71] 2xl:text-[18px] lg:text-[16px] text-[14px] rounded-[8px] bg-white outline-0 font-Poppins placeholder:text-secondaryColor cursor-pointer lg:w-[150px] w-full"
                       dateFormat="dd-MM-yyyy"
+                      popperPlacement="bottom-end"
                       calendarClassName="custom-calendar-class"
                     />
                     <span className="absolute inset-y-0 right-1 flex items-center  pointer-events-none">
