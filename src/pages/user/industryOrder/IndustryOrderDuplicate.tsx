@@ -541,8 +541,9 @@ const IndustryOrderDuplicate = ({
                       readOnly
                       onChange={(date) => setOrderDate(date)}
                       placeholderText="Select a date"
-                      className=" cursor- border-secondaryColor  text-[#651A71] 2xl:text-[18px] lg:text-[16px] text-[14px] rounded-[8px] bg-white outline-0 border-0 font-Poppins placeholder:text-secondaryColor w-32"
+                      className=" text-[#651A71] 2xl:text-[18px] lg:text-[16px] text-[14px] rounded-[8px] bg-white outline-0 font-Poppins placeholder:text-secondaryColor cursor-pointer lg:w-[150px] w-full"
                       dateFormat="dd-MM-yyyy"
+                      popperPlacement="bottom-end"
                       calendarClassName="custom-calendar-class"
                     />
                     <span className="absolute inset-y-0 right-1 flex items-center  pointer-events-none">
@@ -559,8 +560,9 @@ const IndustryOrderDuplicate = ({
                       selected={tryerDate}
                       onChange={(date) => setTryerDate(date)}
                       placeholderText="Select a date"
-                      className=" cursor-pointer border-secondaryColor  text-[#651A71] 2xl:text-[18px] lg:text-[16px] text-[14px] rounded-[8px] bg-white outline-0 border-0 font-Poppins placeholder:text-secondaryColor w-32"
+                      className=" text-[#651A71] 2xl:text-[18px] lg:text-[16px] text-[14px] rounded-[8px] bg-white outline-0 font-Poppins placeholder:text-secondaryColor cursor-pointer lg:w-[150px] w-full"
                       dateFormat="dd-MM-yyyy"
+                      popperPlacement="bottom-end"
                       calendarClassName="custom-calendar-class"
                     />
                     <span className="absolute inset-y-0 right-1 flex items-center  pointer-events-none">
@@ -579,8 +581,9 @@ const IndustryOrderDuplicate = ({
                       selected={workerDeliveryDate}
                       onChange={(date) => setWorkerDeliveryDate(date)}
                       placeholderText="Select a date"
-                      className=" cursor-pointer border-secondaryColor  text-[#651A71] 2xl:text-[18px] lg:text-[16px] text-[14px] rounded-[8px] bg-white outline-0 border-0 font-Poppins placeholder:text-secondaryColor w-32"
+                      className=" text-[#651A71] 2xl:text-[18px] lg:text-[16px] text-[14px] rounded-[8px] bg-white outline-0 font-Poppins placeholder:text-secondaryColor cursor-pointer lg:w-[150px] w-full"
                       dateFormat="dd-MM-yyyy"
+                      popperPlacement="bottom-end"
                       calendarClassName="custom-calendar-class"
                     />
                     <span className="absolute inset-y-0 right-1 flex items-center  pointer-events-none">
@@ -597,8 +600,9 @@ const IndustryOrderDuplicate = ({
                       selected={deliveryDate}
                       onChange={(date) => setDeliveryDate(date)}
                       placeholderText="Select a date"
-                      className=" cursor-pointer border-secondaryColor  text-[#651A71] 2xl:text-[18px] lg:text-[16px] text-[14px] rounded-[8px] bg-white outline-0 border-0 font-Poppins placeholder:text-secondaryColor w-32"
+                      className=" text-[#651A71] 2xl:text-[18px] lg:text-[16px] text-[14px] rounded-[8px] bg-white outline-0 font-Poppins placeholder:text-secondaryColor cursor-pointer lg:w-[150px] w-full"
                       dateFormat="dd-MM-yyyy"
+                      popperPlacement="bottom-end"
                       calendarClassName="custom-calendar-class"
                     />
                     <span className="absolute inset-y-0 right-1 flex items-center  pointer-events-none">

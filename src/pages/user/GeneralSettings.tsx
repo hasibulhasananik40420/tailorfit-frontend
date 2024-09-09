@@ -304,11 +304,13 @@ const GeneralSettings = () => {
           </h2>
 
           <div className=" w-full lg:mt-5 mt-4">
-            <div className="flex items-center justify-between w-full">
+            <div className="lg:flex items-center justify-between w-full">
+             
+             
               <div className="flex gap-[10px] lg:gap-20">
                 <div className="relative">
-                  <div className="lg:flex items-center justify-between gap-5  w-full">
-                    <h1 className="text-switchColor lg:text-[18px] text-[14px] font-Noto-Sans-Bengali font-semibold mb-[10px] lg:mb-0 ">
+                  <div className="lg:flex items-center justify-between gap-5 w-full">
+                    <h1 className="text-switchColor lg:text-[18px] text-[14px] font-Noto-Sans-Bengali font-semibold mb-[0px] lg:mb-0 ">
                       ট্রায়াল সময়কাল
                     </h1>
 
@@ -330,9 +332,13 @@ const GeneralSettings = () => {
                 </div>
               </div>
 
-              <div className="w-[1px] h-[50px] bg-[#999]"></div>
 
-              <div className="flex gap-[10px] lg:gap-10">
+
+
+
+              <div className="w-[1px] h-[50px] bg-[#999] lg:block hidden"></div>
+
+              <div className="flex gap-[10px] lg:gap-10 ">
                 <div className="relative">
                   <div className="lg:flex items-center justify-between gap-5  w-full ">
                     <h1 className="text-switchColor lg:text-[18px] text-[14px] font-Noto-Sans-Bengali font-semibold mb-[10px] lg:mb-0 ">
@@ -356,7 +362,7 @@ const GeneralSettings = () => {
                 </div>
               </div>
 
-              <div className="w-[1px] h-[50px] bg-[#999]"></div>
+              <div className="w-[1px] h-[50px] bg-[#999] lg:block hidden"></div>
 
               <div className="flex gap-[10px] lg:gap-10">
                 <div className="relative">
@@ -386,7 +392,7 @@ const GeneralSettings = () => {
 
             <div className="w-full h-[1px] border-b border-secondaryColor my-10"></div>
 
-            <div className="flex justify-between">
+            <div className="md:flex justify-between">
               <div className="flex gap-[10px] lg:gap-10">
                 <div className="relative">
                   <div className="lg:flex items-center justify-between gap-5  w-full mt-4 lg:mt-0">
