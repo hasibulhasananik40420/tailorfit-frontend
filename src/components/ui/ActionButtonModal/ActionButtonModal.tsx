@@ -147,8 +147,6 @@ const ActionButtonModal = ({
           className=" bg-white w-[126px] rounded-[5px] p-[10px]"
         >
           <div>
-           
-           
             {order?.industry ? (
               <Link
                 to={`/admin/order-detail/${id}`}
@@ -170,7 +168,7 @@ const ActionButtonModal = ({
                     stroke-linejoin="round"
                   />
                 </svg>
-                 View
+                View
               </Link>
             ) : (
               <Link
@@ -197,28 +195,25 @@ const ActionButtonModal = ({
               </Link>
             )}
 
-          {order?.industry ? (
+            {order?.industry ? (
               <Link
                 to={`/admin/duplicate-industry-order/${id}`}
                 className="bg-white w-[106px] text-switchColor text-[16px] font-Poppins font-medium leading-5 flex items-center gap-1 h-10 pl-2 rounded hover:bg-activeDhcolor duration-300"
               >
                 <FiCopy className="2xl:size-5 size-4 text-secondaryColor" />
-
-                 Duplicate
+                Duplicate
               </Link>
             ) : (
               <Link
                 to={`/admin/duplicate-order/${id}`}
                 className="bg-white w-[106px] text-switchColor text-[16px] font-Poppins font-medium leading-5 flex items-center gap-1 h-10 pl-2 rounded hover:bg-activeDhcolor duration-300"
               >
-               <FiCopy className="2xl:size-5 size-4 text-secondaryColor" />
-               Duplicate
+                <FiCopy className="2xl:size-5 size-4 text-secondaryColor" />
+                Duplicate
               </Link>
             )}
 
-
-
-              {order?.industry ? (
+            {order?.industry ? (
               <Link
                 to={`/admin/edit-industry-order/${id}`}
                 className="bg-white w-[106px] text-switchColor text-[16px] font-Poppins font-medium leading-5 flex items-center gap-1 h-10 pl-2 rounded hover:bg-activeDhcolor duration-300"
@@ -266,20 +261,8 @@ const ActionButtonModal = ({
               </Link>
             )}
 
-
-
-
-
-
-
-
-
-{/* 
             {order?.industry ? (
-              <button
-                
-                className="bg-white w-[106px] text-[#F00C89] text-[16px] font-Poppins font-medium leading-5 flex items-center pl-2 rounded gap-1 h-10 hover:bg-activeDhcolor duration-300"
-              >
+              <button className="bg-white w-[106px] text-[#F00C89] text-[16px] font-Poppins font-medium leading-5 flex items-center pl-2 rounded gap-1 h-10 hover:bg-activeDhcolor duration-300">
                 <FaPrint />
                 <>
                   <ReactToPrint
@@ -302,11 +285,7 @@ const ActionButtonModal = ({
             <PDFGenerator
               singleOrder={singleOrder as TIndividualOrder}
               componentRef={componentRef}
-            ></PDFGenerator> */}
-
-
-
-            
+            ></PDFGenerator>
 
             {order?.industry ? (
               <button

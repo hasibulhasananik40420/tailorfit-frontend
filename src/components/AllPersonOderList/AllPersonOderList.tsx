@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { FiCopy, FiSearch } from "react-icons/fi";
+import { FiSearch } from "react-icons/fi";
 import { HiDotsVertical, HiOutlineInformationCircle } from "react-icons/hi";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
@@ -8,7 +8,9 @@ import { useAppSelector } from "../../redux/features/hooks";
 import { selectCurrentUser } from "../../redux/features/auth/authSlice";
 import {
   TIndividualOrder,
+  TIndividualOrderItem,
   useEditIndividualOrderMutation,
+  useGetIndividualOrderQuery,
   useGetIndividualOrdersQuery,
 } from "../../redux/api/individualOrderApi";
 import Swal from "sweetalert2";
@@ -43,6 +45,8 @@ const AllPersonOderList = () => {
     index: number | null;
   }>({ id: null, index: null });
 
+  const componentRef = useRef<HTMLDivElement>(null);
+
   const [editIndividualOrder] = useEditIndividualOrderMutation();
   const [dropdownOpen, setDropdownOpen] = useState<string | null>(null);
   // const [error, setError] = useState<ValidationError[]>([]);
@@ -59,7 +63,7 @@ const AllPersonOderList = () => {
     );
   };
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false as boolean);
 
   const handleStatusClick = (orderId: string) => {
     setDropdownOpen(dropdownOpen === orderId ? null : orderId);
@@ -190,6 +194,27 @@ const AllPersonOderList = () => {
   // });
 
   // console.log(filteredOrders);
+  const [selectedId, setSelectedId] = useState(null);
+  const [modalData, setModalData] = useState<Partial<TIndividualOrder>>({});
+
+  const { data: iOrderData, isLoading: iIsLoading } =
+    useGetIndividualOrderQuery(selectedId);
+
+  const handleOpenModal = (id) => {
+    setSelectedId(id);
+    setIsOpen(true);
+  };
+
+  useEffect(() => {
+    if (iOrderData && !iIsLoading && selectedId) {
+      setModalData(iOrderData?.data);
+    }
+  }, [iOrderData, iIsLoading, selectedId]);
+
+  // const fetchDataById = (id) => {
+  //   console.log(id);
+  //   setModalData(orderData);
+  // };
 
   if (isLoading) {
     return <Loader />;
@@ -479,6 +504,90 @@ const AllPersonOderList = () => {
                           <div className="flex justify-between items-center 2xl:gap-[15px] gap-[10px]">
                             <div>
                               <button
+                                onClick={() => handleOpenModal(order?._id)} // Example id
+                                className="bg-primaryColor flex justify-center gap-2 items-center text-white px-4 py-2 rounded"
+                              >
+                                <FaPrint />
+                                <span>Print</span>
+                              </button>
+
+                              <Dialog
+                                open={isOpen}
+                                onClose={() => setIsOpen(false)} 
+                                className="relative !z-[9999999999]"
+                              >
+                                <div className="fixed inset-0 flex w-screen items-center justify-center">
+                                  <DialogPanel
+                                    style={{
+                                      boxShadow:
+                                        "0px 0px 25px 0px rgba(0, 0, 0, 0.10)",
+                                    }}
+                                    className="md:w-[450px] w-full md:px-[50px] md:py-[50px] px-6 py-16 border-[1px] border-[#F6F6F6] bg-white rounded-[10px] relative"
+                                  >
+                                    <div className="">
+                                      <div className="text-secondaryColor text-[24px] text-center font-Poppins font-semibold">
+                                        {modalData ? (
+                                          <div className="">
+                                            <div className="flex justify-center items-center h-full w-full">
+                                              <div className="">
+                                                <p>Print Your Order</p>
+
+                                                <div
+                                                  className={`grid ${
+                                                    modalData?.item?.length ===
+                                                    1
+                                                      ? "lg:grid-cols-1 md:grid-cols-1 grid-cols-1"
+                                                      : modalData?.item
+                                                          ?.length == 2
+                                                      ? "lg:grid-cols-2 md:grid-cols-2 grid-cols-1"
+                                                      : "lg:grid-cols-3 md:grid-cols-2 grid-cols-1"
+                                                  } "grid gap-2`}
+                                                >
+                                                  {modalData?.item?.map(
+                                                    (
+                                                      item: TIndividualOrderItem,
+                                                      index
+                                                    ) => (
+                                                      <div
+                                                        key={index}
+                                                        className="w-[120px] border border-[#651A71] rounded-md mx-auto flex flex-col items-center"
+                                                      >
+                                                        <img
+                                                          className="h-[120px] object-contain"
+                                                          src={item?.image}
+                                                          alt={item?.category}
+                                                        />
+                                                        <p>{item?.category}</p>
+                                                      </div>
+                                                    )
+                                                  )}
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        ) : (
+                                          "Loading..."
+                                        )}
+                                      </div>
+
+                                      <button className="bg-btn-hover h-[38px] rounded-[6px] 2xl:text-[18px] 2mid75:text-[16px] 2large:text-[16px] lg:text-[14px] 2makbook:text-[10px] text-[14px] text-white font-Noto-Sans-Bengali font-medium flex justify-center items-center gap-[6px] cursor-pointer">
+                                        print koron
+                                      </button>
+
+                                      {/* <div>
+                                        <IoMdClose
+                                          onClick={() => setIsOpen(false)}
+                                          className="z-50 border hover-red-500 size-6 text-black cursor-pointer absolute right-4 top-4"
+                                        />
+                                      </div> */}
+                                    </div>
+                                  </DialogPanel>
+                                </div>
+                              </Dialog>
+                            </div>
+
+                            {/* <div>
+                              <button
                                 onClick={() => setIsOpen(true)}
                                 className="bg-primaryColor flex justify-center gap-2 items-center text-white px-4 py-2 rounded"
                               >
@@ -489,7 +598,7 @@ const AllPersonOderList = () => {
                               <Dialog
                                 open={isOpen}
                                 onClose={() => setIsOpen(false)}
-                                className="relative !z-[9999999999]"
+                                className=" relative !z-[9999999999]"
                               >
                                 <div className="fixed inset-0 flex w-screen items-center justify-center">
                                   <DialogPanel
@@ -504,6 +613,11 @@ const AllPersonOderList = () => {
                                         কোম্পানী নাম পরিবর্তন
                                       </h1>
 
+                                      <button className="bg-btn-hover  2xl:w-[115px] w-[100px] h-[38px] rounded-[6px] 2xl:text-[18px] 2mid75:text-[16px] 2large:text-[16px] lg:text-[14px] 2makbook:text-[10px] text-[14px] text-white font-Noto-Sans-Bengali font-medium flex justify-center items-center gap-[6px] cursor-pointer">
+                                        
+                                        ডুপ্লিকেট a
+                                      </button>
+
                                       <div>
                                         <IoMdClose
                                           onClick={() => setIsOpen(false)}
@@ -511,27 +625,11 @@ const AllPersonOderList = () => {
                                         />
                                       </div>
                                     </div>
-                                    <button
-                                      type="submit"
-                                      className="bg-[#F00C89] rounded-[8px] h-[50px] w-full flex justify-center items-center gap-2 lg:mt-[30px] mt-4 text-[18px] font-Noto-Sans-Bengali text-white font-medium lastpush"
-                                    >
-                                      <FaPrint className="text-white" />
-                                      <>
-                                        <ReactToPrint
-                                          trigger={() => <p>প্রিন্ট</p>}
-                                          // content={() => componentRef.current}
-                                        />
-                                      </>
-                                      {/* <img
-                                        className="w-6 h-6"
-                                        src={icon}
-                                        alt=""
-                                      /> */}
-                                    </button>
                                   </DialogPanel>
                                 </div>
                               </Dialog>
-                            </div>
+                            </div> */}
+
                             {/* <button className="bg-white w-[106px] justify-center text-[#F00C89] text-[16px] font-Poppins font-medium leading-5 flex items-center pl-2 rounded gap-1 h-10 hover:bg-activeDhcolor duration-300">
                               <FaPrint />
                               <>

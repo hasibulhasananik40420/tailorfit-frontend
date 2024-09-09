@@ -184,6 +184,7 @@ const MeasurementSettings = () => {
               <MeasurementSettingsModal
                 isOpenModal={isMeasurementModalOpen}
                 isCloseModal={handleCloseMeasurementModal}
+                
               />
             </div>
           </div>
