@@ -1,7 +1,3 @@
-
-
-
-
 import { tagTypes } from "../features/tag-types";
 import { baseApi } from "./baseApi";
 
@@ -35,16 +31,13 @@ const authApi = baseApi.injectEndpoints({
       providesTags: [tagTypes.createMeasurement],
     }),
 
-
     getSingleMeasurement: builder.query({
       query: (id) => ({
         url: `/measurement/measurement/${id}`,
         method: "GET",
-        
       }),
       providesTags: [tagTypes.createMeasurement],
     }),
-
 
     editMeasurement: builder.mutation({
       query: (userInfo) => ({
@@ -64,4 +57,11 @@ const authApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useCreateMeasurementMutation, useGetMeasurementsQuery, useGetMeasurementQuery, useDeleteMeasurementMutation, useEditMeasurementMutation,useGetSingleMeasurementQuery } = authApi;
+export const {
+  useCreateMeasurementMutation,
+  useGetMeasurementsQuery,
+  useGetMeasurementQuery,
+  useDeleteMeasurementMutation,
+  useEditMeasurementMutation,
+  useGetSingleMeasurementQuery,
+} = authApi;
