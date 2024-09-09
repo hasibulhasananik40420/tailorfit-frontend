@@ -357,7 +357,7 @@ const CompanyOrderList = () => {
                               >
                                 <img className="w-6 h-6" src={icon} alt="" />
                                 <p className="text-[18px] font-Noto-Sans-Bengali text-white font-medium">
-                                  সেভ করুন
+                                  সেভ করুন 
                                 </p>
                               </button>
                             </form>

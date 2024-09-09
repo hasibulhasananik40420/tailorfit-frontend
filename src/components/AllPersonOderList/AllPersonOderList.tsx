@@ -4,7 +4,7 @@ import { HiDotsVertical, HiOutlineInformationCircle } from "react-icons/hi";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { IoIosArrowDown, IoMdClose } from "react-icons/io";
-import { useAppSelector } from "../../redux/features/hooks";
+import {  useAppSelector } from "../../redux/features/hooks";
 import { selectCurrentUser } from "../../redux/features/auth/authSlice";
 import {
   TIndividualOrder,
@@ -20,8 +20,10 @@ import ActionButtonModal from "../ui/ActionButtonModal/ActionButtonModal";
 import { RootState } from "../../redux/features/store";
 import DatePicker from "react-datepicker";
 import ReactToPrint from "react-to-print";
-import { FaPrint } from "react-icons/fa";
 import { Dialog, DialogPanel } from "@headlessui/react";
+
+import PDFGenerator from "../../utils/PDF";
+
 
 interface Status {
   id: number;
@@ -117,7 +119,7 @@ const AllPersonOderList = () => {
   // console.log(searchQuery)
   const filters = useAppSelector((state: RootState) => state?.filter);
   // console.log(filters)
-  // const { filterDate } = useAppSelector((state: RootState) => state.filterDate);
+  const { filterDate } = useAppSelector((state: RootState) => state.filterDate);
 
   const currentData = useAppSelector(selectCurrentUser);
 
@@ -167,42 +169,47 @@ const AllPersonOderList = () => {
       return false;
     }
   );
+  
 
-  // console.log(filteredOrdersByStatus);
-
-  const filteredOrders = filteredOrdersByStatus?.filter(
-    (order: any) =>
+  const filteredOrders = filteredOrdersByStatus?.filter((order: any) => {
+    const matchesSearchQuery =
       order.customerName.toLowerCase().includes(searchQuery.toLowerCase()) ||
       order.orderId.includes(searchQuery) ||
-      order.phoneNumber.includes(searchQuery)
-  );
+      order.phoneNumber.includes(searchQuery);
 
-  // const filteredOrders = filteredOrdersByStatus?.filter((order: any) => {
-  //   const matchesSearchQuery =
-  //     order.customerName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-  //     order.orderId.includes(searchQuery) ||
-  //     order.phoneNumber.includes(searchQuery);
+    let matchesDate = true;
+    if (filterDate) {
+      const selectedDateStart = new Date(
+        filterDate.setHours(0, 0, 0, 0)
+      ).toISOString();
+      const selectedDateEnd = new Date(
+        filterDate.setHours(23, 59, 59, 999)
+      ).toISOString();
 
-  //   let matchesDate = true;
-  //   if (filterDate) {
-  //     const selectedDateString = filterDate.toISOString().split('T')[0];
-  //     const orderDateString = new Date(order.orderDate).toISOString().split('T')[0];
-  //     matchesDate = orderDateString === selectedDateString;
-  //   }
+      const orderDateStart = new Date(order.orderDate).toISOString();
+      const deliveryDateStart = new Date(order.deliveryDate).toISOString();
 
-  //   return matchesSearchQuery && matchesDate;
-  // });
+      matchesDate =
+        (orderDateStart >= selectedDateStart &&
+          orderDateStart <= selectedDateEnd) ||
+        (deliveryDateStart >= selectedDateStart &&
+          deliveryDateStart <= selectedDateEnd);
+    }
 
-  // console.log(filteredOrders);
+    return matchesSearchQuery && matchesDate;
+  });
+
   const [selectedId, setSelectedId] = useState(null);
   const [modalData, setModalData] = useState<Partial<TIndividualOrder>>({});
+  const [selectedIndexes, setSelectedIndexes] = useState<number[]>([]);
 
   const { data: iOrderData, isLoading: iIsLoading } =
     useGetIndividualOrderQuery(selectedId);
 
-  const handleOpenModal = (id) => {
+  const handleOpenModal = (id: any) => {
     setSelectedId(id);
     setIsOpen(true);
+    setSelectedIndexes([]);
   };
 
   useEffect(() => {
@@ -211,10 +218,25 @@ const AllPersonOderList = () => {
     }
   }, [iOrderData, iIsLoading, selectedId]);
 
-  // const fetchDataById = (id) => {
-  //   console.log(id);
-  //   setModalData(orderData);
-  // };
+  const handleItemClick = (index: number) => {
+    setSelectedIndexes((prevIndexes) => {
+      if (prevIndexes.includes(index)) {
+        return prevIndexes.filter((i) => i !== index);
+      } else {
+        return [...prevIndexes, index];
+      }
+    });
+  };
+  const newPrintedData =
+    modalData?.item?.filter((_, index) => selectedIndexes.includes(index)) ||
+    [];
+
+  const printData = {
+    ...modalData, // Keep all properties of modalData
+    item: newPrintedData, // Replace only the item property with the filtered newPrintedData
+  };
+
+
 
   if (isLoading) {
     return <Loader />;
@@ -237,7 +259,6 @@ const AllPersonOderList = () => {
                       to={`/${currentData?.role}/order-details/${order._id}`}
                       key={order._id}
                       // onClick={handleClear}
-
                       className={`cursor-pointer px-3 py-[10px] hover:bg-activeDhcolor duration-200 rounded flex flex-wrap items-center gap-2`}
                     >
                       {/* <IoSearch className="size-6 " /> */}
@@ -309,7 +330,7 @@ const AllPersonOderList = () => {
           </div>
           {searchQuery && filteredOrders?.length > 0 && (
             <div className="bg-white border-t border-t-[#E5E5E5] rounded-b-[8px]">
-              <Link to={`/${currentData?.role}/all-orders`}>
+              <Link to={`/${currentData?.role}/all-orders/সকল%20অর্ডার`}>
                 <button className="w-full py-[15px] text-[18px] text-[#F00C89] font-Noto-Sans-Bengali font-medium">
                   সকল রেজাল্ট দেখুন
                 </button>
@@ -505,146 +526,48 @@ const AllPersonOderList = () => {
                             <div>
                               <button
                                 onClick={() => handleOpenModal(order?._id)} // Example id
-                                className="bg-primaryColor flex justify-center gap-2 items-center text-white px-4 py-2 rounded"
+                                className="bg-[#651A71] text-[18px] font-medium font-Noto-Sans-Bengali text-white flex justify-center gap-2  px-4 h-[37px] items-center rounded-md"
                               >
-                                <FaPrint />
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="18"
+                                  height="19"
+                                  viewBox="0 0 18 19"
+                                  fill="none"
+                                >
+                                  <g clip-path="url(#clip0_1886_2633)">
+                                    <path
+                                      d="M15.3633 5.15311H14.8711V3.30464C14.8711 1.88901 13.6883 0.737305 12.2344 0.737305H5.76562C4.31174 0.737305 3.12891 1.88901 3.12891 3.30464V5.15311H2.63672C1.18283 5.15311 0 6.30482 0 7.72045V11.8282C0 13.2438 1.18283 14.3955 2.63672 14.3955H3.12891V16.7232C3.12891 17.5726 3.83861 18.2636 4.71094 18.2636H13.2891C14.1614 18.2636 14.8711 17.5726 14.8711 16.7232V14.3955H15.3633C16.8172 14.3955 18 13.2438 18 11.8282V7.72045C18 6.30482 16.8172 5.15311 15.3633 5.15311ZM4.18359 3.30464C4.18359 2.45526 4.89329 1.76424 5.76562 1.76424H12.2344C13.1067 1.76424 13.8164 2.45526 13.8164 3.30464V5.15311H4.18359V3.30464ZM13.8164 16.7232C13.8164 17.0063 13.5798 17.2367 13.2891 17.2367H4.71094C4.42016 17.2367 4.18359 17.0063 4.18359 16.7232V11.657H13.8164V16.7232ZM16.9453 11.8282C16.9453 12.6776 16.2356 13.3686 15.3633 13.3686H14.8711V11.657H15.1875C15.4787 11.657 15.7148 11.4271 15.7148 11.1436C15.7148 10.86 15.4787 10.6301 15.1875 10.6301H2.8125C2.52127 10.6301 2.28516 10.86 2.28516 11.1436C2.28516 11.4271 2.52127 11.657 2.8125 11.657H3.12891V13.3686H2.63672C1.76439 13.3686 1.05469 12.6776 1.05469 11.8282V7.72045C1.05469 6.87107 1.76439 6.18005 2.63672 6.18005H15.3633C16.2356 6.18005 16.9453 6.87107 16.9453 7.72045V11.8282Z"
+                                      fill="white"
+                                    />
+                                    <path
+                                      d="M10.4062 12.8213H7.59375C7.30252 12.8213 7.06641 13.0512 7.06641 13.3348C7.06641 13.6183 7.30252 13.8482 7.59375 13.8482H10.4062C10.6975 13.8482 10.9336 13.6183 10.9336 13.3348C10.9336 13.0512 10.6975 12.8213 10.4062 12.8213Z"
+                                      fill="white"
+                                    />
+                                    <path
+                                      d="M10.4062 15.0117H7.59375C7.30252 15.0117 7.06641 15.2416 7.06641 15.5252C7.06641 15.8088 7.30252 16.0387 7.59375 16.0387H10.4062C10.6975 16.0387 10.9336 15.8088 10.9336 15.5252C10.9336 15.2416 10.6975 15.0117 10.4062 15.0117Z"
+                                      fill="white"
+                                    />
+                                    <path
+                                      d="M4.5 7.34375H2.8125C2.52127 7.34375 2.28516 7.57365 2.28516 7.85722C2.28516 8.14079 2.52127 8.37068 2.8125 8.37068H4.5C4.79123 8.37068 5.02734 8.14079 5.02734 7.85722C5.02734 7.57365 4.79123 7.34375 4.5 7.34375Z"
+                                      fill="white"
+                                    />
+                                  </g>
+                                  <defs>
+                                    <clipPath id="clip0_1886_2633">
+                                      <rect
+                                        width="18"
+                                        height="17.5263"
+                                        fill="white"
+                                        transform="translate(0 0.737305)"
+                                      />
+                                    </clipPath>
+                                  </defs>
+                                </svg>
+
                                 <span>Print</span>
                               </button>
-
-                              <Dialog
-                                open={isOpen}
-                                onClose={() => setIsOpen(false)} 
-                                className="relative !z-[9999999999]"
-                              >
-                                <div className="fixed inset-0 flex w-screen items-center justify-center">
-                                  <DialogPanel
-                                    style={{
-                                      boxShadow:
-                                        "0px 0px 25px 0px rgba(0, 0, 0, 0.10)",
-                                    }}
-                                    className="md:w-[450px] w-full md:px-[50px] md:py-[50px] px-6 py-16 border-[1px] border-[#F6F6F6] bg-white rounded-[10px] relative"
-                                  >
-                                    <div className="">
-                                      <div className="text-secondaryColor text-[24px] text-center font-Poppins font-semibold">
-                                        {modalData ? (
-                                          <div className="">
-                                            <div className="flex justify-center items-center h-full w-full">
-                                              <div className="">
-                                                <p>Print Your Order</p>
-
-                                                <div
-                                                  className={`grid ${
-                                                    modalData?.item?.length ===
-                                                    1
-                                                      ? "lg:grid-cols-1 md:grid-cols-1 grid-cols-1"
-                                                      : modalData?.item
-                                                          ?.length == 2
-                                                      ? "lg:grid-cols-2 md:grid-cols-2 grid-cols-1"
-                                                      : "lg:grid-cols-3 md:grid-cols-2 grid-cols-1"
-                                                  } "grid gap-2`}
-                                                >
-                                                  {modalData?.item?.map(
-                                                    (
-                                                      item: TIndividualOrderItem,
-                                                      index
-                                                    ) => (
-                                                      <div
-                                                        key={index}
-                                                        className="w-[120px] border border-[#651A71] rounded-md mx-auto flex flex-col items-center"
-                                                      >
-                                                        <img
-                                                          className="h-[120px] object-contain"
-                                                          src={item?.image}
-                                                          alt={item?.category}
-                                                        />
-                                                        <p>{item?.category}</p>
-                                                      </div>
-                                                    )
-                                                  )}
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        ) : (
-                                          "Loading..."
-                                        )}
-                                      </div>
-
-                                      <button className="bg-btn-hover h-[38px] rounded-[6px] 2xl:text-[18px] 2mid75:text-[16px] 2large:text-[16px] lg:text-[14px] 2makbook:text-[10px] text-[14px] text-white font-Noto-Sans-Bengali font-medium flex justify-center items-center gap-[6px] cursor-pointer">
-                                        print koron
-                                      </button>
-
-                                      {/* <div>
-                                        <IoMdClose
-                                          onClick={() => setIsOpen(false)}
-                                          className="z-50 border hover-red-500 size-6 text-black cursor-pointer absolute right-4 top-4"
-                                        />
-                                      </div> */}
-                                    </div>
-                                  </DialogPanel>
-                                </div>
-                              </Dialog>
                             </div>
-
-                            {/* <div>
-                              <button
-                                onClick={() => setIsOpen(true)}
-                                className="bg-primaryColor flex justify-center gap-2 items-center text-white px-4 py-2 rounded"
-                              >
-                                <FaPrint />
-                                <span>Print</span>
-                              </button>
-
-                              <Dialog
-                                open={isOpen}
-                                onClose={() => setIsOpen(false)}
-                                className=" relative !z-[9999999999]"
-                              >
-                                <div className="fixed inset-0 flex w-screen items-center justify-center">
-                                  <DialogPanel
-                                    style={{
-                                      boxShadow:
-                                        "0px 0px 25px 0px rgba(0, 0, 0, 0.10)",
-                                    }}
-                                    className="md:w-[450px] w-full md:px-[50px] md:py-[50px] px-6 py-16 border-[1px] border-[#F6F6F6] bg-white rounded-[10px] relative"
-                                  >
-                                    <div className="">
-                                      <h1 className="text-secondaryColor text-[24px] text-center font-Poppins font-semibold">
-                                        কোম্পানী নাম পরিবর্তন
-                                      </h1>
-
-                                      <button className="bg-btn-hover  2xl:w-[115px] w-[100px] h-[38px] rounded-[6px] 2xl:text-[18px] 2mid75:text-[16px] 2large:text-[16px] lg:text-[14px] 2makbook:text-[10px] text-[14px] text-white font-Noto-Sans-Bengali font-medium flex justify-center items-center gap-[6px] cursor-pointer">
-                                        
-                                        ডুপ্লিকেট a
-                                      </button>
-
-                                      <div>
-                                        <IoMdClose
-                                          onClick={() => setIsOpen(false)}
-                                          className="size-6 text-black cursor-pointer absolute right-4 top-4"
-                                        />
-                                      </div>
-                                    </div>
-                                  </DialogPanel>
-                                </div>
-                              </Dialog>
-                            </div> */}
-
-                            {/* <button className="bg-white w-[106px] justify-center text-[#F00C89] text-[16px] font-Poppins font-medium leading-5 flex items-center pl-2 rounded gap-1 h-10 hover:bg-activeDhcolor duration-300">
-                              <FaPrint />
-                              <>
-                                <ReactToPrint
-                                  trigger={() => <p>Print</p>}
-                                  // content={() => componentRef.current}
-                                />
-                              </>
-                            </button> */}
-                            {/* <Link to={`/admin/duplicate-order/${order?._id}`}>
-                              <button className="bg-btn-hover 2xl:w-[115px] w-[100px] h-[38px] rounded-[6px] 2xl:text-[18px] 2mid75:text-[16px] 2large:text-[16px] lg:text-[14px] 2makbook:text-[10px] text-[14px] text-white font-Noto-Sans-Bengali font-medium flex justify-center items-center gap-[6px] cursor-pointer">
-                                <FiCopy className="2xl:size-5 size-4 text-white" />
-                                ডুপ্লিকেট a
-                              </button>
-                            </Link> */}
                             <div
                               onClick={() =>
                                 toggleActionModal(
@@ -702,6 +625,134 @@ const AllPersonOderList = () => {
           </div>
         )}
       </div>
+
+      <Dialog
+        open={isOpen}
+        onClose={() => setIsOpen(false)}
+        className="relative !z-[9999999999] "
+      >
+        <div className="fixed inset-0 flex w-screen  items-center justify-center">
+          <DialogPanel
+            style={{
+              boxShadow: "0px 0px 25px 0px rgba(0, 0, 0, 0.10)",
+            }}
+            className="h-[414px] overflow-y-auto  lg:w-[500px] md:w-[450px] w-full md:px-[50px] md:py-[50px] px-6 py-16 border-[1px] border-[#F6F6F6] bg-white rounded-[10px] relative"
+          >
+            <div className="">
+              <div className="text-secondaryColor text-[24px] text-center font-Poppins font-semibold">
+                {modalData ? (
+                  <div className="">
+                    <div className="flex justify-center items-center h-full w-full">
+                      <div className="">
+                        <p>Print Your Order</p>
+
+                        <div
+                          className={`grid ${
+                            modalData?.item?.length === 1
+                              ? "lg:grid-cols-1 md:grid-cols-1 grid-cols-1"
+                              : modalData?.item?.length == 2
+                              ? "lg:grid-cols-2 md:grid-cols-2 grid-cols-1"
+                              : "lg:grid-cols-3 md:grid-cols-2 grid-cols-1"
+                          } "grid gap-[22px] mt-[25px]  `}
+                        >
+                          {modalData?.item?.map(
+                            (item: TIndividualOrderItem, index) => (
+                              <div
+                                onClick={() => handleItemClick(index)}
+                                key={index}
+                                className={`w-[120px] border  ${
+                                  selectedIndexes.includes(index)
+                                    ? " border-primaryColor"
+                                    : "border-[#651A71]"
+                                }  rounded-md mx-auto flex flex-col `}
+                              >
+                                <img
+                                  className="h-[120px] w-full object-contain "
+                                  src={item?.image}
+                                  alt={item?.category}
+                                />
+                                <p
+                                  className={`p-2 rounded-b-md text-[14px] text-start capitalize font-bold font-Noto-Sans-Bengali ${
+                                    selectedIndexes.includes(index)
+                                      ? "bg-[#F00C891A]"
+                                      : "bg-white"
+                                  }`}
+                                >
+                                  {item?.category}
+                                </p>
+                              </div>
+                            )
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  "Loading..."
+                )}
+              </div>
+              <>
+                {selectedIndexes.length === 0 ||
+                selectedIndexes.length == modalData?.item?.length ? (
+                  <ReactToPrint
+                    trigger={() => (
+                      <p>
+                        <button
+                          onClick={() => setIsOpen(false)}
+                          type="button"
+                          className="bg-[#F00C89] rounded-[8px] h-[50px] w-full flex justify-center items-center gap-1 lg:mt-[30px] mt-[30px]"
+                        >
+                          <p className="text-[18px] font-Noto-Sans-Bengali text-white font-medium">
+                            সব গুলা প্রিন্ট করুন
+                          </p>
+                        </button>
+                      </p>
+                    )}
+                    content={() => componentRef.current}
+                  />
+                ) : (
+                  <ReactToPrint
+                    trigger={() => (
+                      <p>
+                        <button
+                          onClick={() => setIsOpen(false)}
+                          type="button"
+                          className="bg-[#F00C89] rounded-[8px] h-[50px] w-full flex justify-center items-center gap-1 lg:mt-[30px] mt-[30px]"
+                        >
+                          <p className="text-[18px] font-Noto-Sans-Bengali text-white font-medium">
+                            প্রিন্ট করুন
+                          </p>
+                        </button>
+                      </p>
+                    )}
+                    content={() => componentRef.current}
+                  />
+                )}
+              </>
+
+              <div>
+                <IoMdClose
+                  onClick={() => setIsOpen(false)}
+                  className="z-50 border hover-red-500 size-6 text-black cursor-pointer absolute right-4 top-4"
+                />
+              </div>
+            </div>
+          </DialogPanel>
+        </div>
+      </Dialog>
+
+      {selectedIndexes.length == 0 ||
+      selectedIndexes.length == modalData?.item?.length ? (
+        <PDFGenerator
+          singleOrder={modalData as TIndividualOrder}
+          componentRef={componentRef}
+        ></PDFGenerator>
+      ) : (
+        <PDFGenerator
+          singleOrder={printData as TIndividualOrder}
+          componentRef={componentRef}
+        ></PDFGenerator>
+      )}
     </div>
   );
 };

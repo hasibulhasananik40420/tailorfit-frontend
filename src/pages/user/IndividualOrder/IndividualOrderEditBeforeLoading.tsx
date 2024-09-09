@@ -30,6 +30,8 @@ const IndividualOrderEditBeforeLoading = () => {
 
   const singleOrder = data?.data as TIndividualOrder;
 
+  console.log(singleOrder);
+
   return (
     <>
       <IndividualOrderEdit

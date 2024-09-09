@@ -725,9 +725,8 @@ const CreateIndividualOrder = ({
                       readOnly
                       onChange={(date) => setOrderDate(date)}
                       placeholderText="Select a date"
-                      className="lg:w-[150px] w-full text-[#651A71] 2xl:text-[18px] lg:text-[16px] text-[14px] rounded-[8px] bg-white outline-0 font-Poppins placeholder:text-secondaryColor cursor-pointer"
+                      className=" cursor- border-[#BCBEC6]  text-[#651A71] 2xl:text-[18px] lg:text-[16px] text-[14px] rounded-[8px] bg-white outline-0 border-0 font-Poppins placeholder:text-secondaryColor w-32"
                       dateFormat="dd-MM-yyyy"
-                      popperPlacement="bottom-end"
                       calendarClassName="custom-calendar-class"
                     />
                     <span className="absolute inset-y-0 right-1 flex items-center  pointer-events-none">
@@ -744,9 +743,8 @@ const CreateIndividualOrder = ({
                       selected={tryerDate}
                       onChange={(date) => setTryerDate(date)}
                       placeholderText="Select a date"
-                      className="text-[#651A71] 2xl:text-[18px] lg:text-[16px] text-[14px] rounded-[8px] bg-white outline-0 font-Poppins placeholder:text-secondaryColor cursor-pointer lg:w-[150px] w-full"
+                      className=" cursor-pointer border-[#BCBEC6]  text-[#651A71] 2xl:text-[18px] lg:text-[16px] text-[14px] rounded-[8px] bg-white outline-0 border-0 font-Poppins placeholder:text-secondaryColor w-32"
                       dateFormat="dd-MM-yyyy"
-                      popperPlacement="bottom-end"
                       calendarClassName="custom-calendar-class"
                     />
                     <span className="absolute inset-y-0 right-1 flex items-center  pointer-events-none">
@@ -765,9 +763,8 @@ const CreateIndividualOrder = ({
                       selected={workerDeliveryDate}
                       onChange={(date) => setWorkerDeliveryDate(date)}
                       placeholderText="Select a date"
-                      className=" lg:w-[150px] w-full text-[#651A71] 2xl:text-[18px] lg:text-[16px] text-[14px] rounded-[8px] bg-white outline-0 font-Poppins placeholder:text-secondaryColor cursor-pointer"
+                      className=" cursor-pointer border-[#BCBEC6]  text-[#651A71] 2xl:text-[18px] lg:text-[16px] text-[14px] rounded-[8px] bg-white outline-0 border-0 font-Poppins placeholder:text-secondaryColor w-32"
                       dateFormat="dd-MM-yyyy"
-                      popperPlacement="bottom-end"
                       calendarClassName="custom-calendar-class"
                     />
                     <span className="absolute inset-y-0 right-1 flex items-center  pointer-events-none">
@@ -784,9 +781,8 @@ const CreateIndividualOrder = ({
                       selected={deliveryDate}
                       onChange={(date) => setDeliveryDate(date)}
                       placeholderText="Select a date"
-                      className=" lg:w-[150px] w-full text-[#651A71] 2xl:text-[18px] lg:text-[16px] text-[14px] rounded-[8px] bg-white outline-0 font-Poppins placeholder:text-secondaryColor cursor-pointer"
+                      className=" cursor-pointer border-secondaryColor  text-[#651A71] 2xl:text-[18px] lg:text-[16px] text-[14px] rounded-[8px] bg-white outline-0 border-0 font-Poppins placeholder:text-secondaryColor w-32"
                       dateFormat="dd-MM-yyyy"
-                      popperPlacement="bottom-end"
                       calendarClassName="custom-calendar-class"
                     />
                     <span className="absolute inset-y-0 right-1 flex items-center  pointer-events-none">

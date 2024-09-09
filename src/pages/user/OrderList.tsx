@@ -84,7 +84,7 @@ const OrderList = () => {
        <div className="flex items-center gap-5">
        {activeTab !== "company" && (
          <div className="md:mt-[-10px] 2xl:mt-[-20px]">
-            <OrderListSearchAndFilter/>
+            <OrderListSearchAndFilter />
          </div>
          )}
 
