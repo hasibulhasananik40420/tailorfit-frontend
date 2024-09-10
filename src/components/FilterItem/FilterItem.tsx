@@ -65,34 +65,7 @@ const FilterItem = () => {
 
   return (
     <>
-    
-
-      <div className="relative">
-        <button
-          ref={buttonRef}
-          onClick={handleButtonClick}
-          className="relative w-[125px] 2xl:h-[50px] h-[40px] border-[1px] border-[#999] bg-white rounded-[40px] flex justify-center items-center gap-[6px] 2xl:text-[18px] text-[15px] text-secondaryColor font-Noto-Sans-Bengali font-normal"
-          style={{ boxShadow: "0px 0px 25px 0px rgba(25, 93, 142, 0.05)" }}
-        >
-          <LuListFilter className="size-6 text-secondaryColor" />
-          ফিল্টার
-        </button>
-
-        {isModalOpen && (
-          <div
-            ref={modalRef}
-            className="absolute top-[50px] right-0 z-50 w-[224px] bg-white rounded-[6px] p-4"
-            style={{ boxShadow: "0px 0px 5px 0px rgba(200, 201, 209, 0.65)" }}
-          >
-            <div className="flex flex-col gap-5">
-
-
-
-
-
-
-
-            <div
+      <div
         onClick={handleCheckAll}
         className="flex items-center gap-2 cursor-pointer"
       >
@@ -161,15 +134,24 @@ const FilterItem = () => {
         </p>
       </div>
 
+      <div className="relative">
+        <button
+          ref={buttonRef}
+          onClick={handleButtonClick}
+          className="relative w-[125px] 2xl:h-[50px] h-[40px] border-[1px] border-[#999] bg-white rounded-[40px] flex justify-center items-center gap-[6px] 2xl:text-[18px] text-[15px] text-secondaryColor font-Noto-Sans-Bengali font-normal"
+          style={{ boxShadow: "0px 0px 25px 0px rgba(25, 93, 142, 0.05)" }}
+        >
+          <LuListFilter className="size-6 text-secondaryColor" />
+          ফিল্টার
+        </button>
 
-
-
-
-
-
-
-
-
+        {isModalOpen && (
+          <div
+            ref={modalRef}
+            className="absolute top-[50px] right-0 z-50 w-[224px] bg-white rounded-[6px] p-4"
+            style={{ boxShadow: "0px 0px 5px 0px rgba(200, 201, 209, 0.65)" }}
+          >
+            <div className="flex flex-col gap-5">
               <div
                 onClick={() => dispatch(toggleDelivered())}
                 className="flex items-center gap-2 cursor-pointer"

@@ -31,7 +31,6 @@ import CreateIndustryOrderWithCustomBeforeLoading from "../pages/user/industryOr
 import IndividualOrderDetailsBeforeLoading from "../pages/user/customers/IndividualOrderDetailsBeforeLoading";
 import IndustryOrderDetailsBeforeLoading from "../pages/user/customers/IndustryOrderDetailsBeforeLoading";
 
-
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -65,7 +64,6 @@ const routes = createBrowserRouter([
         path: "edit-industry-order/:id",
         element: <IndustryOrderEditBeforeLoading />,
       },
-     
       {
         path: "duplicate-industry-order/:id",
         element: <IndustryOrderDuplicateBeforeLoading />,

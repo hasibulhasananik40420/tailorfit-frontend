@@ -8,7 +8,6 @@ import { TIndividualOrder } from "../../../redux/api/individualOrderApi";
 import { FaPrint } from "react-icons/fa";
 import ReactToPrint from "react-to-print";
 import PDFGenerator from "../../../utils/PDF";
-import { FiCopy } from "react-icons/fi";
 
 interface UserModalProps {
   isOpen: boolean;
@@ -95,78 +94,10 @@ const ActionButtonModalTwo = ({
         <div
           ref={modalRef}
           style={{ boxShadow: "0px 0px 5px 0px rgba(200, 201, 209, 0.65)" }}
-          className="  bg-white w-full rounded-[5px] p-[10px]"
+          className="  bg-white w-[126px] rounded-[5px] p-[10px]"
         >
           <div>
             {order?.industry ? (
-              <Link
-                to={`/admin/order-detail/${id}`}
-                className="bg-white w-[106px] text-switchColor text-[16px] font-Poppins font-medium leading-5 flex items-center gap-1 h-10 pl-2 rounded hover:bg-activeDhcolor duration-300"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="17"
-                  height="17"
-                  viewBox="0 0 17 17"
-                  fill="none"
-                >
-                  <path
-                    d="M11.6465 3.36544L12.9117 2.09944C13.1755 1.83568 13.5332 1.6875 13.9062 1.6875C14.2793 1.6875 14.637 1.83568 14.9008 2.09944C15.1645 2.36319 15.3127 2.72093 15.3127 3.09394C15.3127 3.46695 15.1645 3.82468 14.9008 4.08844L6.9365 12.0527C6.53999 12.449 6.05102 12.7402 5.51375 12.9002L3.5 13.5002L4.1 11.4864C4.25996 10.9492 4.55123 10.4602 4.9475 10.0637L11.6465 3.36544ZM11.6465 3.36544L13.625 5.34394M12.5 10.5002V14.0627C12.5 14.5102 12.3222 14.9395 12.0057 15.2559C11.6893 15.5724 11.2601 15.7502 10.8125 15.7502H2.9375C2.48995 15.7502 2.06072 15.5724 1.74426 15.2559C1.42779 14.9395 1.25 14.5102 1.25 14.0627V6.18769C1.25 5.74013 1.42779 5.31091 1.74426 4.99444C2.06072 4.67798 2.48995 4.50019 2.9375 4.50019H6.5"
-                    stroke="black"
-                    stroke-opacity="0.6"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-                View
-              </Link>
-            ) : (
-              <Link
-                to={`/admin/order-details/${id}`}
-                className="bg-white w-[106px] text-switchColor text-[16px] font-Poppins font-medium leading-5 flex items-center gap-1 h-10 pl-2 rounded hover:bg-activeDhcolor duration-300"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="17"
-                  height="17"
-                  viewBox="0 0 17 17"
-                  fill="none"
-                >
-                  <path
-                    d="M11.6465 3.36544L12.9117 2.09944C13.1755 1.83568 13.5332 1.6875 13.9062 1.6875C14.2793 1.6875 14.637 1.83568 14.9008 2.09944C15.1645 2.36319 15.3127 2.72093 15.3127 3.09394C15.3127 3.46695 15.1645 3.82468 14.9008 4.08844L6.9365 12.0527C6.53999 12.449 6.05102 12.7402 5.51375 12.9002L3.5 13.5002L4.1 11.4864C4.25996 10.9492 4.55123 10.4602 4.9475 10.0637L11.6465 3.36544ZM11.6465 3.36544L13.625 5.34394M12.5 10.5002V14.0627C12.5 14.5102 12.3222 14.9395 12.0057 15.2559C11.6893 15.5724 11.2601 15.7502 10.8125 15.7502H2.9375C2.48995 15.7502 2.06072 15.5724 1.74426 15.2559C1.42779 14.9395 1.25 14.5102 1.25 14.0627V6.18769C1.25 5.74013 1.42779 5.31091 1.74426 4.99444C2.06072 4.67798 2.48995 4.50019 2.9375 4.50019H6.5"
-                    stroke="black"
-                    stroke-opacity="0.6"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-                View
-              </Link>
-            )}
-            
-            
-            {order?.industry ? (
-              <Link
-                to={`/admin/duplicate-industry-order/${id}`}
-                className="bg-white w-[106px] text-switchColor text-[16px] font-Poppins font-medium leading-5 flex items-center gap-1 h-10 pl-2 rounded hover:bg-activeDhcolor duration-300"
-              >
-                <FiCopy className="2xl:size-5 size-4 text-secondaryColor" />
-                 Duplicate
-              </Link>
-            ) : (
-              <Link
-                to={`/admin/duplicate-order/${id}`}
-                className="bg-white w-[106px] text-switchColor text-[16px] font-Poppins font-medium leading-5 flex items-center gap-1 h-10 pl-2 rounded hover:bg-activeDhcolor duration-300"
-              >
-                <FiCopy className="2xl:size-5 size-4 text-secondaryColor" />
-                Duplicate
-              </Link>
-            )}
-
-
-             {order?.industry ? (
               <Link
                 to={`/admin/edit-industry-order/${id}`}
                 className="bg-white w-[106px] text-switchColor text-[16px] font-Poppins font-medium leading-5 flex items-center gap-1 h-10 pl-2 rounded hover:bg-activeDhcolor duration-300"
@@ -213,15 +144,6 @@ const ActionButtonModalTwo = ({
                 Edit
               </Link>
             )}
-
-
-
-
-
-
-
-
-
 
             {order?.industry ? (
               <button className="bg-white w-[106px] text-[#F00C89] text-[16px] font-Poppins font-medium leading-5 flex items-center pl-2 rounded gap-1 h-10 hover:bg-activeDhcolor duration-300">

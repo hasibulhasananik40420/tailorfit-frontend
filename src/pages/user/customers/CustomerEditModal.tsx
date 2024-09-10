@@ -93,12 +93,12 @@ const CustomerEditModal = ({
             {/* onSubmit={handleSubmit(onSubmit)} */}
 
             <form>
-              <h1 className="text-secondaryColor text-[24px] font-Noto-Sans-Bengali font-semibold text-center">
+              <h1 className="text-secondaryColor text-[24px]  font-semibold text-center">
                 এডিট কাস্টমার{" "}
               </h1>
               <div className="flex flex-col gap-4 mt-4">
                 <div className="flex flex-col w-full">
-                  <h1 className="text-switchColor lg:text-[18px] text-[14px] font-Poppins font-semibold">
+                  <h1 className="text-switchColor lg:text-[18px] text-[14px]  font-semibold">
                     কাস্টমারের নাম
                     <span className="text-primaryColor font-bold ">*</span>
                   </h1>
@@ -107,13 +107,13 @@ const CustomerEditModal = ({
                     defaultValue={customer?.customerName}
                     onChange={(e) => setCustomerName(e.target.value)}
                     className={` w-full h-[51px] rounded-[8px] border-[1px] 
-                       border-secondaryColor bg-white text-secondaryColor  outline-0 px-5 md:text-[18px] text-[14px] font-Poppins font-normal `}
+                       border-secondaryColor bg-white text-secondaryColor  outline-0 px-5 md:text-[18px] text-[14px]  font-normal `}
                     type="text"
                   />
                 </div>
 
                 <div className="flex flex-col w-full">
-                  <h1 className="text-switchColor lg:text-[18px] text-[14px] font-Noto-Sans-Bengali font-semibold">
+                  <h1 className="text-switchColor lg:text-[18px] text-[14px]  font-semibold">
                     ফোন নাম্বার
                     <span className="text-primaryColor font-bold ">*</span>
                   </h1>
@@ -122,14 +122,14 @@ const CustomerEditModal = ({
                     defaultValue={customer?.phoneNumber}
                     onChange={(e) => setPhoneNumber(e.target.value)}
                     className={` w-full h-[51px] rounded-[8px] border-[1px] 
-                       border-secondaryColor text-secondaryColor  bg-white outline-0 px-5 md:text-[18px] text-[14px] font-Poppins font-normal `}
+                       border-secondaryColor text-secondaryColor  bg-white outline-0 px-5 md:text-[18px] text-[14px]  font-normal `}
                     type="text"
                   />
                 </div>
 
                 {industry && (
                   <div className="flex flex-col w-full">
-                    <h1 className="text-switchColor lg:text-[18px] text-[14px] font-Noto-Sans-Bengali font-semibold">
+                    <h1 className="text-switchColor lg:text-[18px] text-[14px]  font-semibold">
                       প্রতিষ্ঠান
                     </h1>
 
@@ -137,14 +137,14 @@ const CustomerEditModal = ({
                       defaultValue={customer?.industry}
                       onChange={(e) => setIndustryName(e.target.value)}
                       className={` w-full h-[51px] rounded-[8px] border-[1px] 
-                       border-secondaryColor text-secondaryColor bg-white outline-0 px-5 md:text-[18px] text-[14px] font-Poppins font-normal `}
+                       border-secondaryColor text-secondaryColor bg-white outline-0 px-5 md:text-[18px] text-[14px]  font-normal `}
                       type="text"
                     />
                   </div>
                 )}
                 {!industry && (
                   <div className="flex flex-col w-full">
-                    <h1 className="text-switchColor lg:text-[18px] text-[14px] font-Noto-Sans-Bengali font-semibold">
+                    <h1 className="text-switchColor lg:text-[18px] text-[14px]  font-semibold">
                       ঠিকানা
                     </h1>
 
@@ -152,7 +152,7 @@ const CustomerEditModal = ({
                       defaultValue={customer?.address}
                       onChange={(e) => setAddress(e.target.value)}
                       className={` w-full h-[51px] rounded-[8px] border-[1px] 
-                       border-secondaryColor text-secondaryColor bg-white outline-0 px-5 md:text-[18px] text-[14px] font-Noto-Sans-Bengali font-normal `}
+                       border-secondaryColor text-secondaryColor bg-white outline-0 px-5 md:text-[18px] text-[14px]  font-normal `}
                       type="text"
                     />
                   </div>
@@ -164,7 +164,7 @@ const CustomerEditModal = ({
               >
                 <button
                   type="button"
-                  className="bg-primaryColor rounded-lg w-full h-[50px] text-white  font-medium flex justify-center items-center gap-2 font-Noto-Sans-Bengali"
+                  className="bg-primaryColor rounded-lg w-full h-[50px] text-white  font-medium flex justify-center items-center gap-2"
                 >
                   <FiSave className="size-6" />
                   <p>সেভ করুন</p>

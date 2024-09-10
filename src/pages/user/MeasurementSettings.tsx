@@ -184,7 +184,6 @@ const MeasurementSettings = () => {
               <MeasurementSettingsModal
                 isOpenModal={isMeasurementModalOpen}
                 isCloseModal={handleCloseMeasurementModal}
-                
               />
             </div>
           </div>
@@ -194,10 +193,10 @@ const MeasurementSettings = () => {
               {data?.data?.map((mesurement: Measurement) => (
                 <div
                   key={mesurement?._id}
-                  className="2xl:w-[347px] lg:w-full w-full h-[400px] rounded-[10px] border border-[#D9D9D9] relative"
+                  className="2xl:w-[347px] lg:w-full w-full h-[300px] rounded-[10px] border border-[#D9D9D9] relative"
                 >
                   <img
-                    className="w-full h-[300px] object-contain rounded-t-[10px]"
+                    className="w-full h-[200px] object-contain rounded-t-[10px]"
                     src={mesurement?.image}
                     alt=""
                   />

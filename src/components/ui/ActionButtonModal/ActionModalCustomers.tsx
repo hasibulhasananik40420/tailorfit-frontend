@@ -100,6 +100,7 @@ const ActionModalCustomers = ({
               {industry ? (
                 <div>
                   <div
+                    //  onClick={() => setIsOpenCustomer(true)}
                     onClick={openCustomerEditModal}
                     className="bg-white w-[106px] text-switchColor text-[16px] font-Poppins font-medium leading-5 flex items-center gap-1 h-10 pl-2 rounded hover:bg-activeDhcolor duration-300"
                   >

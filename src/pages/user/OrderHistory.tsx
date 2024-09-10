@@ -59,56 +59,56 @@ const OrderHistory = () => {
     <div className={`lg:flex gap-[30px]`}>
       <div className="lg:w-[30%] w-full bg-white rounded-[10px] pb-[30px]">
         <div className="flex flex-col 2xl:p-[30px] lg:p-5 p-4">
-          <h1 className="text-secondaryColor 2xl:text-[18px] text-[16px] font-Poppins font-semibold">
+          <h1 className="text-secondaryColor text-[18px]  font-semibold">
             Customer Information
           </h1>
           <div className="flex justify-between items-center mt-[15px]">
-            <h3 className="2xl:text-[18px] md:text-[16px] text-[14px] text-[#555]  font-normal font-Poppins">
+            <h3 className="md:text-[18px] text-[14px] text-[#555]  font-normal">
               Name
             </h3>
 
-            <h3 className="2xl:text-[18px] md:text-[16px] text-[14px] text-secondaryColor  font-normal">
+            <h3 className="md:text-[18px] text-[14px] text-secondaryColor  font-normal">
               {customerData?.customerName}
             </h3>
           </div>
 
           <div className="flex justify-between items-start mt-[15px]">
-            <h3 className="2xl:text-[18px] md:text-[16px] text-[14px] text-[#555]  font-normal">
+            <h3 className="md:text-[18px] text-[14px] text-[#555]  font-normal">
               Mobile
             </h3>
 
-            <h3 className="2xl:text-[18px] md:text-[16px] text-[14px] text-secondaryColor  font-normal">
+            <h3 className="md:text-[18px] text-[14px] text-secondaryColor  font-normal">
               {customerData?.phoneNumber}
             </h3>
           </div>
           {customerData?.industry && (
             <div className="flex justify-between items-start mt-[15px]">
-              <h3 className="2xl:text-[18px] md:text-[16px] text-[14px] text-[#555]  font-normal">
+              <h3 className="md:text-[18px] text-[14px] text-[#555]  font-normal">
                 কোম্পানী
               </h3>
 
-              <h3 className="2xl:text-[18px] md:text-[16px] text-[14px] text-secondaryColor  font-normal">
+              <h3 className="md:text-[18px] text-[14px] text-secondaryColor  font-normal">
                 {customerData?.industry}
               </h3>
             </div>
           )}
           {customerData?.address && (
             <div className="flex justify-between items-start mt-[15px]">
-              <h3 className="2xl:text-[18px] md:text-[16px] text-[14px] text-[#555]  font-normal">
+              <h3 className="md:text-[18px] text-[14px] text-[#555]  font-normal">
                 ঠিকানা
               </h3>
 
-              <h3 className="2xl:text-[18px] md:text-[16px] text-[14px] max-w-48 text-end text-secondaryColor  font-normal">
+              <h3 className="md:text-[18px] max-w-48 text-end text-[14px] text-secondaryColor  font-normal">
                 {customerData?.address}
               </h3>
             </div>
           )}
           <div className="flex justify-between items-center mt-[15px]">
-            <h3 className="2xl:text-[18px] md:text-[16px] text-[14px] text-[#555]  font-normal">
+            <h3 className="md:text-[18px] text-[14px] text-[#555]  font-normal">
               Joining Date
             </h3>
 
-            <h3 className="2xl:text-[18px] md:text-[16px] text-[14px] text-secondaryColor  font-normal">
+            <h3 className="md:text-[18px] text-[14px] text-secondaryColor  font-normal">
               <DatePicker
                 readOnly
                 selected={
@@ -128,7 +128,7 @@ const OrderHistory = () => {
 
         <div className="flex flex-col 2xl:p-[30px] lg:p-5 p-4">
           <div className="flex justify-between items-center">
-            <h1 className="text-secondaryColor h-10 2xl:text-[18px] md:text-[16px] text-[14px]  font-semibold">
+            <h1 className="text-secondaryColor h-10 md:text-[18px] text-[14px]  font-semibold">
               অর্ডার তালিকা
             </h1>
 
@@ -138,7 +138,7 @@ const OrderHistory = () => {
           <div className="bg-white rounded-[10px] border-[0.8px] border-borderColor 2xl:mt-[30px] lg:mt-5 mt-4">
             <div className="bg-white relative w-full rounded-[10px] border-[1px] border-borderColor  lg:overflow-y-auto overflow-x-auto min-h-[400px]">
               <table className="w-[100%] text-left">
-                <thead className=" bg-[#F6F6F6] 2xl:text-[18px] 2mid75:text-[16px] 2large:text-[16px] lg:text-[14px]  2makbook:text-[10px] text-[14px] text-[#555] font-Noto-Sans-Bengali font-normal">
+                <thead className=" bg-[#F6F6F6] 2xl:text-[18px] 2mid75:text-[16px] 2large:text-[16px] lg:text-[14px]  2makbook:text-[10px] text-[14px] text-[#555]  font-normal">
                   <tr>
                     <th scope="col" className="2xl:px-6 2xl:py-3 px-3 py-2">
                       #
@@ -162,11 +162,11 @@ const OrderHistory = () => {
                         setActiveIndex(i); // Set the active index to the clicked row
                         setOderId({
                           id: order._id as string,
-                          industry: order?.industry as boolean,
+                          industry: order.industry as boolean,
                         });
                       }}
                       className={`border-b border-dashed  duration-300 hover:cursor-pointer ${
-                        activeIndex === i ? "bg-activeDhcolor " : ""
+                        activeIndex === i ? "bg-activeDhcolor" : ""
                       }`}
                     >
                       <th

@@ -5,7 +5,7 @@ const DashBoardLogo = () => {
   const user = useAppSelector(selectCurrentUser);
   return (
     <div className="flex items-center gap-[20px]">
-      <div className="2xl:w-[60px] 2xl:h-[60px] w-[50px] h-[50px] rounded-[10px]  flex justify-center items-center bg-btn-hover">
+      <div className="2xl:w-[60px] 2xl:h-[60px] w-[50px] h-[50px] rounded-[10px]  flex justify-center items-center bg-btn-hover ">
         {user?.profile ? (
           
           <img

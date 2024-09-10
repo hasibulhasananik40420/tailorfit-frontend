@@ -364,7 +364,7 @@ const MeasurementSettingsModal = ({
                           )
                         }
                         placeholder="Type"
-                        className={`border border-secondaryColor lg:w-[210px] w-full h-[50px] rounded-[8px] bg-white text-secondaryColor outline-0 placeholder:text-[#BCBEC6] placeholder:text-[18px] font-Poppins pl-4 ${
+                        className={`border lg:w-[210px] w-full h-[50px] rounded-[8px] bg-white text-secondaryColor outline-0 placeholder:text-[#BCBEC6] placeholder:text-[18px] font-Poppins pl-4 ${
                           errors.categories &&
                           Array.isArray(errors.categories) &&
                           (errors.categories as unknown as any[])[categoryIndex]
@@ -438,7 +438,7 @@ const MeasurementSettingsModal = ({
                                 )
                               }
                               placeholder="Type"
-                              className={`border border-secondaryColor block 2xl:w-[210px] 2mid75:w-[210px] 2large:w-[180px] !lg:w-full 2mid80:w-[160px] 2makbook:w-[120px] w-full h-[50px] rounded-[8px] bg-white text-secondaryColor outline-0 placeholder:text-[#BCBEC6] md:placeholder:text-[18px] placeholder:text-[14px] font-Poppins pl-4 ${
+                              className={`border block 2xl:w-[210px] 2mid75:w-[210px] 2large:w-[180px] !lg:w-full 2mid80:w-[160px] 2makbook:w-[120px] w-full h-[50px] rounded-[8px] bg-white text-secondaryColor outline-0 placeholder:text-[#BCBEC6] md:placeholder:text-[18px] placeholder:text-[14px] font-Poppins pl-4 ${
                                 errors.categories &&
                                 Array.isArray(errors.categories) &&
                                 errors.categories[categoryIndex]
@@ -523,7 +523,7 @@ const MeasurementSettingsModal = ({
                                 )
                               }
                               placeholder="Type"
-                              className={`border border-secondaryColor 2xl:w-[210px] 2mid75:w-[210px] 2large:w-[180px] lg:w-[150px] 2mid80:w-[160px] 2makbook:w-[120px] w-full h-[50px] rounded-[8px] bg-white text-secondaryColor outline-0 placeholder:text-[#BCBEC6] md:placeholder:text-[18px] placeholder:text-[14px] font-Poppins pl-4 ${
+                              className={`border 2xl:w-[210px] 2mid75:w-[210px] 2large:w-[180px] lg:w-[150px] 2mid80:w-[160px] 2makbook:w-[120px] w-full h-[50px] rounded-[8px] bg-white text-secondaryColor outline-0 placeholder:text-[#BCBEC6] md:placeholder:text-[18px] placeholder:text-[14px] font-Poppins pl-4 ${
                                 errors.categories &&
                                 Array.isArray(errors.categories) &&
                                 errors.categories[categoryIndex]?.looseItems &&
@@ -793,7 +793,7 @@ const MeasurementSettingsModal = ({
                                   )
                                 }
                                 placeholder="ক্যাটাগরি"
-                                className={`border border-secondaryColor 2xl:w-[330px] 2mid75:w-[330px] 2large:w-[270px] lg:w-[230px] 2makbook:w-[200px] w-full h-[50px] rounded-[8px] bg-white text-secondaryColor outline-0 placeholder:text-[#BCBEC6] md:placeholder:text-[18px] placeholder:text-[14px] pl-4 font-Noto-Sans-Bengali ${
+                                className={`border 2xl:w-[330px] 2mid75:w-[330px] 2large:w-[270px] lg:w-[230px] 2makbook:w-[200px] w-full h-[50px] rounded-[8px] bg-white text-secondaryColor outline-0 placeholder:text-[#BCBEC6] md:placeholder:text-[18px] placeholder:text-[14px] pl-4 font-Noto-Sans-Bengali ${
                                   errors.categories &&
                                   Array.isArray(errors.categories) &&
                                   errors.categories[categoryIndex]?.styles &&
@@ -866,7 +866,7 @@ const MeasurementSettingsModal = ({
                                       )
                                     }
                                     placeholder="সাব ক্যাটাগরি"
-                                    className={`border border-secondaryColor 2xl:w-[310px] 2mid75:w-[310px] 2large:w-[250px] 2makbook:w-[180px] lg:!w-full h-[50px] rounded-[8px] bg-white text-secondaryColor outline-0 placeholder:text-[#BCBEC6] md:placeholder:text-[18px] placeholder:text-[14px] pl-4 font-Noto-Sans-Bengali ${
+                                    className={`border 2xl:w-[310px] 2mid75:w-[310px] 2large:w-[250px] 2makbook:w-[180px] lg:!w-full h-[50px] rounded-[8px] bg-white text-secondaryColor outline-0 placeholder:text-[#BCBEC6] md:placeholder:text-[18px] placeholder:text-[14px] pl-4 font-Noto-Sans-Bengali ${
                                       errors.categories &&
                                       Array.isArray(errors.categories) &&
                                       errors.categories[categoryIndex]
@@ -994,7 +994,7 @@ const MeasurementSettingsModal = ({
                                     )
                                   }
                                   placeholder="ক্যাটাগরি"
-                                  className={`border border-secondaryColor 2xl:w-[330px] 2mid75:w-[330px] 2large:w-[270px] lg:w-[230px] 2makbook:w-[200px] w-full h-[50px] rounded-[8px] bg-white text-secondaryColor outline-0 placeholder:text-[#BCBEC6] placeholder:text-[18px] pl-4 font-Noto-Sans-Bengali ${
+                                  className={`border 2xl:w-[330px] 2mid75:w-[330px] 2large:w-[270px] lg:w-[230px] 2makbook:w-[200px] w-full h-[50px] rounded-[8px] bg-white text-secondaryColor outline-0 placeholder:text-[#BCBEC6] placeholder:text-[18px] pl-4 font-Noto-Sans-Bengali ${
                                     errors.categories &&
                                     Array.isArray(errors.categories) &&
                                     errors.categories[categoryIndex]

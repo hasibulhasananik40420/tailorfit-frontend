@@ -13,7 +13,7 @@ import { HiOutlineBellAlert } from "react-icons/hi2";
 import { RootState } from "../../redux/features/store";
 import { useGetIndividualOrdersQuery } from "../../redux/api/individualOrderApi";
 import { useGetCompanyOrdersQuery } from "../../redux/api/companyOrderApi";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FiSearch } from "react-icons/fi";
 import { IoCloseOutline } from "react-icons/io5";
 
@@ -25,8 +25,6 @@ const Navbar = () => {
   
   const searchContainerRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
-  const location = useLocation();
-
 
 
 
@@ -50,13 +48,11 @@ const Navbar = () => {
 
 
   const user = useAppSelector(selectCurrentUser);
-  const isOrdersListPage = location.pathname === `/${user?.role}/orders-list`;
-
 
   const dispatch = useAppDispatch();
 
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(setSearchQuery(e.target.value));
+    dispatch(setSearchQuery(e.target.value.trim()));
   };
 
 
@@ -140,16 +136,6 @@ const handleClear = () => {
             Dashboard
           </h1>
 
-           {
-            isOrdersListPage && (  
-
-              <h1 className="text-secondaryColor text-[24px] font-Noto-Sans-Bengali font-semibold lg:block hidden">
-              অর্ডার তালিকা
-            </h1>
-            )}
-
-          {!isOrdersListPage && (
-
           <div className="flex flex-col ">
           <div ref={searchInputRef} className="relative lg:block hidden">
             <input
@@ -177,6 +163,10 @@ const handleClear = () => {
               )
              }
           
+
+           
+
+
              
           </div>
           {/* serch result */}
@@ -272,8 +262,8 @@ const handleClear = () => {
           </div>
           {searchQuery && filteredOrders?.length > 0 && (
             <div className="bg-white border-t border-t-[#E5E5E5] rounded-b-[8px]">
-              <Link to={`/${user?.role}/all-orders/সকল%20অর্ডার`}>
-              <button  onClick={handleClear} className="w-full py-[15px] text-[18px] text-[#F00C89] font-Noto-Sans-Bengali font-medium">
+              <Link to={`/${user?.role}/all-orders`}>
+              <button className="w-full py-[15px] text-[18px] text-[#F00C89] font-Noto-Sans-Bengali font-medium">
                 সকল রেজাল্ট দেখুন
               </button>
               </Link>
@@ -283,16 +273,11 @@ const handleClear = () => {
       )}
 
           </div>
-
-          )}
-
-          
          
         </div>
 
         <div className="w-auto  flex items-center gap-[30px]">
           <div className="flex items-center gap-5">
-          {!isOrdersListPage && (
             <div onClick={handleIconClick} className="lg:hidden block">
               <span
                 className=" bg-white lg:w-[50px] lg:h-[50px] w-[35px] h-[35px] rounded-full flex justify-center items-center cursor-pointer  group duration-300"
@@ -301,7 +286,6 @@ const handleClear = () => {
                 <CiSearch className="text-[#333] size-6 group-hover:text-[#F00C89]" />
               </span>
             </div>
-          )}
 
             <span
               onClick={toggleNotificationModal}
@@ -346,8 +330,6 @@ const handleClear = () => {
         </div>
       </div>
 
-      
-
       {showSearchBar && (
         <div className="relative lg:hidden block mt-3 pb-3 bg-[#F9FAFE]">
           <input
@@ -375,8 +357,6 @@ const handleClear = () => {
              }
         </div>
       )}
-
-
 
       <div className="lg:hidden block">
         <MobileSidebar isOpen={isSidebarOpen} onClose={toggleSidebar} />

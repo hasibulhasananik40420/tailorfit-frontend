@@ -40,16 +40,16 @@ const OrderHistoryItem: React.FC<OrderHistoryItemProps> = ({
     <div className="">
       <div className="2xl:p-[20px]  lg:p-4 p-3">
         <div>
-          <div className={`md:flex justify-between items-center `}>
-            <div className="md:flex items-center gap-4">
-              <h1 className="2xl:text-[20px] md:text-[16px] text-[14px] text-secondaryColor font-Noto-Sans-Bengali font-semibold">
+          <div className={`flex justify-between items-center `}>
+            <div className="flex items-center gap-4">
+              <h1 className="lg:text-[20px] text-[16px] text-secondaryColor font-Noto-Sans-Bengali font-semibold">
                 #{singleOrderData?.orderId} - অর্ডার ডিটেলস
               </h1>
 
-              <div className="h-[21px] w-[1px] bg-secondaryColor md:block hidden"></div>
+              <div className="h-[21px] w-[1px] bg-[#BCBEC6]"></div>
 
               <h1
-                className="flex gap-[8px] items-center 2xl:text-[20px] md:text-[16px] text-[14px]  font-Noto-Sans-Bengali font-semibold mt-2 md:mt-0"
+                className="flex gap-[8px] items-center lg:text-[18px] text-[14px]  font-Noto-Sans-Bengali font-semibold"
                 style={{ color: "rgba(0, 0, 0, 0.60)" }}
               >
                 অর্ডার স্ট্যাটাস:
@@ -61,10 +61,12 @@ const OrderHistoryItem: React.FC<OrderHistoryItemProps> = ({
                 ></div>
                 <p className="text-black">{singleOrderData?.orderStatus}</p>
               </h1>
-
             </div>
-            <div className="flex justify-between items-center 2xl:gap-[15px] gap-[10px] mt-2 md:mt-0">
-              
+            <div className="flex justify-between items-center 2xl:gap-[15px] gap-[10px]">
+              {/* <button className="md:px-3 px-[6px] md:py-3 py-2 bg-primaryColor rounded-md flex justify-center items-center gap-2 text-white md:text-[18px] text-[14px] font-Poppins font-medium leading-6">
+            <HiOutlinePlus className="size-6" />
+            
+          </button> */}
 
               {singleOrderData?.industry ? (
                 <Link
@@ -72,7 +74,7 @@ const OrderHistoryItem: React.FC<OrderHistoryItemProps> = ({
                 >
                   <button
                     onClick={() => {}}
-                    className="md:px-3 px-[6px] md:py-3 py-2 bg-primaryColor rounded-md flex justify-center items-center gap-2 text-white 2xl:text-[18px] md:text-[16px] text-[14px] font-Poppins font-medium leading-6"
+                    className="md:px-3 px-[6px] md:py-3 py-2 bg-primaryColor rounded-md flex justify-center items-center gap-2 text-white md:text-[18px] text-[14px] font-Poppins font-medium leading-6"
                   >
                     <HiOutlinePlus className="size-6" />
                     রি-অর্ডার
@@ -84,7 +86,7 @@ const OrderHistoryItem: React.FC<OrderHistoryItemProps> = ({
                     onClick={() => {
                       //  console.log(id)
                     }}
-                    className="md:px-3 px-[6px] md:py-3 py-2 bg-primaryColor rounded-md flex justify-center items-center gap-2 text-white 2xl:text-[20px] md:text-[16px] text-[14px] font-Poppins font-medium leading-6"
+                    className="md:px-3 px-[6px] md:py-3 py-2 bg-primaryColor rounded-md flex justify-center items-center gap-2 text-white md:text-[18px] text-[14px] font-Poppins font-medium leading-6"
                   >
                     <HiOutlinePlus className="size-6" />
                     রি-অর্ডার
@@ -118,11 +120,9 @@ const OrderHistoryItem: React.FC<OrderHistoryItemProps> = ({
             </div>
           </div>
         </div>
-
-
-        <div className="md:flex items-center gap-4 mt-2">
+        <div className="flex items-center gap-4 mt-2">
           <div
-            className="flex gap-[2px] items-center 2xl:text-[18px] md:text-[16px] text-[14px]  font-Noto-Sans-Bengali font-semibold mt-4 md:mt-0"
+            className="flex gap-[2px] items-center lg:text-[18px] text-[14px]  font-Noto-Sans-Bengali font-semibold"
             style={{ color: "rgba(0, 0, 0, 0.60)" }}
           >
             <p>অর্ডার ডেট:</p>
@@ -141,9 +141,9 @@ const OrderHistoryItem: React.FC<OrderHistoryItemProps> = ({
               />
             </p>
           </div>
-          <div className="h-[21px] w-[1px] bg-secondaryColor md:block hidden"></div>
+          <div className="h-[21px] w-[1px] bg-[#BCBEC6]"></div>
           <div
-            className="flex gap-[2px] items-center 2xl:text-[18px] md:text-[16px] text-[14px]  font-Noto-Sans-Bengali font-semibold mt-2 md:mt-0"
+            className="flex gap-[2px] items-center lg:text-[18px] text-[14px]  font-Noto-Sans-Bengali font-semibold"
             style={{ color: "rgba(0, 0, 0, 0.60)" }}
           >
             <p>ট্রায়াল ডেট:</p>
@@ -162,9 +162,9 @@ const OrderHistoryItem: React.FC<OrderHistoryItemProps> = ({
               />
             </p>
           </div>
-          <div className="h-[21px] w-[1px] bg-secondaryColor md:block hidden"></div>
+          <div className="h-[21px] w-[1px] bg-[#BCBEC6]"></div>
           <div
-            className="flex gap-[2px] items-center 2xl:text-[18px] md:text-[16px] text-[14px]  font-Noto-Sans-Bengali font-semibold mt-2 md:mt-0"
+            className="flex gap-[2px] items-center lg:text-[18px] text-[14px]  font-Noto-Sans-Bengali font-semibold"
             style={{ color: "rgba(0, 0, 0, 0.60)" }}
           >
             <p>ডেলিভারি ডেট:</p>
@@ -195,20 +195,20 @@ const OrderHistoryItem: React.FC<OrderHistoryItemProps> = ({
             >
               <div className="flex flex-col justify-between">
                 <div className=" ">
-                  <div className="md:flex gap-[40px] p-5 ">
+                  <div className="flex gap-[40px] p-5 ">
                     <div className="flex items-center gap-[20px]">
-                      <h1 className="text-switchColor 2xl:text-[18px] md:text-[16px] text-[14px] font-Noto-Sans-Bengali font-semibold mb-[10px] lg:mb-0">
+                      <h1 className="text-switchColor lg:text-[18px] text-[14px] font-Noto-Sans-Bengali font-semibold mb-[10px] lg:mb-0">
                         ক্যাটাগরি
                       </h1>
                       <div
-                        className={`2xl:w-[200px] lg:w-[200px] w-full  rounded-[8px] border-[1px]  outline-0 md:text-[18px] text-[14px] font-Poppins font-normal flex items-center justify-between cursor-pointer border-secondaryColor`}
+                        className={`2xl:w-[200px] lg:w-[200px] w-full  rounded-[8px] border-[1px]  outline-0 md:text-[18px] text-[14px] font-Poppins font-normal flex items-center justify-between cursor-pointer border-[#BCBEC6]`}
                       >
                         <span className="py-3 px-4 bg-[#F6F6F6] rounded-lg w-full">
                           {form.category}
                         </span>
                       </div>
                     </div>
-                    <div className="flex items-center gap-5 mt-2 md:mt-0">
+                    <div className="flex items-center gap-5">
                       <h1 className="text-switchColor lg:text-[18px] text-[14px] font-Noto-Sans-Bengali font-semibold mb-[0px] lg:mb-0 ">
                         সংখ্যা
                       </h1>
@@ -239,7 +239,7 @@ const OrderHistoryItem: React.FC<OrderHistoryItemProps> = ({
 
                   <div className=" bg-[#F9FAFE] m-5 ">
                     <div className="bg-white w-full rounded-l-[10px]">
-                      <h2 className="2xl:text-[18px] md:text-[18px] text-[14px] text-[#333] font-semibold font-Noto-Sans-Bengali mb-2">
+                      <h2 className="text-2xl text-[#333] font-[600]  mb-2">
                         পরিমাপের নাম
                       </h2>
 
@@ -260,7 +260,7 @@ const OrderHistoryItem: React.FC<OrderHistoryItemProps> = ({
                                     className="flex flex-col"
                                   >
                                     <span
-                                      className="2xl:text-[16px] md:text-[16px] text-[14px] text-[#000]"
+                                      className="text-[18px] text-[#000]"
                                       style={{
                                         fontFamily: "Noto Sans Bengali",
                                       }}
@@ -288,7 +288,7 @@ const OrderHistoryItem: React.FC<OrderHistoryItemProps> = ({
 
                       {form?.lugeSize.length >= 1 && (
                         <div className="mt-5">
-                          <h2 className="2xl:text-[18px] md:text-[18px] text-[14px] text-secondaryColor font-semibold font-Noto-Sans-Bengali  mb-2">
+                          <h2 className="text-2xl text-[#333] font-[600]  mb-2">
                             লুজের মাপ (ঐচ্ছিক)
                           </h2>
 
@@ -307,8 +307,8 @@ const OrderHistoryItem: React.FC<OrderHistoryItemProps> = ({
                                       key={measurementIdex}
                                       className="flex flex-col"
                                     >
-                                      <span className="text-black font-[500] 2xl:text-[16px] md:text-[16px] text-[14px] font-Noto-Sans-Bengali "></span>
-                                      <span className="2xl:text-[16px] md:text-[16px] text-[14px] text-[#000] font-Noto-Sans-Bengali">
+                                      <span className="text-black font-[500] 2xl:text-[18px] lg:text-[16px] text-[14px] font-Noto-Sans-Bengali "></span>
+                                      <span className="text-[18px] text-[#000]">
                                         {measurementItem.label}{" "}
                                         <span className="text-20px font-bold">
                                           :
@@ -338,8 +338,8 @@ const OrderHistoryItem: React.FC<OrderHistoryItemProps> = ({
                   <div className="flex justify-between p-5">
                     <div className="">
                       <h2
-                        className="2xl:text-[18px] md:text-[18px] text-[14px] text-secondaryColor font-semibold font-Noto-Sans-Bengali  mb-2"
-                        
+                        className="text-2xl text-[#333] font-[600]  "
+                        style={{ fontFamily: "Noto Sans Bengali" }}
                       >
                         ডিজাইন স্টাইল
                       </h2>
@@ -354,8 +354,8 @@ const OrderHistoryItem: React.FC<OrderHistoryItemProps> = ({
                                 ?.label && (
                                 <span
                                   key={dropDownIndex}
-                                  className="2xl:text-[16px] md:text-[16px] text-[14px] text-[#000] font-Noto-Sans-Bengali px-2"
-                                 
+                                  className="text-[18px] text-[#000]  px-2"
+                                  style={{ fontFamily: "Noto Sans Bengali" }}
                                 >
                                   #{" "}
                                   <span className="">
@@ -377,14 +377,14 @@ const OrderHistoryItem: React.FC<OrderHistoryItemProps> = ({
                                 className="text-[18px] text-[#000] px-2"
                                 style={{ fontFamily: "Noto Sans Bengali" }}
                               >
-                                # <span className="2xl:text-[16px] md:text-[16px] text-[14px] text-[#000] font-Noto-Sans-Bengali"> {styleItem.text}</span>
+                                # <span> {styleItem.text}</span>
                               </span>
                             )
                           );
                         })}
                       </p>
-                      <p className=" mt-2 2xl:text-[16px] md:text-[16px] text-[14px] text-[#000] font-Noto-Sans-Bengali">
-                        নোট: <span className="font-Poppins">{form.note}</span>
+                      <p className=" mt-2 jus">
+                        নোট: <span>{form.note}</span>
                       </p>
                     </div>
                   </div>

@@ -33,7 +33,7 @@ const CreateIndividualOrderBeforeLoader = () => {
     useGetIndividualLastOrderQuery(currentData?.id);
   const { data: measurementsData, isLoading: measurementsDataLoading } =
     useGetMeasurementsQuery(currentData?.id);
-console.log(orderID?.data)
+
   if (
     isLoading ||
     measurementsDataLoading ||

@@ -18,7 +18,6 @@ const ActivatedUser = () => {
         let data;
         if (token) {
           response = await fetch(
-            // `http://localhost:5000/api/v1/user/active-user`,
             `https://api.tailorfitapp.com/api/v1/user/active-user`,
             {
               // response = await fetch(

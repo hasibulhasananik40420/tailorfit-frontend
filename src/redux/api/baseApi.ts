@@ -56,6 +56,7 @@ const baseQueryWithRefreshToken: BaseQueryFn<
 
     const data = await res.json();
 
+
     if (data?.data) {
       const user = (api.getState() as RootState).auth.user;
 

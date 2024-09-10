@@ -132,28 +132,13 @@ const PDFGenerator = ({
                         সংখ্যা : <strong>{form?.quantity}</strong>
                       </span>
                     </div>
-
-                    <div className="flex text-[10px] font-Noto-Sans-Bengali font-[500] text-black">
-                      <span className="w-20 ">ডেলিভারি ডেট:</span>
-                      <DatePicker
-                        readOnly
-                        selected={
-                          singleOrder?.workerDeliveryDate
-                            ? new Date(singleOrder.workerDeliveryDate)
-                            : null
-                        }
-                        dateFormat="dd-MMM-yyyy" // Format: 24-May-2024
-                        className="border-0 outline-none max-w-24 bg-white"
-                        calendarClassName="custom-calendar-class"
-                      />
-                    </div>
                   </div>
                   <div className=" bg-[#F9FAFE]  ">
                     {/* part 1 */}
                     <div className="bg-white w-full rounded-l-[10px]">
-                      {/* <h2 className="text-[10px] font-Noto-Sans-Bengali text-black font-bold mb-2 ">
+                      <h2 className="text-[10px] font-Noto-Sans-Bengali text-black font-bold mb-2 ">
                         পরিমাপ:
-                      </h2> */}
+                      </h2>
 
                       <div className="flex flex-wrap  ">
                         <>
@@ -191,7 +176,7 @@ const PDFGenerator = ({
                       </div>
 
                       {form?.lugeSize.length >= 1 && (
-                        <div className="mt-10 flex items-center gap-2">
+                        <div className="mt-10">
                           <h2 className=" text-[10px] font-Noto-Sans-Bengali text-black font-bold mb-2">
                             লুজের মাপ:
                           </h2>

@@ -13,6 +13,7 @@ import { CiCalendar } from "react-icons/ci";
 import { useForm } from "react-hook-form";
 import { CgCloseR } from "react-icons/cg";
 import { GrFormCheckmark } from "react-icons/gr";
+import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import {
   TDropDownItem,
   TDropDownStyle,
@@ -22,6 +23,7 @@ import {
 } from "../../../redux/api/individualOrderApi";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+// import useOutsideClick from "../../../utils/useOutsideClick";
 import Selector from "../../../components/Selector/Selector";
 import { useCreateCompanyOrderMutation } from "../../../redux/api/companyOrderApi";
 import ReactToPrint from "react-to-print";
@@ -32,7 +34,7 @@ const CreateIndustryOrderWithCustom = ({
   measurementsData,
   admin,
   companyData,
-  orderID,
+  orderID
 }: {
   settingData: any;
   measurementsData: any;
@@ -43,12 +45,8 @@ const CreateIndustryOrderWithCustom = ({
   const [visibleDropdown, setVisibleDropdown] = useState<{
     [key: string]: boolean;
   }>({});
-  const [customerName, setCustomerName] = useState(
-    companyData?.customerName || ""
-  );
-  const [phoneNumber, setPhoneNumber] = useState(
-    companyData?.phoneNumber || ""
-  );
+  const [customerName, setCustomerName] = useState(companyData?.customerName || "");
+  const [phoneNumber, setPhoneNumber] = useState(companyData?.phoneNumber || "");
 
   // const [ setOpenModalId] = useState<string | null>(null);
   const [industrySelected, setIndustrySelected] = useState("");
@@ -304,51 +302,8 @@ const CreateIndustryOrderWithCustom = ({
 
   const [orderDate, setOrderDate] = useState<Date | null>(new Date());
   const [tryerDate, setTryerDate] = useState<Date | null>(new Date());
-  const [workerDeliveryDate, setWorkerDeliveryDate] = useState<Date | null>(
-    new Date()
-  );
   const [deliveryDate, setDeliveryDate] = useState<Date | null>(new Date());
 
-
-  const addDays = (date: Date | null, days: number): Date | null => {
-    if (date) {
-      const result = settingData?.orderDate || new Date(date);
-      result.setDate(result.getDate() + days);
-      return result;
-    }
-    return null;
-  };
-
-  useEffect(() => {
-    if (workerDeliveryDate) {
-      
-      // Add 5 days to tryerDate for deliveryDate
-      const newDeliveryDate = addDays(
-        workerDeliveryDate,
-        Number(settingData?.deleveryPeriod) as number
-      );
-      setDeliveryDate(newDeliveryDate);
-    }
-  }, [workerDeliveryDate]);
-
-  
-  useEffect(() => {
-    if (tryerDate) {
-      // Add 3 days to tryerDate for workerDeliveryDate
-      const newWorkerDeliveryDate = addDays(
-        tryerDate,
-        Number(settingData?.worksDeleveryPeriod) as number
-      );
-      setWorkerDeliveryDate(newWorkerDeliveryDate);
-
-      // Add 5 days to tryerDate for deliveryDate
-      const newDeliveryDate = addDays(
-        workerDeliveryDate,
-        Number(settingData?.deleveryPeriod) as number
-      );
-      setDeliveryDate(newDeliveryDate);
-    }
-  }, [tryerDate]);
   // const { handleSubmit } = useForm();
 
   const {
@@ -360,7 +315,7 @@ const CreateIndustryOrderWithCustom = ({
   const [newData, setNewData] = useState<TIndividualOrder>({
     admin,
     urgentOrder,
-    orderId: orderID,
+    orderId : orderID,
     deliveryDate,
     tryerDate,
     orderDate,
@@ -396,7 +351,7 @@ const CreateIndustryOrderWithCustom = ({
       ...prevData,
       deliveryDate,
       tryerDate,
-      orderId: orderID,
+      orderId : orderID,
       urgentOrder,
       industry: industrySelected,
       phoneNumber,
@@ -551,6 +506,7 @@ const CreateIndustryOrderWithCustom = ({
     }));
   };
 
+
   return (
     <div className="">
       <form
@@ -558,20 +514,12 @@ const CreateIndustryOrderWithCustom = ({
         className="bg-white rounded-[10px] lg:p-[15px] md:p-5 p-4 w-full"
       >
         <div>
-          <div className="md:flex md:justify-between md:items-center">
+          <div className="flex justify-between items-center">
             <h1 className="text-[#222943] md:text-[24px] text-[18px] font-Noto-Sans-Bengali font-bold">
               ব্যক্তির তথ্য
             </h1>
 
-            <div className="flex items-center gap-4">
-
-            <h1 className="text-secondaryColor font-Poppins md:text-[20px] text-[18px] font-semibold">
-                <span className="text-switchColor font-Noto-Sans-Bengali font-semibold">
-                  অর্ডার নাম্বার:
-                </span>{" "}
-                #{orderID}
-              </h1>
-
+            <div className="flex flex-row-reverse items-center gap-4">
               <div>
                 <label
                   className={`flex items-center  rounded-lg p-[10px] cursor-pointer ${
@@ -590,7 +538,7 @@ const CreateIndustryOrderWithCustom = ({
                                                    ${
                                                      urgentOrder === true
                                                        ? "bg-[#F00C89] border-0"
-                                                       : "border-[1px] border-secondaryColor"
+                                                       : "border-[1px] border-[#E5E5E5]"
                                                    }
                                                    `}
                     >
@@ -604,13 +552,18 @@ const CreateIndustryOrderWithCustom = ({
                     </div>
                   </div>
 
-                  <span className={`ml-2 font-Poppins md:text-[18px] text-[14px] font-normal text-switchColor`}>Urgent Order</span>
+                  <span className={`ml-2`}>Urgent Order</span>
                 </label>
               </div>
-             
+              <h1 className="text-secondaryColor font-Poppins md:text-[20px] text-[18px] font-semibold">
+                <span className="text-switchColor font-Noto-Sans-Bengali font-semibold">
+                  অর্ডার নাম্বার:
+                </span>{" "}
+                #{orderID}
+              </h1>
             </div>
           </div>
-          <div className="w-full h-[1px] bg-secondaryColor 2xl:mt-[30px] mt-5"></div>
+          <div className="w-full h-[1px] bg-[#BCBEC6] 2xl:mt-[30px] mt-5"></div>
 
           <div className="lg:flex lg:gap-5 justify-between mt-5">
             <div className="lg:flex lg:flex-col lg:gap-5  gap-[10px]">
@@ -629,7 +582,7 @@ const CreateIndustryOrderWithCustom = ({
                       className={`2xl:w-[400px] lg:w-[370px] w-full h-[51px] rounded-[8px] border-[1px] ${
                         errors?.customerName
                           ? "border-primaryColor placeholder:text-primaryColor"
-                          : "border-secondaryColor"
+                          : "border-[#BCBEC6]"
                       }  bg-white outline-0 px-5 md:text-[18px] text-[14px] font-Poppins font-normal `}
                       type="text"
                       placeholder={`${
@@ -659,7 +612,7 @@ const CreateIndustryOrderWithCustom = ({
                       className={`2xl:w-[400px] lg:w-[370px] w-full h-[51px] rounded-[8px] border-[1px] ${
                         errors?.phoneNumber
                           ? "border-primaryColor placeholder:text-primaryColor"
-                          : "border-secondaryColor"
+                          : "border-[#BCBEC6]"
                       }  bg-white outline-0 px-5 md:text-[18px] text-[14px] font-Poppins font-normal `}
                       type="text"
                       placeholder={`${
@@ -700,95 +653,83 @@ const CreateIndustryOrderWithCustom = ({
               </div>
             </div>
 
-            <div className="w-full h-[1px] bg-secondaryColor 2xl:mt-[30px] mt-5 lg:hidden block"></div>
+            <div className="w-full h-[1px] bg-[#BCBEC6] 2xl:mt-[30px] mt-5 lg:hidden block"></div>
 
-            <div className="lg:flex lg:flex-col lg:gap-4  gap-[10px] lg:mt-0 ">
-              <div className="flex flex-col 2xl:flex-row gap-4  justify-end">
-                <div className="lg:flex items-center justify-end gap-2  mt-4 lg:mt-0">
-                  <h1 className="text-[#00000099] lg:text-[18px] text-[14px] font-Noto-Sans-Bengali font-[600] mb-[10px] lg:mb-0">
-                    অর্ডার ডেট:
+            <div className="lg:flex lg:flex-col lg:gap-5  gap-[10px] mt-5 lg:mt-0 ">
+              <div className="flex gap-[10px] lg:flex lg:flex-col lg:gap-5 w-full">
+                {/* input 1 */}
+
+                <div className="lg:flex items-center justify-between 2xl:gap-[30px] gap-5 2xl:w-[407px] lg:w-[370px] w-full">
+                  <h1 className="text-switchColor lg:text-[18px] text-[14px] font-Noto-Sans-Bengali font-semibold mb-[10px] lg:mb-0">
+                    অর্ডার ডেট
+                    <span className="text-primaryColor font-bold font-Noto-Sans-Bengali">
+                      *
+                    </span>
                   </h1>
                   <div className="relative">
                     <DatePicker
                       selected={orderDate}
-                      readOnly
                       onChange={(date) => setOrderDate(date)}
                       placeholderText="Select a date"
-                      className=" text-[#651A71] 2xl:text-[18px] lg:text-[16px] text-[14px] rounded-[8px] bg-white outline-0 font-Poppins placeholder:text-secondaryColor cursor-pointer lg:w-[150px] w-full"
+                      className="2xl:w-[250px] cursor-pointer lg:w-[220px] w-full h-[50px] text-secondaryColor 2xl:text-[18px] lg:text-[16px] text-[14px] border-[1px] border-[#BCBEC6] rounded-[8px] bg-white outline-0 pl-4 font-Poppins placeholder:text-secondaryColor"
                       dateFormat="dd-MM-yyyy"
-                      popperPlacement="bottom-end"
                       calendarClassName="custom-calendar-class"
                     />
-                    <span className="absolute inset-y-0 right-1 flex items-center  pointer-events-none">
-                      <CiCalendar className=" text-[#651A71] font-bold lg:size-6 size-5" />
+                    <span className="absolute inset-y-0 right-0 flex items-center lg:pr-3 pr-2 pointer-events-none">
+                      <CiCalendar className="text-black font-bold lg:size-6 size-5" />
                     </span>
                   </div>
                 </div>
-                <div className="lg:flex items-center justify-end gap-2  mt-4 lg:mt-0">
-                  <h1 className="text-[#00000099] lg:text-[18px] text-[14px] font-Noto-Sans-Bengali font-[600] mb-[10px] lg:mb-0">
-                    ট্রায়াল ডেট:
+
+                <div className="lg:flex items-center justify-between 2xl:gap-[30px] gap-5 2xl:w-[407px] lg:w-[370px] w-full">
+                  <h1 className="text-switchColor lg:text-[18px] text-[14px] font-Noto-Sans-Bengali font-semibold mb-[10px] lg:mb-0">
+                    ট্রায়াল ডেট
+                    <span className="text-primaryColor font-bold font-Noto-Sans-Bengali">
+                      *
+                    </span>
                   </h1>
                   <div className="relative">
                     <DatePicker
                       selected={tryerDate}
                       onChange={(date) => setTryerDate(date)}
                       placeholderText="Select a date"
-                      className=" text-[#651A71] 2xl:text-[18px] lg:text-[16px] text-[14px] rounded-[8px] bg-white outline-0 font-Poppins placeholder:text-secondaryColor cursor-pointer lg:w-[150px] w-full"
+                      className="2xl:w-[250px] cursor-pointer lg:w-[220px] w-full h-[50px] text-secondaryColor 2xl:text-[18px] lg:text-[16px] text-[14px] border-[1px] border-[#BCBEC6] rounded-[8px] bg-white outline-0 pl-4 font-Poppins placeholder:text-secondaryColor"
                       dateFormat="dd-MM-yyyy"
-                      popperPlacement="bottom-end"
                       calendarClassName="custom-calendar-class"
                     />
-                    <span className="absolute inset-y-0 right-1 flex items-center  pointer-events-none">
-                      <CiCalendar className=" text-[#651A71] font-bold lg:size-6 size-5" />
+                    <span className="absolute inset-y-0 right-0 flex items-center lg:pr-3 pr-2 pointer-events-none">
+                      <CiCalendar className="text-black font-bold lg:size-6 size-5" />
                     </span>
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col 2xl:flex-row gap-4 justify-end">
-                <div className="lg:flex items-center justify-end gap-2  mt-4 lg:mt-0">
-                  <h1 className="text-[#00000099] lg:text-[18px] text-[14px] font-Noto-Sans-Bengali font-[600] mb-[10px] lg:mb-0">
-                    ওয়ার্কার ডেলিভারি ডেট:
-                  </h1>
-                  <div className="relative">
-                    <DatePicker
-                      selected={workerDeliveryDate}
-                      onChange={(date) => setWorkerDeliveryDate(date)}
-                      placeholderText="Select a date"
-                      className=" text-[#651A71] 2xl:text-[18px] lg:text-[16px] text-[14px] rounded-[8px] bg-white outline-0 font-Poppins placeholder:text-secondaryColor cursor-pointer lg:w-[150px] w-full"
-                      dateFormat="dd-MM-yyyy"
-                      popperPlacement="bottom-end"
-                      calendarClassName="custom-calendar-class"
-                    />
-                    <span className="absolute inset-y-0 right-1 flex items-center  pointer-events-none">
-                      <CiCalendar className=" text-[#651A71] font-bold lg:size-6 size-5" />
-                    </span>
-                  </div>
-                </div>
-                <div className="lg:flex items-center justify-end gap-2  mt-4 lg:mt-0">
-                  <h1 className="text-[#00000099] lg:text-[18px] text-[14px] font-Noto-Sans-Bengali font-[600] mb-[10px] lg:mb-0">
-                    ডেলিভারি ডেট:
-                  </h1>
-                  <div className="relative">
-                    <DatePicker
-                      selected={deliveryDate}
-                      onChange={(date) => setDeliveryDate(date)}
-                      placeholderText="Select a date"
-                      className=" text-[#651A71] 2xl:text-[18px] lg:text-[16px] text-[14px] rounded-[8px] bg-white outline-0 font-Poppins placeholder:text-secondaryColor cursor-pointer lg:w-[150px] w-full"
-                      dateFormat="dd-MM-yyyy"
-                      popperPlacement="bottom-end"
-                      calendarClassName="custom-calendar-class"
-                    />
-                    <span className="absolute inset-y-0 right-1 flex items-center  pointer-events-none">
-                      <CiCalendar className=" text-[#651A71] font-bold lg:size-6 size-5" />
-                    </span>
-                  </div>
+
+              <div className="lg:flex items-center justify-between 2xl:gap-[30px] gap-5 2xl:w-[407px] lg:w-[370px] w-full mt-4 lg:mt-0">
+                <h1 className="text-switchColor lg:text-[18px] text-[14px] font-Noto-Sans-Bengali font-semibold mb-[10px] lg:mb-0">
+                  ডেলিভারি ডেট
+                  <span className="text-primaryColor font-bold font-Noto-Sans-Bengali">
+                    *
+                  </span>
+                </h1>
+                <div className="relative">
+                  <DatePicker
+                    selected={deliveryDate}
+                    onChange={(date) => setDeliveryDate(date)}
+                    placeholderText="Select a date"
+                    className="2xl:w-[250px] cursor-pointer lg:w-[220px] w-full border-[#BCBEC6] h-[50px] text-secondaryColor 2xl:text-[18px] lg:text-[16px] text-[14px] border-[1px]  rounded-[8px] bg-white outline-0 pl-4 font-Poppins placeholder:text-secondaryColor"
+                    dateFormat="dd-MM-yyyy"
+                    calendarClassName="custom-calendar-class"
+                  />
+                  <span className="absolute inset-y-0 right-0 flex items-center lg:pr-3 pr-2 pointer-events-none">
+                    <CiCalendar className="text-black font-bold lg:size-6 size-5" />
+                  </span>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="w-full h-[1px] bg-secondaryColor 2xl:mt-[30px] mt-5 lg:block hidden"></div>
-          <div className="w-full h-[1px] bg-secondaryColor 2xl:mt-[30px] mt-5 lg:hidden block"></div>
+          <div className="w-full h-[1px] bg-[#BCBEC6] 2xl:mt-[30px] mt-5 lg:block hidden"></div>
+          <div className="w-full h-[1px] bg-[#BCBEC6] 2xl:mt-[30px] mt-5 lg:hidden block"></div>
         </div>
 
         <div className="2xl:pt-[30px] lg:pt-[15px] pt-3 relative">
@@ -800,7 +741,7 @@ const CreateIndustryOrderWithCustom = ({
             <>
               <div
                 key={fromIndex}
-                className="2xl:mt-[30px]  lg:mt-[15px] mt-3 border border-secondaryColor !rounded-[10px] "
+                className="2xl:mt-[30px]  lg:mt-[15px] mt-3 border border-[#BCBEC6] !rounded-[10px] "
               >
                 <div className="flex justify-between items-center lg:p-5 p-3">
                   <div className="flex lg:gap-[50px] gap-3">
@@ -811,7 +752,7 @@ const CreateIndustryOrderWithCustom = ({
 
                       <div className="relative w-full">
                         <div
-                          className={` 2xl:w-[250px] lg:w-[250px] w-full  rounded-[8px] border-[1px]  outline-0 md:text-[18px] text-[14px] font-Poppins font-normal flex items-center justify-between cursor-pointer border-secondaryColor`}
+                          className={` 2xl:w-[250px] lg:w-[250px] w-full  rounded-[8px] border-[1px]  outline-0 md:text-[18px] text-[14px] font-Poppins font-normal flex items-center justify-between cursor-pointer border-[#BCBEC6]`}
                           onClick={() =>
                             setForms((prevForms) => ({
                               ...prevForms,
@@ -824,7 +765,7 @@ const CreateIndustryOrderWithCustom = ({
                           }
                         >
                           <input
-                            className={`bg-white h-[51px] pl-5 lg:text-[18px] md:text-[16px] text-[12px] text-switchColor font-Poppins font-normal outline-none rounded-[8px] cursor-pointer`}
+                            className={`bg-white h-[51px] pl-5 lg:text-[18px] md:text-[16px] text-[12px] text-switchColor font-Poppins font-normal outline-none rounded-[8px]`}
                             type="text"
                             id="category"
                             readOnly
@@ -883,84 +824,83 @@ const CreateIndustryOrderWithCustom = ({
                     </div>
 
                     <div>
-                      <div className="lg:flex items-center gap-5 ">
-                        <h1 className="text-switchColor lg:text-[18px] text-[14px] font-Noto-Sans-Bengali font-semibold mb-[10px] lg:mb-0 ">
-                          সংখ্যা
-                        </h1>
+                    <div className="lg:flex items-center gap-5 ">
+                      <h1 className="text-switchColor lg:text-[18px] text-[14px] font-Noto-Sans-Bengali font-semibold mb-[10px] lg:mb-0 ">
+                        সংখ্যা
+                      </h1>
 
-                        <div className="flex items-center gap-3">
-                          <span
-                            onClick={() => handleDecrement(fromIndex)}
-                            className="size-6 rounded-full bg-[#BCBEC6] flex justify-center items-center cursor-pointer hover:bg-primaryColor duration-300"
-                          >
-                            <LuMinus className="text-white " />
-                          </span>
-                          <span className=" text-[24px] w-4 outline-none text-switchColor font-Poppins font-semibold">
-                            {form.quantity}
-                          </span>
-                          <span
-                            onClick={() => handleIncrement(fromIndex)}
-                            className="size-6 rounded-full bg-[#BCBEC6] flex justify-center items-center cursor-pointer hover:bg-primaryColor duration-300"
-                          >
-                            <FiPlus className="text-white size-4" />
-                            <input
-                              className="hidden text-[24px] w-4 outline-none text-switchColor font-Poppins font-semibold"
-                              type="text"
-                              readOnly
-                              value={form.quantity}
-                            />
-                          </span>
-                        </div>
+                      <div className="flex items-center gap-3">
+                        <span
+                          onClick={() => handleDecrement(fromIndex)}
+                          className="size-6 rounded-full bg-[#BCBEC6] flex justify-center items-center cursor-pointer hover:bg-primaryColor duration-300"
+                        >
+                          <LuMinus className="text-white " />
+                        </span>
+                        <span className=" text-[24px] w-4 outline-none text-switchColor font-Poppins font-semibold">
+                          {form.quantity}
+                        </span>
+                        <span
+                          onClick={() => handleIncrement(fromIndex)}
+                          className="size-6 rounded-full bg-[#BCBEC6] flex justify-center items-center cursor-pointer hover:bg-primaryColor duration-300"
+                        >
+                          <FiPlus className="text-white size-4" />
+                          <input
+                            className="hidden text-[24px] w-4 outline-none text-switchColor font-Poppins font-semibold"
+                            type="text"
+                            readOnly
+                            value={form.quantity}
+                          />
+                        </span>
                       </div>
+                    </div>
 
-                      {/* for mobile device */}
-                      <div className="md:hidden block mt-1">
-                        <div className="flex md:gap-5 gap-2 items-center">
-                          <button
-                            type="button"
-                            onClick={() => removeLastForm(fromIndex)}
-                            className="bg-activeDhcolor md:px-5 px-2 md:h-[50px] h-10 rounded-md flex justify-center items-center gap-3 text-pink-500 bg-pink-100 text-[18px] font-Poppins font-normal"
-                          >
-                            <FaRegTrashAlt className=" size-[20px]" />
-                            <p className="md:block hidden">Delete</p>
-                          </button>
+                       {/* for mobile device */}
+                  <div className="md:hidden block mt-1">
+                  <div className="flex md:gap-5 gap-2 items-center">
+                    <button
+                      type="button"
+                      onClick={() => removeLastForm(fromIndex)}
+                      className="bg-activeDhcolor md:px-5 px-2 md:h-[50px] h-10 rounded-md flex justify-center items-center gap-3 text-pink-500 bg-pink-100 text-[18px] font-Poppins font-normal"
+                    >
+                      <FaRegTrashAlt className=" size-[20px]" />
+                      <p className="md:block hidden">Delete</p>
+                    </button>
 
-                          <div className="">
-                            <IoIosArrowDown
-                              onClick={() => toggleVisibility(fromIndex)}
-                              className={`md:size-6 size-6 text-black cursor-pointer transition-transform duration-300 ease-in-out ${
-                                visibility[fromIndex]
-                                  ? "rotate-0"
-                                  : "rotate-180"
-                              }`}
-                            />
-                          </div>
-                        </div>
-                      </div>
+                    <div className="">
+                      <IoIosArrowDown
+                        onClick={() => toggleVisibility(fromIndex)}
+                        className={`md:size-6 size-6 text-black cursor-pointer transition-transform duration-300 ease-in-out ${
+                          visibility[fromIndex] ? "rotate-0" : "rotate-180"
+                        }`}
+                      />
+                    </div>
+                  </div>
+                  </div>
+
                     </div>
                   </div>
 
                   {/* for large device */}
                   <div className="md:block hidden">
-                    <div className="flex md:gap-5 gap-2 items-center">
-                      <button
-                        type="button"
-                        onClick={() => removeLastForm(fromIndex)}
-                        className="bg-activeDhcolor md:px-5 px-2 md:h-[50px] h-10 rounded-md flex justify-center items-center gap-3 text-pink-500 bg-pink-100 text-[18px] font-Poppins font-normal"
-                      >
-                        <FaRegTrashAlt className=" size-[20px]" />
-                        <p className="md:block hidden">Delete</p>
-                      </button>
+                  <div className="flex md:gap-5 gap-2 items-center">
+                    <button
+                      type="button"
+                      onClick={() => removeLastForm(fromIndex)}
+                      className="bg-activeDhcolor md:px-5 px-2 md:h-[50px] h-10 rounded-md flex justify-center items-center gap-3 text-pink-500 bg-pink-100 text-[18px] font-Poppins font-normal"
+                    >
+                      <FaRegTrashAlt className=" size-[20px]" />
+                      <p className="md:block hidden">Delete</p>
+                    </button>
 
-                      <div className="">
-                        <IoIosArrowDown
-                          onClick={() => toggleVisibility(fromIndex)}
-                          className={`md:size-6 size-3 text-black cursor-pointer transition-transform duration-300 ease-in-out ${
-                            visibility[fromIndex] ? "rotate-0" : "rotate-180"
-                          }`}
-                        />
-                      </div>
+                    <div className="">
+                      <IoIosArrowDown
+                        onClick={() => toggleVisibility(fromIndex)}
+                        className={`md:size-6 size-3 text-black cursor-pointer transition-transform duration-300 ease-in-out ${
+                          visibility[fromIndex] ? "rotate-0" : "rotate-180"
+                        }`}
+                      />
                     </div>
+                  </div>
                   </div>
                 </div>
 
@@ -971,10 +911,10 @@ const CreateIndustryOrderWithCustom = ({
                         index === fromIndex && item.category !== ""
                     ) ? (
                       <>
-                        <div className=" lg:flex bg-[#F9FAFE] rounded-r-[10px] rounded-l-[10px] border-secondaryColor border-t rounded-t-none ">
+                        <div className=" lg:flex bg-[#F9FAFE] rounded-r-[10px] rounded-l-[10px] border-[#BCBEC6] border-t rounded-t-none ">
                           {/* part 1 */}
-                          <div className="bg-white 2xl:w-[740px] 2mid75:w-full lg:w-full w-full rounded-l-[10px]">
-                            <h1 className="text-[#222943] lg:text-[20px] text-[16px] font-Noto-Sans-Bengali font-bold 2xl:pl-5 pl-3 2xl:pt-5 pt-3">
+                          <div className="bg-white 2xl:w-[740px] 2mid75:w-full lg:w-full w-full rounded-l-[10px] lg:pb-[36px] pb-24">
+                            <h1 className="text-[#222943] lg:text-[24px] text-[18px] font-Noto-Sans-Bengali font-bold 2xl:pl-5 pl-3 2xl:pt-5 pt-3">
                               পরিমাপের নাম
                             </h1>
 
@@ -997,7 +937,7 @@ const CreateIndustryOrderWithCustom = ({
                                           {measurementItem.label}
                                         </label>
                                         <input
-                                          className="bg-white 2xl:w-[100px] lg:w-[70px] w-[60px] h-[40px] rounded-[8px] border-[1px] border-secondaryColor outline-0 pl-3 font-bold"
+                                          className="bg-white 2xl:w-[100px] lg:w-[70px] w-[60px] h-[50px] rounded-[8px] border-[1px] border-[#BCBEC6] outline-0 pl-3"
                                           type="text"
                                           name=""
                                           defaultValue={measurementItem.text}
@@ -1024,8 +964,8 @@ const CreateIndustryOrderWithCustom = ({
 
                             {form?.lugeSize.length >= 1 && (
                               <>
-                                <div className="w-full h-[0.4px] bg-secondaryColor lg:my-5 my-3"></div>
-                                <h1 className="text-[#222943] lg:text-[16px] text-[14px] font-Noto-Sans-Bengali font-bold 2xl:pl-5 pl-3 ">
+                                <div className="w-full h-[0.4px] bg-[#BCBEC6] lg:my-5 my-3"></div>
+                                <h1 className="text-[#222943] lg:text-[24px] text-[18px] font-Noto-Sans-Bengali font-bold 2xl:pl-5 pl-3 ">
                                   লুজের মাপ (ঐচ্ছিক)
                                 </h1>
                                 <div className="lg:mt-5 mt-3 flex flex-wrap 2xl:gap-5 lg:gap-3 gap-3 2xl:pl-5 pl-3">
@@ -1047,7 +987,7 @@ const CreateIndustryOrderWithCustom = ({
                                               {lugeItem.label}
                                             </label>
                                             <input
-                                              className="bg-white 2xl:w-[100px] lg:w-[70px] w-[60px] h-[40px] rounded-[8px] border-[1px] border-secondaryColor outline-0 pl-3 font-bold"
+                                              className="bg-white 2xl:w-[100px] lg:w-[70px] w-[60px] h-[50px] rounded-[8px] border-[1px] border-[#BCBEC6] outline-0 pl-3"
                                               type="text"
                                               name=""
                                               defaultValue={lugeItem.text}
@@ -1084,14 +1024,12 @@ const CreateIndustryOrderWithCustom = ({
                           </div>
                           {/* part 2 */}
 
-                          <div className="bg-[#F9FAFE] 2xl:w-[745px] 2mid75:w-full lg:w-full w-full border-secondaryColor lg:border-l rounded-r-[10px] rounded-l-[10px] lg:rounded-l-none">
+                          <div className="bg-[#F9FAFE] 2xl:w-[745px] 2mid75:w-full lg:w-full w-full border-[#BCBEC6] lg:border-l rounded-r-[10px] rounded-l-[10px] lg:rounded-l-none">
                             <div className="2xl:p-5 p-3">
-                              <h1 className="text-[#222943] lg:text-[20px] text-[16px] font-Noto-Sans-Bengali font-bold">
+                              <h1 className="text-[#222943] lg:text-[24px] text-[18px] font-Noto-Sans-Bengali font-bold">
                                 ডিজাইন স্টাইল
                               </h1>
 
-                              
-                              <div>
                               <div className="lg:mt-5 mt-3 lg:flex flex-row-reverse gap-5 ">
                                 <div className="flex flex-col lg:gap-2 2large:gap-2 gap-[12px]">
                                   <div>
@@ -1107,11 +1045,11 @@ const CreateIndustryOrderWithCustom = ({
                                                 return (
                                                   <label
                                                     key={styleIdex}
-                                                    className={`flex items-center rounded-lg cursor-pointer ${
+                                                    className={`flex items-center border rounded-lg p-[15px] cursor-pointer ${
                                                       styleItem.isActive ===
                                                       true
-                                                        ? "text-primaryColor"
-                                                        : ""
+                                                        ? "border-pink-500 bg-pink-100"
+                                                        : "border-gray-300"
                                                     }`}
                                                   >
                                                     <input
@@ -1131,7 +1069,7 @@ const CreateIndustryOrderWithCustom = ({
                                                    ${
                                                      styleItem.isActive === true
                                                        ? "bg-[#F00C89] border-0"
-                                                       : "border-[1px] border-secondaryColor"
+                                                       : "border-[1px] border-[#E5E5E5]"
                                                    }
                                                    `}
                                                       >
@@ -1147,7 +1085,7 @@ const CreateIndustryOrderWithCustom = ({
                                                     </div>
 
                                                     <span
-                                                      className={`ml-4 font-semibold font-Noto-Sans-Bengali  `}
+                                                      className={`ml-4 font-bold `}
                                                     >
                                                       {styleItem.text}
                                                     </span>
@@ -1178,7 +1116,7 @@ const CreateIndustryOrderWithCustom = ({
                                               className="flex flex-col"
                                             >
                                               <div
-                                                className="relative 2xl:w-[340px] 2large:w-[270px] lg:w-[230px] 2makbook:w-[200px] w-full h-[46px] rounded-[8px] border-[1px] border-secondaryColor bg-white outline-0 px-5 md:text-[18px] text-[14px] font-Noto-Sans-Bengali flex items-center justify-between cursor-pointer"
+                                                className="relative 2xl:w-[340px] 2large:w-[270px] lg:w-[230px] 2makbook:w-[200px] w-full h-[56px] rounded-[8px] border-[1px] border-[#BCBEC6] bg-white outline-0 px-5 md:text-[18px] text-[14px] font-Noto-Sans-Bengali flex items-center justify-between cursor-pointer"
                                                 onClick={() =>
                                                   handleToggleDropDown(
                                                     fromIndex,
@@ -1208,7 +1146,7 @@ const CreateIndustryOrderWithCustom = ({
                                                 `${fromIndex}-${dropDownIndex}`
                                               ] && (
                                                 <div
-                                                  className="absolute z-10 mt-12 2xl:w-[340px] 2large:w-[270px] lg:w-[230px] 2makbook:w-[200px] w-[250px] p-[10px] rounded-[8px] bg-white"
+                                                  className="absolute z-10 mt-16 2xl:w-[340px] 2large:w-[270px] lg:w-[230px] 2makbook:w-[200px] w-[250px] p-[10px] rounded-[8px] bg-white"
                                                   style={{
                                                     boxShadow:
                                                       "0px 5px 30px 0px rgba(0, 0, 0, 0.30)",
@@ -1243,40 +1181,44 @@ const CreateIndustryOrderWithCustom = ({
                                     </div>
                                   </div>
 
-                                 
-                                </div>
-                              </div>
-
-                                 {/* note add */}
-                                 <div className="w-full mt-[30px]">
-                                   
+                                  {/* note add */}
+                                  <div className="w-full lg:hidden block mt-[30px]">
+                                    <h3 className="text-[#222943] text-[24px] font-bold  mb-3">
+                                      নোট লিখুন
+                                    </h3>
 
                                     <input
                                       type="text"
-                                      className="w-full h-[50px] border-[1px] border-secondaryColor rounded-[8px] bg-white pl-4 placeholder:text-[18px] font-Noto-Sans-Bengali font-normal placeholder:text-switchColor outline-0"
-                                      placeholder="এখানে নোট লিখুন"
+                                      className="w-full h-[60px] border-[1px] border-[#BCBEC6] rounded-[8px] bg-white pl-4 placeholder:text-[18px] font-Noto-Sans-Bengali font-normal placeholder:text-switchColor outline-0"
+                                      placeholder="এখানে লিখুন"
                                       onChange={(e) =>
                                         handleNoteChange(e, fromIndex)
                                       }
                                       defaultValue={form?.note}
                                     />
                                   </div>
-
-
+                                </div>
                               </div>
-
-
-
-
-
                             </div>
                           </div>
                         </div>
+                        <div className="border border-t"></div>
 
-                       
+                        <div className="w-full  p-5  lg:block hidden">
+                          <h3 className="text-[#222943] text-[24px] font-bold 2xl:mb-5 mb-2">
+                            নোট লিখুন
+                          </h3>
+                          <input
+                            type="text"
+                            className="w-full h-[60px] border-[1px] border-[#BCBEC6] rounded-[8px] bg-white pl-4 placeholder:text-[18px] font-Noto-Sans-Bengali font-normal placeholder:text-switchColor outline-0"
+                            placeholder="এখানে লিখুন"
+                            defaultValue={form?.note}
+                            onChange={(e) => handleNoteChange(e, fromIndex)}
+                          />
+                        </div>
                       </>
                     ) : (
-                      <div className="w-full bg-[#F9FAFE] lg:h-[150px] h-[96px] border-t border-secondaryColor  rounded-b-[10px] text-btnColor font-Noto-Sans-Bengali text-16px] font-normal flex justify-center items-center">
+                      <div className="w-full bg-[#F9FAFE] lg:h-[150px] h-[96px] border-t border-[#BCBEC6]  rounded-b-[10px] text-btnColor font-Noto-Sans-Bengali text-16px] font-normal flex justify-center items-center">
                         এখন পর্যন্ত কোন ক্যাটাগরি সিলেক্ট করা হয়নি
                       </div>
                     )}
@@ -1294,35 +1236,17 @@ const CreateIndustryOrderWithCustom = ({
                 className="bg-activeDhcolor w-full h-[50px] rounded-[8px] flex justify-center items-center gap-2 text-[#F00C89] text-[18px] font-medium font-Noto-Sans-Bengali"
               >
                 <FiPlus className="size-6 " />
-                <p>ক্যাটাগরি যোগ করুন</p>
+                <p>যোগ করুন</p>
               </button>
             </div>
           </div>
         </div>
 
         <div className="md:flex md:flex-row-reverse md:justify-between items-center mt-[30px] ">
-          <div className="relative bg-white md:flex gap-[10px] items-center">
+          <div className="relative bg-white flex gap-[2px] items-center">
             <button
               type="submit"
-              className={`bg-primaryColor md:w-[157px] justify-center mx-auto w-full h-[50px] rounded-[6px] flex items-center gap-2 text-white text-[18px] font-medium font-Noto-Sans-Bengali px-4`}
-            >
-              {isLoading ? (
-                <span className="loading loading-infinity loading-lg"></span>
-              ) : (
-                <>
-                  
-                      <span className="flex gap-2">
-                        <FiSave className="size-6" />
-                        <p>সেভ করুন </p>
-                      </span>
-                   
-                </>
-              )}
-            </button>
-
-                <button
-              type="submit"
-              className={`bg-activeDhcolor md:w-[257px] justify-center mx-auto w-full h-[50px] rounded-[6px] flex items-center gap-2 text-primaryColor text-[18px] font-medium font-Noto-Sans-Bengali mt-5 md:mt-0 px-4`}
+              className={`bg-primaryColor md:w-[257px] justify-center mx-auto w-full h-[50px] rounded-l-[6px] flex items-center gap-2 text-white text-[18px] font-medium font-Noto-Sans-Bengali px-4`}
             >
               {isLoading ? (
                 <span className="loading loading-infinity loading-lg"></span>
@@ -1340,8 +1264,9 @@ const CreateIndustryOrderWithCustom = ({
                 </>
               )}
             </button>
+         
 
-            {/* <Menu>
+            <Menu>
               <MenuButton className="inline-flex items-center gap-2 rounded-r-lg bg-primaryColor py-[13px] px-3 text-white cursor-pointer">
                 <IoIosArrowDown className="size-6 " />
               </MenuButton>
@@ -1387,9 +1312,7 @@ const CreateIndustryOrderWithCustom = ({
                   )}
                 </MenuItem>
               </MenuItems>
-            </Menu> */}
-
-
+            </Menu>
           </div>
 
           <div>

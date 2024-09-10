@@ -80,7 +80,11 @@ const OrderTabAndList = () => {
           </div>
         </div>
 
-       
+        {/* <div className="lg:block hidden">
+          <div className="flex 2xl:gap-[30px] gap-4 lg:mt-[-10px] 2xl:mt-[-20px] ">
+            <FilterItem />
+          </div>
+        </div> */}
 
        {activeTab !== "company" && (
          <div className="lg:block hidden">

@@ -3,7 +3,6 @@ import authReducer from './auth/authSlice'
 import searchReducer from './auth/searchSlice'
 import filterhReducer from './auth/filterSlice'
 import allfilterReducer from './auth/allFilterSlice'
-import filterDateReducer from './auth/filterDateSlice'
 import { baseApi } from '../api/baseApi'
 import { persistStore, persistReducer,FLUSH,
   REHYDRATE,
@@ -31,7 +30,6 @@ export const store = configureStore({
      search: searchReducer,
      filter: filterhReducer,
      allfilter: allfilterReducer,
-     filterDate: filterDateReducer,
   },
 
   middleware: (getDefaultMiddleware) =>

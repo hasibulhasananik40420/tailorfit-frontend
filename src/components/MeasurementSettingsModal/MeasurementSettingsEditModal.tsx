@@ -9,20 +9,18 @@ import { useAppSelector } from "../../redux/features/hooks";
 import { selectCurrentUser } from "../../redux/features/auth/authSlice";
 import { useForm } from "react-hook-form";
 import { useEditMeasurementMutation } from "../../redux/api/measurementApi";
-import data from "../../utils/CatelogImage";
+import data from '../../utils/CatelogImage'
 
 import Swal from "sweetalert2";
 import { CiSearch } from "react-icons/ci";
 
 interface CategoryItem {
-  category?: string;
   admin?: string;
   name: string;
   image: string;
   subCategories: string[];
   measurements: string[];
   looseItems: string[];
-  id?: string;
   styles: { category: string; subCategories: string[] }[];
 }
 
@@ -33,6 +31,7 @@ type ModalState = {
   id?: string;
 };
 
+
 const MeasurementSettingsEditModal = ({
   isOpenEditModal,
   isCloseEditModal,
@@ -40,13 +39,6 @@ const MeasurementSettingsEditModal = ({
 }: ModalState) => {
   //////////////////////////////////////////// my  code ///////////////////////
   const [isModalOpen, setModalOpen] = useState(false);
-
-  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewMeasurement((prev) => ({
-      ...prev,
-      name: e.target.value, // Update the 'name' field
-    }));
-  };
 
   const [newMeasurement, setNewMeasurement] = useState<CategoryItem>({
     name: measurement.name,
@@ -302,8 +294,6 @@ const MeasurementSettingsEditModal = ({
 
   const onSubmit = async () => {
     newMeasurement.admin = userData?.id;
-    newMeasurement.id = measurement?._id;
-    newMeasurement.category = newMeasurement?.name;
 
     const formData = new FormData();
     formData.append("data", JSON.stringify(newMeasurement));
@@ -319,8 +309,10 @@ const MeasurementSettingsEditModal = ({
 
     try {
       const res = await editMeasurement(formData).unwrap();
+      console.log(res);
       if (res?.success) {
         Swal.fire({
+          
           icon: "success",
           title: res?.message,
           showConfirmButton: false,
@@ -381,21 +373,12 @@ const MeasurementSettingsEditModal = ({
                         </div>
                       </div>
                     </div>
-
                     <input
                       type="text"
-                      defaultValue={newMeasurement?.name}
+                      value={newMeasurement?.name}
                       placeholder="Type"
-                      onChange={handleNameChange}
-                      className={`border border-secondaryColor lg:w-[210px] w-full h-[50px] rounded-[8px] bg-white text-secondaryColor outline-0 placeholder:text-[#BCBEC6] placeholder:text-[18px] font-Poppins pl-4 `}
+                      className={`border lg:w-[210px] w-full h-[50px] rounded-[8px] bg-white text-secondaryColor outline-0 placeholder:text-[#BCBEC6] placeholder:text-[18px] font-Poppins pl-4 `}
                     />
-                    {/* <input
-                      type="text"
-                      value={newMeasurement?.name} // Controlled component
-                      placeholder="Type"
-                      className={`border border-secondaryColor lg:w-[210px] w-full h-[50px] rounded-[8px] bg-white text-secondaryColor outline-0 placeholder:text-[#BCBEC6] placeholder:text-[18px] font-Poppins pl-4`}
-                      onChange={handleNameChange} // Add onChange handler
-                    /> */}
                   </div>
 
                   <div className="lg:block hidden">
@@ -438,7 +421,7 @@ const MeasurementSettingsEditModal = ({
                                   handleMeasurement(event, index)
                                 }
                                 placeholder="Type"
-                                className="border border-secondaryColor block 2xl:w-[210px] 2mid75:w-[210px] 2large:w-[180px] !lg:w-full 2mid80:w-[160px] 2makbook:w-[120px] w-full h-[50px] rounded-[8px] bg-white text-secondaryColor outline-0 placeholder:text-[#BCBEC6] md:placeholder:text-[18px] placeholder:text-[14px] font-Poppins pl-4"
+                                className="border block 2xl:w-[210px] 2mid75:w-[210px] 2large:w-[180px] !lg:w-full 2mid80:w-[160px] 2makbook:w-[120px] w-full h-[50px] rounded-[8px] bg-white text-secondaryColor outline-0 placeholder:text-[#BCBEC6] md:placeholder:text-[18px] placeholder:text-[14px] font-Poppins pl-4"
                               />
 
                               <button
@@ -484,7 +467,7 @@ const MeasurementSettingsEditModal = ({
                               defaultValue={looseItem}
                               onChange={(event) => handleLoose(event, index)}
                               placeholder="Type"
-                              className="border border-secondaryColor block 2xl:w-[210px] 2mid75:w-[210px] 2large:w-[180px] !lg:w-full 2mid80:w-[160px] 2makbook:w-[120px] w-full h-[50px] rounded-[8px] bg-white text-secondaryColor outline-0 placeholder:text-[#BCBEC6] md:placeholder:text-[18px] placeholder:text-[14px] font-Poppins pl-4"
+                              className="border block 2xl:w-[210px] 2mid75:w-[210px] 2large:w-[180px] !lg:w-full 2mid80:w-[160px] 2makbook:w-[120px] w-full h-[50px] rounded-[8px] bg-white text-secondaryColor outline-0 placeholder:text-[#BCBEC6] md:placeholder:text-[18px] placeholder:text-[14px] font-Poppins pl-4"
                             />
 
                             <button
@@ -553,6 +536,7 @@ const MeasurementSettingsEditModal = ({
 
                             <div className="2xl:mt-[30px] lg:mt-5 mt-4 grid grid-cols-4 lg:grid-cols-4 2xl:gap-1 lg:gap-x-[0] lg:gap-y-4 gap-2 2large:gap-1">
                               <div className="lg:block hidden">
+                                
                                 <label className="2xl:w-[180px] 2xl:h-[220px] lg:w-[180px] lg:h-[220px] 2makbook:h-[130px] w-[62px] h-[62px] bg-activeDhcolor rounded border-[1.5px] border-dashed border-[#F00C89] flex flex-col gap-5 items-center justify-center cursor-pointer">
                                   {selectedFile ? (
                                     <img
@@ -674,12 +658,12 @@ const MeasurementSettingsEditModal = ({
                                 style={{ width: "100%" }}
                                 type="text"
                                 defaultValue={style.category}
-                                required
+                                 required
                                 onChange={(e) =>
                                   handleDropStyle(styleIndex, e.target.value)
                                 }
                                 placeholder="Style Category"
-                                className={`border border-secondaryColor 2xl:w-[310px] 2mid75:w-[310px] 2large:w-[250px] 2makbook:w-[180px] lg:!w-full h-[50px] rounded-[8px] bg-white text-secondaryColor outline-0 placeholder:text-[#BCBEC6] md:placeholder:text-[18px] placeholder:text-[14px] pl-4`}
+                                className={`border 2xl:w-[310px] 2mid75:w-[310px] 2large:w-[250px] 2makbook:w-[180px] lg:!w-full h-[50px] rounded-[8px] bg-white text-secondaryColor outline-0 placeholder:text-[#BCBEC6] md:placeholder:text-[18px] placeholder:text-[14px] pl-4`}
                               />
 
                               <IoIosCloseCircle
@@ -706,7 +690,7 @@ const MeasurementSettingsEditModal = ({
                                       )
                                     }
                                     placeholder="সাব ক্যাটাগরি"
-                                    className="border border-secondaryColor 2xl:w-[310px] 2mid75:w-[310px] 2large:w-[250px] 2makbook:w-[180px] lg:!w-full h-[50px] rounded-[8px] bg-white text-secondaryColor outline-0 placeholder:text-[#BCBEC6] md:placeholder:text-[18px] placeholder:text-[14px] pl-4 font-Noto-Sans-Bengali"
+                                    className="border 2xl:w-[310px] 2mid75:w-[310px] 2large:w-[250px] 2makbook:w-[180px] lg:!w-full h-[50px] rounded-[8px] bg-white text-secondaryColor outline-0 placeholder:text-[#BCBEC6] md:placeholder:text-[18px] placeholder:text-[14px] pl-4 font-Noto-Sans-Bengali"
                                   />
 
                                   <button
@@ -769,7 +753,7 @@ const MeasurementSettingsEditModal = ({
                                   handleSingleStyle(event, subCategoryIndex)
                                 }
                                 placeholder="একক স্টাইল"
-                                className={`border border-secondaryColor 2xl:w-[330px] 2mid75:w-[330px] 2large:w-[270px] lg:w-[230px] 2makbook:w-[200px] w-full h-[50px] rounded-[8px] bg-white text-secondaryColor outline-0 placeholder:text-[#BCBEC6] placeholder:text-[18px] pl-4 font-Noto-Sans-Bengali`}
+                                className={`border 2xl:w-[330px] 2mid75:w-[330px] 2large:w-[270px] lg:w-[230px] 2makbook:w-[200px] w-full h-[50px] rounded-[8px] bg-white text-secondaryColor outline-0 placeholder:text-[#BCBEC6] placeholder:text-[18px] pl-4 font-Noto-Sans-Bengali`}
                               />
 
                               <IoIosCloseCircle
@@ -796,30 +780,37 @@ const MeasurementSettingsEditModal = ({
                   </div>
                 </div>
               </div>
+
+              
             </div>
 
-            <div className="my-3 lg:flex lg:justify-end  gap-4 w-full px-4 lg:px-0 ">
-              <button
-                type="submit"
-                className="bg-[#F00C89] border-[1px] border-[#F00C89] lg:w-[152px] w-full h-[50px] md:px-0 px-4 rounded-[6px] flex justify-center items-center gap-2 text-white text-[18px] font-medium font-Noto-Sans-Bengali"
-              >
-                {isLoading ? (
-                  <span className="loading loading-infinity loading-lg"></span>
-                ) : (
-                  <>
-                    <FiSave className="size-6" /> সেভ করুন
-                  </>
-                )}
-              </button>
 
-              <button
-                type="button"
-                onClick={isCloseEditModal}
-                className="mt-5 lg:mt-0 bg-white text-[#F00C89] border-[1px] border-[#F00C89] lg:w-[152px] w-full h-[50px] md:px-0 px-4 rounded-[6px] flex justify-center items-center gap-2 text-[18px] font-medium font-Noto-Sans-Bengali"
-              >
-                <>Cancel</>
-              </button>
-            </div>
+
+            
+              <div className="my-3 lg:flex lg:justify-end  gap-4 w-full px-4 lg:px-0 ">
+               
+                <button
+                  type="submit"
+                  className="bg-[#F00C89] border-[1px] border-[#F00C89] lg:w-[152px] w-full h-[50px] md:px-0 px-4 rounded-[6px] flex justify-center items-center gap-2 text-white text-[18px] font-medium font-Noto-Sans-Bengali"
+                >
+                  {isLoading ? (
+                    <span className="loading loading-infinity loading-lg"></span>
+                  ) : (
+                    <>
+                      <FiSave className="size-6" /> সেভ করুন
+                    </>
+                  )}
+                </button>
+
+                <button
+                  type="button"
+                  onClick={isCloseEditModal}
+                  className="mt-5 lg:mt-0 bg-white text-[#F00C89] border-[1px] border-[#F00C89] lg:w-[152px] w-full h-[50px] md:px-0 px-4 rounded-[6px] flex justify-center items-center gap-2 text-[18px] font-medium font-Noto-Sans-Bengali"
+                >
+                  <>Cancel</>
+                </button>
+              </div>
+            
           </form>
         </div>
       )}

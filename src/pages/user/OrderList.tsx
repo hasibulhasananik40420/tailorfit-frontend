@@ -6,7 +6,6 @@ import AllPersonOderList from "../../components/AllPersonOderList/AllPersonOderL
 import AllCompanyOrderList from "../../components/AllCompanyOrderList/AllCompanyOrderList";
 import FilterItem from "../../components/FilterItem/FilterItem";
 import FilterItemForMobile from "../../components/FilterItem/FilterItemForMobile";
-import OrderListSearchAndFilter from "./OrderListSearchAndFilter";
 
 const OrderList = () => {
   const [activeTab, setActiveTab] = useState('person');
@@ -16,11 +15,11 @@ const OrderList = () => {
     <div className=" w-full bg-white 2xl:p-[30px] lg:p-[15px] md:p-5 p-4 rounded-[10px]">
       <div className="flex justify-between gap-5 lg:gap-0 items-center lg:w-full w-full">
         <div className="flex items-center 2xl:gap-[30px] lg:gap-[30px] gap-4 2xl:mb-[30px] mb-[14px]">
-          {/* <div className="w-full">
+          <div className="w-full">
             <h1 className="text-secondaryColor 2xl:text-[24px] text-[18px] font-Noto-Sans-Bengali font-semibold lg:block hidden">
               অর্ডার তালিকা
             </h1>
-          </div> */}
+          </div>
 
           <div
             className=" w-full 2xl:h-[50px]  lg:h-[40px]  h-[39px] rounded-[40px] border-[1px] border-[#999] bg-white flex ml-[-15px] md:ml-0"
@@ -79,16 +78,13 @@ const OrderList = () => {
           </div>
         </div>
 
-      
+        {/* <div className="lg:block hidden">
+          <div className="flex 2xl:gap-[30px] gap-4 lg:mt-[-10px] 2xl:mt-[-20px] ">
+            <FilterItem />
+          </div>
+        </div> */}
 
-       <div className="flex items-center gap-5">
-       {activeTab !== "company" && (
-         <div className="md:mt-[-10px] 2xl:mt-[-20px]">
-            <OrderListSearchAndFilter />
-         </div>
-         )}
-
-       {activeTab !== "company" && (
+        {activeTab !== "company" && (
          <div className="lg:block hidden">
           <div className="flex 2xl:gap-[30px] gap-4 lg:mt-[-10px] 2xl:mt-[-20px]">
          <FilterItem />
@@ -102,14 +98,6 @@ const OrderList = () => {
           <FilterItemForMobile />
         </div>
         )}
-
-
-         
-       </div>
-
-
-
-
       </div>
 
       <div className="w-full">
